@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebra pattern guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" async></script>
+<style>
+:root {
+  --paper: #fbfcfd;
+  --grid: #e3ebf3;
+  --ink: #1d3557;
+  --graphite: #33373d;
+  --muted: #5d6570;
+  --highlight: #f7e58a;
+  --redpen: #b8322a;
+  --rule: #cfd9e4;
+  --panel: #ffffff;
+  --answer-bg: #eef5ec;
+  --answer-ink: #2e5d34;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14181d;
+    --grid: #1d242c;
+    --ink: #9cc0ea;
+    --graphite: #dde2e8;
+    --muted: #9aa3ad;
+    --highlight: #6b5d14;
+    --redpen: #f08a80;
+    --rule: #2d3742;
+    --panel: #1a2027;
+    --answer-bg: #1d2b20;
+    --answer-ink: #9fd4a6;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14181d;
+  --grid: #1d242c;
+  --ink: #9cc0ea;
+  --graphite: #dde2e8;
+  --muted: #9aa3ad;
+  --highlight: #6b5d14;
+  --redpen: #f08a80;
+  --rule: #2d3742;
+  --panel: #1a2027;
+  --answer-bg: #1d2b20;
+  --answer-ink: #9fd4a6;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--graphite);
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+main { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+h1 {
+  font-size: clamp(2.2rem, 6vw, 3.25rem);
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.lede { color: var(--muted); font-size: 1.2rem; margin: 0 0 2.5rem; max-width: 38rem; }
+h2 {
+  color: var(--ink);
+  font-size: 1.75rem;
+  margin: 3.5rem 0 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--ink);
+}
+h3 { color: var(--ink); font-size: 1.3rem; margin: 2.25rem 0 0.5rem; }
+p { margin: 0.5rem 0 0.9rem; }
+.mark {
+  background: linear-gradient(transparent 55%, var(--highlight) 55%);
+  padding: 0 0.1em;
+}
+.note {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: var(--redpen);
+  margin: 0.6rem 0 1rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--redpen);
+}
+.cue { font-weight: 600; color: var(--ink); }
+.where { color: var(--muted); font-style: italic; font-size: 1rem; }
+.math { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; }
+ol.check { padding-left: 1.4rem; }
+ol.check li { margin: 0.4rem 0; }
+.toolbar { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0 0.5rem; }
+button {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+button:hover { background: var(--grid); }
+button:focus-visible, summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.problem {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--ink);
+  border-radius: 3px;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0;
+}
+.problem .head { display: flex; gap: 0.6rem; align-items: baseline; flex-wrap: wrap; }
+.problem .num { font-weight: 700; color: var(--ink); }
+.tag {
+  font-size: 0.85rem;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0 0.55rem;
+}
+.pattern {
+  background: var(--grid);
+  border-radius: 3px;
+  padding: 0.5rem 0.8rem;
+  margin: 0.5rem 0 0.9rem;
+  font-size: 1rem;
+}
+.pattern p { margin: 0.2rem 0; }
+details { margin-top: 0.5rem; }
+summary { cursor: pointer; color: var(--ink); font-weight: 600; font-size: 1rem; }
+.steps { margin-top: 0.5rem; }
+.steps p { margin: 0.35rem 0; }
+.answer {
+  background: var(--answer-bg);
+  color: var(--answer-ink);
+  border-radius: 3px;
+  padding: 0.4rem 0.75rem;
+  margin-top: 0.6rem;
+  font-weight: 600;
+  overflow-x: auto;
+}
+table { border-collapse: collapse; width: 100%; font-size: 1rem; }
+.tablewrap { overflow-x: auto; }
+th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { color: var(--ink); }
+.diagram { max-width: 430px; }
+.plot .diagram-pk, .plot.diagram .lc { stroke-width: 3.2; }
+.plot.diagram .lb { stroke-width: 3.2; }
+.plot.diagram .la { stroke-width: 2.4; }
+.plot .dtick line { stroke: var(--muted); stroke-width: 1.2; opacity: 0.5; }
+.plot .dhead { font-size: 12.5px; font-weight: 700; fill: var(--ink); }
+.plot .dlab { font-size: 11.5px; fill: var(--muted); }
+.plot .dlab.strong { font-size: 13px; font-weight: 700; fill: var(--graphite); }
+.plot .dnote { font-size: 11.5px; font-style: italic; fill: var(--muted); }
+.plot .mred line { stroke: var(--redpen); stroke-width: 1.4; }
+.plot .mgrn line { stroke: var(--answer-ink); stroke-width: 1.4; }
+.plot .mink line { stroke: var(--muted); stroke-width: 1.4; }
+.figure { margin: 1rem 0 0.9rem; text-align: center; }
+.plot { width: 100%; max-width: 380px; height: auto; display: inline-block; }
+.plot .grid line { stroke: var(--rule); stroke-width: 0.7; }
+.plot .axis line { stroke: var(--muted); stroke-width: 1.3; }
+.plot .tick text { font-size: 11px; fill: var(--muted); }
+.plot .la { stroke: var(--ink); stroke-width: 2.2; }
+.plot .lb { stroke: var(--redpen); stroke-width: 2.6; }
+.plot .lc { stroke: var(--answer-ink); stroke-width: 2.2; }
+.plot .lg { stroke: var(--muted); stroke-width: 1.2; }
+.plot .ra { stroke: var(--redpen); stroke-width: 1.2; fill: none; }
+.plot .pt { fill: var(--ink); }
+.plot .ptb { fill: var(--redpen); }
+.plot .ptline { fill: var(--muted); }
+.plot text { font-family: inherit; }
+.plot .lbl { font-size: 12.5px; fill: var(--graphite); font-weight: 600; }
+.figcap { font-size: 0.9rem; color: var(--muted); margin: 0.1rem 0 0; }
+.topics { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 1.75rem; }
+.topics button {
+  border: 1.5px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1rem;
+  padding: 0.3rem 1.1rem;
+}
+.topics button:hover { background: var(--grid); color: var(--ink); }
+.topics button[aria-selected="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+.topics button[aria-selected="true"]:hover { background: var(--ink); color: var(--paper); }
+.topic[hidden] { display: none; }
+.problem > p { margin: 0.35rem 0 0.2rem; }
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  margin: 2rem 0 0;
+  border-bottom: 2px solid var(--ink);
+}
+.tabs button {
+  border: 1.5px solid var(--rule);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.05rem;
+  padding: 0.45rem 1rem;
+  margin-bottom: -2px;
+}
+.tabs button:hover { background: var(--grid); color: var(--ink); }
+.tabs button[aria-selected="true"] {
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: 600;
+  border-color: var(--ink);
+  border-bottom: 2px solid var(--panel);
+}
+.panel[hidden] { display: none; }
+.panel > h2:first-child { margin-top: 2rem; }
+footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+@media print {
+  body { background: #fff; }
+  .tabs { display: none; }
+  .panel[hidden], .topic[hidden] { display: block !important; }
+  .topics { display: none; }
+  details { display: block; }
+  details > summary { display: none; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Seeing the pattern before you solve</h1>
+<nav class="topics" role="tablist" aria-label="Topic">
+  <button type="button" role="tab" id="topictab-eq" aria-controls="topic-eq" aria-selected="true">Equations</button>
+  <button type="button" role="tab" id="topictab-lines" aria-controls="topic-lines" aria-selected="false" tabindex="-1">Lines</button>
+</nav>
+
+<div class="topic" id="topic-eq" role="tabpanel" aria-labelledby="topictab-eq">
+<p class="lede">Most of these problems are one of seven types. Each type has a visual cue. Spot the cue, and the method follows.</p>
+
+<div class="tabs" role="tablist" aria-label="Guide sections">
+  <button type="button" role="tab" id="tab-checklist" aria-controls="panel-checklist" aria-selected="true">Checklist</button>
+  <button type="button" role="tab" id="tab-patterns" aria-controls="panel-patterns" aria-selected="false" tabindex="-1">Patterns</button>
+  <button type="button" role="tab" id="tab-solved" aria-controls="panel-solved" aria-selected="false" tabindex="-1">Solved problems</button>
+</div>
+
+<section class="panel" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist" tabindex="0">
+
+<h2>The checklist</h2>
+<p>Run through these questions in order when you first look at a problem.</p>
+<ol class="check">
+  <li>Is it only arithmetic? Convert mixed numbers and follow order of operations.</li>
+  <li>Is there a number in front of parentheses? Distribute first; the numbers are usually built to cancel.</li>
+  <li>Is <em>x</em> in a denominator? Factor, multiply by the LCD, then check excluded values.</li>
+  <li>Does a chunk repeat, or appear next to its own reciprocal? Substitute a single letter for it.</li>
+  <li>Does it go on forever (“…”)? The tail equals the whole, so replace it with <em>x</em>.</li>
+  <li>After clearing fractions, is it linear or quadratic? Solve accordingly.</li>
+</ol>
+
+</section>
+
+<section class="panel" id="panel-patterns" role="tabpanel" aria-labelledby="tab-patterns" tabindex="0" hidden>
+<h2>The seven patterns</h2>
+
+<h3>Linear equations with number denominators</h3>
+<p><span class="cue">Cue:</span> <em>x</em> appears only on top; every denominator is a plain number.</p>
+<p><span class="cue">Method:</span> <span class="mark">Multiply every term by the LCD</span> — the lowest common denominator, meaning the smallest number every denominator divides into evenly. For 3 and 6 that is 6; for 6, 15 and 10 it is 30. Each fraction then cancels down to a whole number and you are left with ordinary linear algebra.</p>
+<p class="note">A minus in front of a fraction hits the whole numerator: −(2 − x) becomes −2 + x.</p>
+<p class="where">Worked example: 05 #1.</p>
+
+<h3>Distribution with “scary” coefficients</h3>
+<p><span class="cue">Cue:</span> Ugly fractions like \(\tfrac{5}{13}\) sit in front of parentheses.</p>
+<p><span class="cue">Method:</span> <span class="mark">Distribute before doing anything else.</span> The numbers are chosen so the denominator cancels against what is inside the parentheses:</p>
+<div class="math">\[\tfrac{5}{13}(26x+39)=\tfrac{5\cdot26}{13}x+\tfrac{5\cdot39}{13}=10x+15\]</div>
+<p>because \(26\div13=2\) and \(39\div13=3\). Whole numbers coming out clean means you are on the intended path; a leftover fraction usually means an arithmetic slip.</p>
+<p class="where">Worked example: 05 #2.</p>
+
+<h3>Arithmetic and order of operations</h3>
+<p><span class="cue">Cue:</span> Mixed numbers, or a string of ÷, ·, +, −.</p>
+<p><span class="cue">Method:</span> A mixed number becomes improper by multiplying the whole part by the denominator and adding the numerator: \(2\tfrac34=\frac{2\cdot4+3}{4}=\frac{11}{4}\).</p>
+<p>For a stack with one long fraction bar, simplify the top and the bottom separately, then divide by <span class="mark">multiplying by the reciprocal</span> of the bottom.</p>
+<p>For a string of operations with no fraction bar, do ÷ and · first, then + and −, working left to right within each stage.</p>
+<p class="where">Worked examples: 05 #3 and #8.</p>
+
+<h3><em>x</em> in the denominator</h3>
+<p><span class="cue">Cue:</span> Expressions like \(x-2\) or \(x^2-4\) below the fraction bar.</p>
+<p><span class="cue">Method:</span> <span class="mark">Factor every denominator first.</span> Differences of squares are the usual trick: \(x^2-9=(x-3)(x+3)\).</p>
+<p>The LCD is then the product of the <em>distinct</em> factors you can see. With \(x-2\), \(x+2\) and \((x-2)(x+2)\) on the three denominators, the LCD is just \((x-2)(x+2)\) — the third one already contains the other two. Multiply both sides by it and every denominator cancels, leaving a linear or quadratic equation.</p>
+<p class="note">Write the excluded values down before you multiply — any x making an original denominator zero. Multiplying hides them, so a solution that matches one gets thrown out.</p>
+<p class="where">Worked examples: 05 #6 and QR2 #7.</p>
+
+<h3>Substitution</h3>
+<p><span class="cue">Cue:</span> The same chunk appears twice, especially an expression and its reciprocal:</p>
+<div class="math">\[\frac{x+1}{x-3} = -4 + 21\left(\frac{x-3}{x+1}\right)\]</div>
+<p><span class="cue">Method:</span> <span class="mark">Name the chunk.</span> Let \(u=\frac{x+1}{x-3}\). The fraction on the right is its reciprocal, so it becomes \(\frac1u\), and the whole equation collapses to something small:</p>
+<div class="math">\[u=-4+\frac{21}{u} \;\Rightarrow\; u^2+4u-21=0\]</div>
+<p>Solve that for \(u\), then turn <em>each</em> value of \(u\) back into an equation in \(x\) and solve again. Two values of \(u\) give two equations, and so two answers.</p>
+<p>Substitution shows up elsewhere in algebra on the same cue — \(x^4\) alongside \(x^2\) (use \(u=x^2\)), \((x+1)^2\) alongside \((x+1)\), \(\sqrt{x}\) alongside \(x\) — though none of those appear on these two sheets.</p>
+<p class="note">Substitution is a shortcut, not a requirement. Clearing denominators works too, just with more room for arithmetic mistakes.</p>
+<p class="where">Worked example: QR2 #8.</p>
+
+<h3>Infinite continued fractions</h3>
+<p><span class="cue">Cue:</span> A fraction whose own denominator contains a copy of itself, trailing off in “…”:</p>
+<div class="math">\[x=4+\cfrac{5}{4+\cfrac{5}{4+\cdots}}\]</div>
+<p><span class="cue">Method:</span> Everything below that first fraction bar is the same endless expression you started with, which is \(x\). <span class="mark">Replace it with \(x\)</span> and the tower collapses to one line:</p>
+<div class="math">\[x=4+\frac{5}{x} \;\Rightarrow\; x^2=4x+5 \;\Rightarrow\; x^2-4x-5=0\]</div>
+<p>Multiplying through by \(x\) is what turns it into a quadratic.</p>
+<p class="note">Every number in the original is positive, so x cannot come out negative. Solve the quadratic, then reject the negative root.</p>
+<p class="where">The tower above is QR2 #5. Worked examples: QR2 #5 and 05 #5, which uses 3 and 18 in place of 4 and 5. QR2 #3 looks similar but is finite — just clear the fractions.</p>
+
+<h3>Quadratics</h3>
+<p><span class="cue">Cue:</span> An \(x^2\) term with no x left in any denominator — either handed to you that way, or arrived at after clearing fractions.</p>
+<p><span class="cue">Method:</span> Move everything to one side and make the leading coefficient positive, multiplying every term by \(-1\) if it isn’t. Read off \(a\), \(b\) and \(c\) <em>with their signs</em>, then check the discriminant \(b^2-4ac\): a perfect square means it factors, anything else means the formula.</p>
+<div class="math">\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}\]</div>
+<p>Two steps always follow the formula. <span class="mark">Simplify the radical</span> by splitting out the largest perfect square — \(\sqrt{208}=\sqrt{16\cdot13}=4\sqrt{13}\) — and then <span class="mark">reduce</span> by dividing every term, top and bottom, by any common factor.</p>
+<p class="note">−4ac turns positive whenever c is negative. That sign flip is the most common mistake on these.</p>
+<p class="where">Worked examples: 05 #10 and #11, plus the last step of several problems above.</p>
+
+</section>
+
+<section class="panel" id="panel-solved" role="tabpanel" aria-labelledby="tab-solved" tabindex="0" hidden>
+<h2>Solved problems</h2>
+<p>Try each one first, then open the solution. Every answer was checked by substituting back into the original equation.</p>
+<div class="toolbar">
+  <button type="button" class="openAll">Show all solutions</button>
+  <button type="button" class="closeAll">Hide all solutions</button>
+</div>
+
+<h3>Unit 0A · 05</h3>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #1</span><span class="tag">Number denominators</span></div>
+  <div class="math">\[\frac{3x-2}{3}-\frac{x+2}{6}=1\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x appears only on top; the denominators 3 and 6 are plain numbers.</p><p><span class="cue">Method:</span> Multiply every term by the LCD (6), then solve the linear equation.</p></div>
+    <p>Multiply every term by the LCD, 6:</p>
+    <div class="math">\[2(3x-2)-(x+2)=6\]</div>
+    <div class="math">\[6x-4-x-2=6 \;\Rightarrow\; 5x=12\]</div>
+    <div class="answer">\(x=\dfrac{12}{5}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #2</span><span class="tag">Distribution</span></div>
+  <div class="math">\[4(x-4)+2(2x+2)-\frac{5}{13}(26x+39)=\frac{5}{7}(28x-35)-\frac{5}{16}(64x-48)\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Fractions like \(\tfrac{5}{13}\) sit in front of parentheses.</p><p><span class="cue">Method:</span> Distribute each coefficient first. The numbers are built to cancel (5/13 × 26 = 10).</p></div>
+    <p>Distribute each coefficient. The fractions cancel cleanly:</p>
+    <div class="math">\[4x-16+4x+4-(10x+15)=(20x-25)-(20x-15)\]</div>
+    <p>Left side: \(-2x-27\). Right side: the \(x\) terms cancel, leaving \(-10\).</p>
+    <div class="math">\[-2x-27=-10 \;\Rightarrow\; -2x=17\]</div>
+    <div class="answer">\(x=-\dfrac{17}{2}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #3</span><span class="tag">Arithmetic</span></div>
+  <div class="math">\[\frac{2\frac{3}{4}-1\frac{5}{8}}{4\frac{1}{16}+2\frac{1}{2}}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Only numbers, written as mixed numbers.</p><p><span class="cue">Method:</span> Convert to improper fractions, simplify top and bottom, then multiply by the reciprocal.</p></div>
+    <p>Convert to improper fractions: \(\tfrac{11}{4}=\tfrac{22}{8}\), \(\tfrac{13}{8}\), \(\tfrac{65}{16}\), \(\tfrac{5}{2}=\tfrac{40}{16}\).</p>
+    <div class="math">\[\frac{\frac{22}{8}-\frac{13}{8}}{\frac{65}{16}+\frac{40}{16}}=\frac{\frac{9}{8}}{\frac{105}{16}}=\frac{9}{8}\cdot\frac{16}{105}=\frac{18}{105}\]</div>
+    <div class="answer">\(\dfrac{6}{35}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #4</span><span class="tag"><em>x</em> in denominator</span></div>
+  <div class="math">\[\frac{3x}{4}+\frac{x-2}{x+2}=\frac{1}{2}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x appears in a denominator: \(x+2\).</p><p><span class="cue">Method:</span> Note the excluded value, multiply by the LCD \(4(x+2)\), then solve the quadratic.</p></div>
+    <p>Excluded value: \(x\neq-2\). Multiply by the LCD \(4(x+2)\):</p>
+    <div class="math">\[3x(x+2)+4(x-2)=2(x+2)\]</div>
+    <div class="math">\[3x^2+10x-8=2x+4 \;\Rightarrow\; 3x^2+8x-12=0\]</div>
+    <p><strong>Identify a, b, c.</strong> \(a=3\), \(b=8\), \(c=-12\). The sign belongs to c.</p>
+    <p><strong>Compute the discriminant, \(b^2-4ac\):</strong></p>
+    <div class="math">\[b^2-4ac = 8^2-4(3)(-12) = 64-(-144) = 64+144 = 208\]</div>
+    <p class="note">c is negative, so −4ac turns into +144. This sign flip is the most common mistake.</p>
+    <p>208 is between \(14^2=196\) and \(15^2=225\), so it isn’t a perfect square. The quadratic won’t factor; use the full formula:</p>
+    <div class="math">\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}=\frac{-8\pm\sqrt{208}}{2(3)}=\frac{-8\pm\sqrt{208}}{6}\]</div>
+    <p><strong>Simplify the root.</strong> The largest perfect square dividing 208 is 16: \(208=16\cdot13\), so \(\sqrt{208}=4\sqrt{13}\).</p>
+    <div class="math">\[x=\frac{-8\pm4\sqrt{13}}{6}\]</div>
+    <p><strong>Reduce.</strong> Divide every term (−8, 4, and 6) by 2, not just the −8:</p>
+    <div class="answer">\(x=\dfrac{-4\pm2\sqrt{13}}{3}\) (about 1.07 and −3.74)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #5</span><span class="tag">Continued fraction</span></div>
+  <div class="math">\[x=3+\cfrac{18}{3+\cfrac{18}{3+\cfrac{18}{3+\cdots}}}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The “…” means the fraction repeats forever.</p><p><span class="cue">Method:</span> The tail equals the whole, so replace it with x. Solve the quadratic and keep the positive root.</p></div>
+    <p>The denominator of the first fraction is the whole expression again, so:</p>
+    <div class="math">\[x=3+\frac{18}{x} \;\Rightarrow\; x^2-3x-18=0 \;\Rightarrow\; (x-6)(x+3)=0\]</div>
+    <p>Reject \(x=-3\): every term is positive, so \(x\) must be positive.</p>
+    <div class="answer">\(x=6\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #6</span><span class="tag"><em>x</em> in denominator</span></div>
+  <div class="math">\[\frac{4}{x-2}+\frac{2}{x+2}=\frac{2}{x^2-4}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x in denominators, and \(x^2-4\) is a difference of squares.</p><p><span class="cue">Method:</span> Factor \(x^2-4=(x-2)(x+2)\), note excluded values, multiply by the LCD.</p></div>
+    <p>Factor: \(x^2-4=(x-2)(x+2)\). Excluded values: \(x\neq\pm2\). Multiply by \((x-2)(x+2)\):</p>
+    <div class="math">\[4(x+2)+2(x-2)=2 \;\Rightarrow\; 6x+4=2\]</div>
+    <div class="answer">\(x=-\dfrac{1}{3}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #7</span><span class="tag">Number denominators</span></div>
+  <div class="math">\[\frac{x-3}{6}-\frac{2-x}{15}+\frac{1}{10}=1\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x appears only on top; the denominators 6, 15, 10 are plain numbers.</p><p><span class="cue">Method:</span> Multiply every term by the LCD (30). Watch the minus sign in front of \(\tfrac{2-x}{15}\).</p></div>
+    <p>Multiply by the LCD, 30:</p>
+    <div class="math">\[5(x-3)-2(2-x)+3=30\]</div>
+    <div class="math">\[5x-15-4+2x+3=30 \;\Rightarrow\; 7x-16=30\]</div>
+    <div class="answer">\(x=\dfrac{46}{7}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #8</span><span class="tag">Order of operations</span></div>
+  <div class="math">\[4+6\div2+1\cdot3-x\div3=1\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A string of ÷, ·, +, − with no parentheses.</p><p><span class="cue">Method:</span> Order of operations: ÷ and · first, then + and −, then isolate x.</p></div>
+    <p>Do ÷ and · first: \(6\div2=3\) and \(1\cdot3=3\).</p>
+    <div class="math">\[4+3+3-\frac{x}{3}=1 \;\Rightarrow\; 10-\frac{x}{3}=1 \;\Rightarrow\; \frac{x}{3}=9\]</div>
+    <div class="answer">\(x=27\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #9</span><span class="tag">Substitution</span></div>
+  <div class="math">\[7+\frac{x+4}{x-2}=2-4\left(\frac{x-2}{x+4}\right)\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(\tfrac{x+4}{x-2}\) and \(\tfrac{x-2}{x+4}\) are reciprocals of each other.</p><p><span class="cue">Method:</span> Substitute \(u=\tfrac{x+4}{x-2}\), solve the quadratic in u, then solve for x from each u.</p></div>
+    <p>Excluded values: \(x\neq2,\,-4\). The two fractions are reciprocals, so let \(u=\frac{x+4}{x-2}\):</p>
+    <div class="math">\[7+u=2-\frac{4}{u} \;\Rightarrow\; u^2+5u+4=0 \;\Rightarrow\; (u+1)(u+4)=0\]</div>
+    <p>If \(u=-1\): \(x+4=-(x-2)\), so \(x=-1\).</p>
+    <p>If \(u=-4\): \(x+4=-4(x-2)\), so \(5x=4\).</p>
+    <div class="answer">\(x=-1\) or \(x=\dfrac{4}{5}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #10</span><span class="tag">Quadratic</span></div>
+  <div class="math">\[-2x^2+4x+1=0\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> An \(x^2\) term; everything already equals 0.</p><p><span class="cue">Method:</span> Make the leading coefficient positive, check the discriminant, use the formula if it isn’t a perfect square.</p></div>
+    <p><strong>Make the leading coefficient positive.</strong> Multiply every term by −1:</p>
+    <div class="math">\[2x^2-4x-1=0\]</div>
+    <p><strong>Identify a, b, c.</strong> \(a=2\), \(b=-4\), \(c=-1\).</p>
+    <p><strong>Compute the discriminant, \(b^2-4ac\):</strong></p>
+    <div class="math">\[b^2-4ac=(-4)^2-4(2)(-1)=16-(-8)=16+8=24\]</div>
+    <p class="note">Two sign traps: (−4)² is +16, and c is negative so −4ac turns into +8.</p>
+    <p>24 is between \(4^2=16\) and \(5^2=25\), so it isn’t a perfect square. Use the full formula:</p>
+    <div class="math">\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}=\frac{-(-4)\pm\sqrt{24}}{2(2)}=\frac{4\pm\sqrt{24}}{4}\]</div>
+    <p><strong>Simplify the root.</strong> The largest perfect square dividing 24 is 4: \(24=4\cdot6\), so \(\sqrt{24}=2\sqrt6\).</p>
+    <div class="math">\[x=\frac{4\pm2\sqrt6}{4}\]</div>
+    <p><strong>Reduce.</strong> Divide every term (4, 2, and 4) by 2:</p>
+    <p class="note">The teacher’s key skips the ×(−1) step and uses a = −2, getting (−4 ± 2√6)/(−4). Same answer, just more negatives to track.</p>
+    <div class="answer">\(x=\dfrac{2\pm\sqrt6}{2}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #11</span><span class="tag">Quadratic</span></div>
+  <div class="math">\[3x^2+10x+5=0\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> An \(x^2\) term; everything already equals 0.</p><p><span class="cue">Method:</span> Check the discriminant (40, not a perfect square), so use the quadratic formula.</p></div>
+    <p><strong>Identify a, b, c.</strong> \(a=3\), \(b=10\), \(c=5\).</p>
+    <p><strong>Compute the discriminant, \(b^2-4ac\):</strong></p>
+    <div class="math">\[b^2-4ac=10^2-4(3)(5)=100-60=40\]</div>
+    <p>Here c is positive, so −4ac stays negative.</p>
+    <p>40 is between \(6^2=36\) and \(7^2=49\), so it isn’t a perfect square. Use the full formula:</p>
+    <div class="math">\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}=\frac{-10\pm\sqrt{40}}{2(3)}=\frac{-10\pm\sqrt{40}}{6}\]</div>
+    <p><strong>Simplify the root.</strong> The largest perfect square dividing 40 is 4: \(40=4\cdot10\), so \(\sqrt{40}=2\sqrt{10}\).</p>
+    <div class="math">\[x=\frac{-10\pm2\sqrt{10}}{6}\]</div>
+    <p><strong>Reduce.</strong> Divide every term (−10, 2, and 6) by 2:</p>
+    <div class="answer">\(x=\dfrac{-5\pm\sqrt{10}}{3}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">05 #12</span><span class="tag">Number denominators</span></div>
+  <div class="math">\[\frac{1}{3}x-\frac{1}{2}x=2\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x appears only on top with number denominators.</p><p><span class="cue">Method:</span> Rewrite over a common denominator (6), combine, and solve.</p></div>
+    <div class="math">\[\frac{2}{6}x-\frac{3}{6}x=-\frac{1}{6}x=2\]</div>
+    <div class="answer">\(x=-12\)</div>
+  </div></details>
+</div>
+
+<h3>Unit 0A · 06 Quiz Review 2</h3>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #1</span><span class="tag">Number denominators</span></div>
+  <div class="math">\[\frac{4x-1}{6}-\frac{2-x}{4}=1\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x appears only on top; the denominators 6 and 4 are plain numbers.</p><p><span class="cue">Method:</span> Multiply every term by the LCD (12). Watch the minus sign in front of \(\tfrac{2-x}{4}\).</p></div>
+    <p>Multiply by the LCD, 12:</p>
+    <div class="math">\[2(4x-1)-3(2-x)=12\]</div>
+    <div class="math">\[8x-2-6+3x=12 \;\Rightarrow\; 11x=20\]</div>
+    <div class="answer">\(x=\dfrac{20}{11}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #2</span><span class="tag">Distribution</span></div>
+  <div class="math">\[5(x+4)-\frac{5}{12}(36x+60)=\frac{5}{3}(9x-15)-\frac{5}{4}(64x-4)\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Fractions like \(\tfrac{5}{12}\) sit in front of parentheses.</p><p><span class="cue">Method:</span> Distribute each coefficient first. The numbers are built to cancel (5/12 × 36 = 15).</p></div>
+    <div class="math">\[5x+20-(15x+25)=(15x-25)-(80x-5)\]</div>
+    <div class="math">\[-10x-5=-65x-20 \;\Rightarrow\; 55x=-15\]</div>
+    <div class="answer">\(x=-\dfrac{3}{11}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #3</span><span class="tag">Complex fraction</span></div>
+  <div class="math">\[x=\frac{\frac{5}{4}}{4+\frac{x}{2}}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A fraction inside a fraction, with x in the denominator, but no “…”.</p><p><span class="cue">Method:</span> It’s finite, so just clear fractions: multiply both sides by \(4+\tfrac{x}{2}\), then solve the quadratic.</p></div>
+    <p>This one is finite, so just clear fractions. Excluded value: \(x\neq-8\). Multiply both sides by \(4+\frac{x}{2}\):</p>
+    <div class="math">\[4x+\frac{x^2}{2}=\frac{5}{4} \;\Rightarrow\; 2x^2+16x-5=0\]</div>
+    <p><strong>Identify a, b, c.</strong> \(a=2\), \(b=16\), \(c=-5\).</p>
+    <p><strong>Compute the discriminant, \(b^2-4ac\):</strong></p>
+    <div class="math">\[b^2-4ac=16^2-4(2)(-5)=256-(-40)=256+40=296\]</div>
+    <p class="note">c is negative, so −4ac turns into +40.</p>
+    <p>296 is between \(17^2=289\) and \(18^2=324\), so it isn’t a perfect square. Use the full formula:</p>
+    <div class="math">\[x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}=\frac{-16\pm\sqrt{296}}{2(2)}=\frac{-16\pm\sqrt{296}}{4}\]</div>
+    <p><strong>Simplify the root.</strong> The largest perfect square dividing 296 is 4: \(296=4\cdot74\), so \(\sqrt{296}=2\sqrt{74}\). (74 = 2 · 37 has no square factor left.)</p>
+    <div class="math">\[x=\frac{-16\pm2\sqrt{74}}{4}\]</div>
+    <p><strong>Reduce.</strong> Divide every term (−16, 2, and 4) by 2:</p>
+    <div class="answer">\(x=\dfrac{-8\pm\sqrt{74}}{2}\) (about 0.30 and −8.30)</div>
+    <p class="note">Both roots satisfy the equation. If your worksheet expects one answer, it may intend x &gt; 0, but the problem doesn’t say so.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #4</span><span class="tag"><em>x</em> in denominator</span></div>
+  <div class="math">\[\frac{2x}{3}+\frac{x+6}{x+3}=2\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x appears in a denominator: \(x+3\).</p><p><span class="cue">Method:</span> Note the excluded value, multiply by the LCD \(3(x+3)\), then solve the quadratic.</p></div>
+    <p>Excluded value: \(x\neq-3\). Multiply by \(3(x+3)\):</p>
+    <div class="math">\[2x(x+3)+3(x+6)=6(x+3)\]</div>
+    <div class="math">\[2x^2+9x+18=6x+18 \;\Rightarrow\; 2x^2+3x=0 \;\Rightarrow\; x(2x+3)=0\]</div>
+    <div class="answer">\(x=0\) or \(x=-\dfrac{3}{2}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #5</span><span class="tag">Continued fraction</span></div>
+  <div class="math">\[x=4+\cfrac{5}{4+\cfrac{5}{4+\cfrac{5}{4+\cdots}}}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The “…” means the fraction repeats forever.</p><p><span class="cue">Method:</span> The tail equals the whole, so replace it with x. Solve the quadratic and keep the positive root.</p></div>
+    <div class="math">\[x=4+\frac{5}{x} \;\Rightarrow\; x^2-4x-5=0 \;\Rightarrow\; (x-5)(x+1)=0\]</div>
+    <p>Reject \(x=-1\): the expression is built entirely from positive numbers.</p>
+    <div class="answer">\(x=5\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #6</span><span class="tag"><em>x</em> in denominator</span></div>
+  <div class="math">\[\frac{5}{x-5}-\frac{46}{x^2-25}=\frac{x}{x+5}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x in denominators, and \(x^2-25\) is a difference of squares.</p><p><span class="cue">Method:</span> Factor \(x^2-25=(x-5)(x+5)\), note excluded values, multiply by the LCD.</p></div>
+    <p>Factor: \(x^2-25=(x-5)(x+5)\). Excluded values: \(x\neq\pm5\). Multiply by \((x-5)(x+5)\):</p>
+    <div class="math">\[5(x+5)-46=x(x-5) \;\Rightarrow\; 5x-21=x^2-5x\]</div>
+    <div class="math">\[x^2-10x+21=0 \;\Rightarrow\; (x-3)(x-7)=0\]</div>
+    <div class="answer">\(x=3\) or \(x=7\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #7</span><span class="tag"><em>x</em> in denominator</span></div>
+  <div class="math">\[\frac{6}{x^2-9}-\frac{x-1}{x+3}=\frac{x}{x-3}\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> x in denominators, and \(x^2-9\) is a difference of squares.</p><p><span class="cue">Method:</span> Factor \(x^2-9=(x-3)(x+3)\), note excluded values, multiply by the LCD.</p></div>
+    <p>Factor: \(x^2-9=(x-3)(x+3)\). Excluded values: \(x\neq\pm3\). Multiply by \((x-3)(x+3)\):</p>
+    <div class="math">\[6-(x-1)(x-3)=x(x+3)\]</div>
+    <div class="math">\[6-(x^2-4x+3)=x^2+3x \;\Rightarrow\; 2x^2-x-3=0 \;\Rightarrow\; (2x-3)(x+1)=0\]</div>
+    <p class="note">Keep the parentheses around (x − 1)(x − 3) until you’ve expanded it. The minus sign applies to all three terms.</p>
+    <div class="answer">\(x=\dfrac{3}{2}\) or \(x=-1\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">QR2 #8</span><span class="tag">Substitution</span></div>
+  <div class="math">\[\frac{x+1}{x-3}=-4+21\left(\frac{x-3}{x+1}\right)\]</div>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(\tfrac{x+1}{x-3}\) and \(\tfrac{x-3}{x+1}\) are reciprocals of each other.</p><p><span class="cue">Method:</span> Substitute \(u=\tfrac{x+1}{x-3}\), solve the quadratic in u, then solve for x from each u.</p></div>
+    <p>Excluded values: \(x\neq3,\,-1\). Let \(u=\frac{x+1}{x-3}\):</p>
+    <div class="math">\[u=-4+\frac{21}{u} \;\Rightarrow\; u^2+4u-21=0 \;\Rightarrow\; (u+7)(u-3)=0\]</div>
+    <p>If \(u=3\): \(x+1=3(x-3)\), so \(x=5\).</p>
+    <p>If \(u=-7\): \(x+1=-7(x-3)\), so \(8x=20\).</p>
+    <div class="answer">\(x=5\) or \(x=\dfrac{5}{2}\)</div>
+  </div></details>
+</div>
+
+<h2>Answer key</h2>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>#</th><th>Unit 0A 05</th><th>0A 06 Quiz Review 2</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>\(\tfrac{12}{5}\)</td><td>\(\tfrac{20}{11}\)</td></tr>
+    <tr><td>2</td><td>\(-\tfrac{17}{2}\)</td><td>\(-\tfrac{3}{11}\)</td></tr>
+    <tr><td>3</td><td>\(\tfrac{6}{35}\)</td><td>\(\tfrac{-8\pm\sqrt{74}}{2}\)</td></tr>
+    <tr><td>4</td><td>\(\tfrac{-4\pm2\sqrt{13}}{3}\)</td><td>\(0,\ -\tfrac{3}{2}\)</td></tr>
+    <tr><td>5</td><td>\(6\)</td><td>\(5\)</td></tr>
+    <tr><td>6</td><td>\(-\tfrac{1}{3}\)</td><td>\(3,\ 7\)</td></tr>
+    <tr><td>7</td><td>\(\tfrac{46}{7}\)</td><td>\(\tfrac{3}{2},\ -1\)</td></tr>
+    <tr><td>8</td><td>\(27\)</td><td>\(5,\ \tfrac{5}{2}\)</td></tr>
+    <tr><td>9</td><td>\(-1,\ \tfrac{4}{5}\)</td><td></td></tr>
+    <tr><td>10</td><td>\(\tfrac{2\pm\sqrt6}{2}\)</td><td></td></tr>
+    <tr><td>11</td><td>\(\tfrac{-5\pm\sqrt{10}}{3}\)</td><td></td></tr>
+    <tr><td>12</td><td>\(-12\)</td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+</section>
+
+</div>
+
+<div class="topic" id="topic-lines" role="tabpanel" aria-labelledby="topictab-lines" hidden>
+
+<p class="lede">Every problem on these sheets is built from four small tools. Most of the work is choosing which ones, and in what order.</p>
+
+<div class="tabs" role="tablist" aria-label="Lines sections">
+  <button type="button" role="tab" id="tab-l-checklist" aria-controls="panel-l-checklist" aria-selected="true">Checklist</button>
+  <button type="button" role="tab" id="tab-l-patterns" aria-controls="panel-l-patterns" aria-selected="false" tabindex="-1">Patterns</button>
+  <button type="button" role="tab" id="tab-l-solved" aria-controls="panel-l-solved" aria-selected="false" tabindex="-1">Solved problems</button>
+</div>
+
+<section class="panel" id="panel-l-checklist" role="tabpanel" aria-labelledby="tab-l-checklist" tabindex="0">
+
+<h2>The checklist</h2>
+<p>Almost every one of these problems is “find a slope, find a point, write the equation.” Work through in order.</p>
+<ol class="check">
+  <li><strong>Is the line horizontal or vertical?</strong> Stop here. Horizontal is \(y=\) the y-coordinate; vertical is \(x=\) the x-coordinate.</li>
+  <li><strong>What slope do you have?</strong> Given outright, or from two points \(m=\frac{y_2-y_1}{x_2-x_1}\), or from an equation \(Ax+By=C\) as \(m=-\frac{A}{B}\).</li>
+  <li><strong>Does it say perpendicular or parallel?</strong> Perpendicular flips the slope and changes its sign. Parallel keeps it.</li>
+  <li><strong>What point do you have?</strong> If none is given outright, the problem is telling you to build one: a midpoint, a point that partitions a segment, or the intersection of two lines.</li>
+  <li><strong>Write point-slope:</strong> \(y-y_1=m(x-x_1)\). Always start here once you have a slope and a point.</li>
+  <li><strong>Was standard form asked for?</strong> Multiply through by the denominator of the slope, move the x term left, and make A positive.</li>
+  <li><strong>Was a distance asked for?</strong> Two points go straight into the distance formula. A point and a line need the perpendicular built first.</li>
+</ol>
+<p class="note">A ratio like 7:12 or 5:4 is the signal to build a point, not to divide anything yet.</p>
+
+</section>
+
+<section class="panel" id="panel-l-patterns" role="tabpanel" aria-labelledby="tab-l-patterns" tabindex="0" hidden>
+
+<h2>The seven patterns</h2>
+
+<h3>Slope from two points</h3>
+<p><span class="cue">Cue:</span> Two coordinate pairs and no slope given.</p>
+<p><span class="cue">Method:</span> <span class="mark">\(m=\dfrac{y_2-y_1}{x_2-x_1}\)</span>, kept as a fraction. Subtract in the same order top and bottom.</p>
+<p>“Passes through the origin” hands you a free second point, \((0,0)\).</p>
+<div class="figure"><svg class="plot" viewBox="-18 -18 376 308" role="img" aria-label="Rise over run between two points"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="272.00"/><line x1="34.00" y1="0" x2="34.00" y2="272.00"/><line x1="68.00" y1="0" x2="68.00" y2="272.00"/><line x1="102.00" y1="0" x2="102.00" y2="272.00"/><line x1="136.00" y1="0" x2="136.00" y2="272.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/><line x1="204.00" y1="0" x2="204.00" y2="272.00"/><line x1="238.00" y1="0" x2="238.00" y2="272.00"/><line x1="272.00" y1="0" x2="272.00" y2="272.00"/><line x1="306.00" y1="0" x2="306.00" y2="272.00"/><line x1="340.00" y1="0" x2="340.00" y2="272.00"/><line x1="0" y1="272.00" x2="340.00" y2="272.00"/><line x1="0" y1="238.00" x2="340.00" y2="238.00"/><line x1="0" y1="204.00" x2="340.00" y2="204.00"/><line x1="0" y1="170.00" x2="340.00" y2="170.00"/><line x1="0" y1="136.00" x2="340.00" y2="136.00"/><line x1="0" y1="102.00" x2="340.00" y2="102.00"/><line x1="0" y1="68.00" x2="340.00" y2="68.00"/><line x1="0" y1="34.00" x2="340.00" y2="34.00"/><line x1="0" y1="0.00" x2="340.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="136.00" x2="340.00" y2="136.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/></g><g class="tick"><text x="34.00" y="149.00" text-anchor="middle">-4</text><text x="102.00" y="149.00" text-anchor="middle">-2</text><text x="238.00" y="149.00" text-anchor="middle">2</text><text x="306.00" y="149.00" text-anchor="middle">4</text><text x="166.00" y="276.00" text-anchor="end">-4</text><text x="166.00" y="208.00" text-anchor="end">-2</text><text x="166.00" y="72.00" text-anchor="end">2</text><text x="166.00" y="4.00" text-anchor="end">4</text></g><line class="la" x1="0.00" y1="215.33" x2="323.00" y2="0.00"/><line class="lg" x1="68.00" y1="170.00" x2="272.00" y2="170.00" stroke-dasharray="4 3"/><line class="lg" x1="272.00" y1="170.00" x2="272.00" y2="34.00" stroke-dasharray="4 3"/><path class="ra" d="M 263.00 170.00 L 263.00 161.00 L 272.00 161.00"/><circle class="pt" cx="68.00" cy="170.00" r="3.4"/><text class="lbl" x="61.00" y="184.00" text-anchor="end">(−3, −1)</text><circle class="pt" cx="272.00" cy="34.00" r="3.4"/><text class="lbl" x="265.00" y="25.00" text-anchor="end">(3, 3)</text><text class="lbl" x="170.00" y="195.50" text-anchor="middle">run = 6</text><text class="lbl" x="263.50" y="107.10" text-anchor="end">rise = 4</text></svg><p class="figcap">Run first, then rise: 4 over 6, so m = 2/3. Go the other way and both flip sign — −4 over −6 — which is the same fraction. That is why the order only has to match.</p></div>
+
+<p class="where">Worked example: GL2 #2.</p>
+
+<h3>Perpendicular and parallel slopes</h3>
+<p><span class="cue">Cue:</span> The words perpendicular or parallel, or the \(\perp\) symbol.</p>
+<p><span class="cue">Method:</span> <span class="mark">Perpendicular flips the fraction and changes the sign.</span> \(-\frac52\to\frac25\), \(3\to-\frac13\), \(1\to-1\). Parallel keeps the same slope.</p>
+<p>To pull a slope out of \(Ax+By=C\), either solve for \(y\) or use \(m=-\frac{A}{B}\) directly.</p>
+<div class="figure"><svg class="plot" viewBox="-18 -18 376 308" role="img" aria-label="A slope triangle and the same triangle turned a quarter turn"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="272.00"/><line x1="34.00" y1="0" x2="34.00" y2="272.00"/><line x1="68.00" y1="0" x2="68.00" y2="272.00"/><line x1="102.00" y1="0" x2="102.00" y2="272.00"/><line x1="136.00" y1="0" x2="136.00" y2="272.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/><line x1="204.00" y1="0" x2="204.00" y2="272.00"/><line x1="238.00" y1="0" x2="238.00" y2="272.00"/><line x1="272.00" y1="0" x2="272.00" y2="272.00"/><line x1="306.00" y1="0" x2="306.00" y2="272.00"/><line x1="340.00" y1="0" x2="340.00" y2="272.00"/><line x1="0" y1="272.00" x2="340.00" y2="272.00"/><line x1="0" y1="238.00" x2="340.00" y2="238.00"/><line x1="0" y1="204.00" x2="340.00" y2="204.00"/><line x1="0" y1="170.00" x2="340.00" y2="170.00"/><line x1="0" y1="136.00" x2="340.00" y2="136.00"/><line x1="0" y1="102.00" x2="340.00" y2="102.00"/><line x1="0" y1="68.00" x2="340.00" y2="68.00"/><line x1="0" y1="34.00" x2="340.00" y2="34.00"/><line x1="0" y1="0.00" x2="340.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="136.00" x2="340.00" y2="136.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/></g><g class="tick"><text x="34.00" y="149.00" text-anchor="middle">-4</text><text x="102.00" y="149.00" text-anchor="middle">-2</text><text x="238.00" y="149.00" text-anchor="middle">2</text><text x="306.00" y="149.00" text-anchor="middle">4</text><text x="166.00" y="276.00" text-anchor="end">-4</text><text x="166.00" y="208.00" text-anchor="end">-2</text><text x="166.00" y="72.00" text-anchor="end">2</text><text x="166.00" y="4.00" text-anchor="end">4</text></g><line class="la" x1="0.00" y1="249.33" x2="340.00" y2="22.67"/><line class="lb" x1="260.67" y1="272.00" x2="79.33" y2="0.00"/><line class="lg" x1="170.00" y1="136.00" x2="272.00" y2="136.00" stroke-dasharray="4 3"/><line class="lg" x1="272.00" y1="136.00" x2="272.00" y2="68.00" stroke-dasharray="4 3"/><line class="lg" x1="170.00" y1="136.00" x2="102.00" y2="136.00" stroke-dasharray="4 3"/><line class="lg" x1="102.00" y1="136.00" x2="102.00" y2="34.00" stroke-dasharray="4 3"/><path class="ra" d="M 177.49 131.01 L 172.50 123.52 L 165.01 128.51"/><circle class="pt" cx="272.00" cy="68.00" r="3.4"/><circle class="ptb" cx="102.00" cy="34.00" r="3.4"/><text class="lbl" x="224.40" y="175.10" text-anchor="middle">over 3</text><text class="lbl" x="280.50" y="110.50" text-anchor="start">up 2</text><text class="lbl" x="132.60" y="175.10" text-anchor="middle">over 2</text><text class="lbl" x="93.50" y="95.20" text-anchor="end">up 3</text><text class="lbl" x="336.60" y="56.10" text-anchor="end">slope 2/3</text><text class="lbl" x="81.60" y="13.60" text-anchor="end">slope −3/2</text></svg><p class="figcap">The same triangle turned a quarter turn: over 3 / up 2 becomes over 2 / up 3, and “over” now points the other way. Swapping the legs is the flip; the change of direction is the minus sign.</p></div>
+
+<p class="note">You only need the slope of the other line, so its constant is decoration. In GL2 #4 the 32.9 never gets used.</p>
+<p>One pair the flip-and-negate rule cannot express: a horizontal line (slope 0) and a vertical line (no slope) are perpendicular, but 0 has no reciprocal. Handle those by sight.</p>
+<p class="where">Worked example: GL2 #4.</p>
+
+<h3>The three forms</h3>
+<p><span class="cue">Cue:</span> “Write in standard form,” or an answer blank labeled Standard.</p>
+<div class="math">\[y-y_1=m(x-x_1) \qquad y=mx+b \qquad Ax+By=C\]</div>
+<p><span class="cue">Method:</span> Which form you start in depends on what you were handed. A slope with the <em>y-intercept</em> drops straight into \(y=mx+b\). A slope with any <em>other</em> point goes into point-slope, which is the workbench: you can write it the moment you have a slope and a point.</p>
+<p>From either one, to reach standard form: <span class="mark">multiply both sides by the slope’s denominator</span>, move the x term to the left, and if A came out negative multiply every term by \(-1\).</p>
+<p class="note">Standard form means A positive, and no fractions or decimals anywhere.</p>
+<p class="where">Worked example: GL2 #1.</p>
+
+<h3>Midpoint</h3>
+<p><span class="cue">Cue:</span> “Midpoint,” “bisects,” or “perpendicular bisector.”</p>
+<div class="math">\[M=\left(\frac{x_1+x_2}{2},\ \frac{y_1+y_2}{2}\right)\]</div>
+<p><span class="cue">Method:</span> Average each coordinate. A perpendicular bisector is just two patterns stacked: negative reciprocal for the slope, midpoint for the point.</p>
+<p class="where">Worked example: GL2 #5.</p>
+
+<h3>Partitioning a segment by a ratio</h3>
+<p><span class="cue">Cue:</span> A point placed along a segment by a ratio, as in “Q lies on \(\overline{AB}\) such that \(AQ:AB=7:12\).”</p>
+<p><span class="cue">Method:</span> Find the run and rise of the whole segment, <span class="mark">scale both by the same fraction</span>, and add them to the starting point.</p>
+<p><strong>Which fraction?</strong> That depends on what the ratio is comparing, and there are two kinds. Check whether the second name in the ratio is the <em>whole</em> segment or just another piece of it.</p>
+<p><strong>Part to whole.</strong> In \(AQ:AB=7:12\), AB is the entire segment, so the 12 already counts the whole thing. Q sits \(\frac{7}{12}\) of the way from A, and \(\frac{7}{12}\) is the number you scale by.</p>
+<p><strong>Part to part.</strong> In \(JP:PK=5:4\), both JP and PK are pieces, and neither is the whole. Add them to get the whole: \(5+4=9\) parts. So P sits \(\frac59\) of the way from J to K — and if you already know J and P and want K, the step from P to K is \(\frac45\) of the step from J to P, because PK is 4 parts to JP’s 5.</p>
+<p class="note">A ratio to the whole segment and a ratio between two pieces look almost identical. AB is the whole; PK is not.</p>
+<div class="figure"><svg class="plot diagram" viewBox="-6 0 432 296" role="img" aria-label="Two kinds of segment ratio: part to whole, and part to part"><text class="dhead" x="44" y="18">Part to whole &#8212; AQ : AB = 7 : 12</text><g class="dtick"><line x1="44.00" y1="40.0" x2="44.00" y2="56.0"/><line x1="73.33" y1="40.0" x2="73.33" y2="56.0"/><line x1="102.67" y1="40.0" x2="102.67" y2="56.0"/><line x1="132.00" y1="40.0" x2="132.00" y2="56.0"/><line x1="161.33" y1="40.0" x2="161.33" y2="56.0"/><line x1="190.67" y1="40.0" x2="190.67" y2="56.0"/><line x1="220.00" y1="40.0" x2="220.00" y2="56.0"/><line x1="249.33" y1="40.0" x2="249.33" y2="56.0"/><line x1="278.67" y1="40.0" x2="278.67" y2="56.0"/><line x1="308.00" y1="40.0" x2="308.00" y2="56.0"/><line x1="337.33" y1="40.0" x2="337.33" y2="56.0"/><line x1="366.67" y1="40.0" x2="366.67" y2="56.0"/><line x1="396.00" y1="40.0" x2="396.00" y2="56.0"/></g><line class="la" x1="44" y1="48" x2="396" y2="48"/><line class="lb" x1="44" y1="48" x2="249.33" y2="48"/><circle class="pt" cx="44.00" cy="48.0" r="4"/><circle class="pt" cx="396.00" cy="48.0" r="4"/><circle class="ptb" cx="249.33" cy="48.0" r="4"/><text class="dlab strong" x="44.00" y="34.0" text-anchor="middle">A</text><text class="dlab strong" x="396.00" y="34.0" text-anchor="middle">B</text><text class="dlab strong" x="249.33" y="34.0" text-anchor="middle">Q</text><g class="mred"><line x1="44.00" y1="78.0" x2="249.33" y2="78.0"/><line x1="44.00" y1="74.0" x2="44.00" y2="82.0"/><line x1="249.33" y1="74.0" x2="249.33" y2="82.0"/></g><text class="dlab" x="146.67" y="70.0" text-anchor="middle">AQ = 7 parts</text><g class="mink"><line x1="44.00" y1="104.0" x2="396.00" y2="104.0"/><line x1="44.00" y1="100.0" x2="44.00" y2="108.0"/><line x1="396.00" y1="100.0" x2="396.00" y2="108.0"/></g><text class="dlab" x="220.00" y="96.0" text-anchor="middle">AB = 12 parts &#8212; the whole segment</text><text class="dnote" x="210" y="124" text-anchor="middle">Q sits 7/12 of the way from A</text><text class="dhead" x="44" y="170">Part to part &#8212; JP : PK = 5 : 4</text><g class="dtick"><line x1="44.00" y1="192.0" x2="44.00" y2="208.0"/><line x1="83.11" y1="192.0" x2="83.11" y2="208.0"/><line x1="122.22" y1="192.0" x2="122.22" y2="208.0"/><line x1="161.33" y1="192.0" x2="161.33" y2="208.0"/><line x1="200.44" y1="192.0" x2="200.44" y2="208.0"/><line x1="239.56" y1="192.0" x2="239.56" y2="208.0"/><line x1="278.67" y1="192.0" x2="278.67" y2="208.0"/><line x1="317.78" y1="192.0" x2="317.78" y2="208.0"/><line x1="356.89" y1="192.0" x2="356.89" y2="208.0"/><line x1="396.00" y1="192.0" x2="396.00" y2="208.0"/></g><line class="la" x1="44" y1="200" x2="396" y2="200"/><line class="lb" x1="44" y1="200" x2="239.56" y2="200"/><line class="lc" x1="239.56" y1="200" x2="396" y2="200"/><circle class="pt" cx="44.00" cy="200.0" r="4"/><circle class="pt" cx="396.00" cy="200.0" r="4"/><circle class="ptb" cx="239.56" cy="200.0" r="4"/><text class="dlab strong" x="44.00" y="186.0" text-anchor="middle">J</text><text class="dlab strong" x="396.00" y="186.0" text-anchor="middle">K</text><text class="dlab strong" x="239.56" y="186.0" text-anchor="middle">P</text><g class="mred"><line x1="44.00" y1="230.0" x2="239.56" y2="230.0"/><line x1="44.00" y1="226.0" x2="44.00" y2="234.0"/><line x1="239.56" y1="226.0" x2="239.56" y2="234.0"/></g><text class="dlab" x="141.78" y="222.0" text-anchor="middle">JP = 5 parts</text><g class="mgrn"><line x1="239.56" y1="230.0" x2="396.00" y2="230.0"/><line x1="239.56" y1="226.0" x2="239.56" y2="234.0"/><line x1="396.00" y1="226.0" x2="396.00" y2="234.0"/></g><text class="dlab" x="317.78" y="222.0" text-anchor="middle">PK = 4</text><g class="mink"><line x1="44.00" y1="256.0" x2="396.00" y2="256.0"/><line x1="44.00" y1="252.0" x2="44.00" y2="260.0"/><line x1="396.00" y1="252.0" x2="396.00" y2="260.0"/></g><text class="dlab" x="220.00" y="248.0" text-anchor="middle">JK = 5 + 4 = 9 parts</text><text class="dnote" x="210" y="276" text-anchor="middle">P sits 5/9 of the way from J, and PK is 4/5 of JP</text></svg><p class="figcap">Same idea, different denominator: the 12 is handed to you, the 9 you have to build from 5 + 4.</p></div>
+
+<p>The teacher’s version draws a right triangle on the segment and solves \(\frac{n}{36}=\frac{7}{12}\). Same arithmetic, shown geometrically.</p>
+<p class="note">Scaling gives you the change from the start point, not the answer. You still have to add it on.</p>
+<p class="where">Worked examples: HW1 #1 and #2.</p>
+
+<h3>Distance between two points</h3>
+<p><span class="cue">Cue:</span> Two points and the word distance, or a length you need before anything else can be answered.</p>
+<div class="math">\[D=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\]</div>
+<div class="figure"><svg class="plot" viewBox="-18 -18 376 308" role="img" aria-label="The distance formula as a right triangle"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="272.00"/><line x1="34.00" y1="0" x2="34.00" y2="272.00"/><line x1="68.00" y1="0" x2="68.00" y2="272.00"/><line x1="102.00" y1="0" x2="102.00" y2="272.00"/><line x1="136.00" y1="0" x2="136.00" y2="272.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/><line x1="204.00" y1="0" x2="204.00" y2="272.00"/><line x1="238.00" y1="0" x2="238.00" y2="272.00"/><line x1="272.00" y1="0" x2="272.00" y2="272.00"/><line x1="306.00" y1="0" x2="306.00" y2="272.00"/><line x1="340.00" y1="0" x2="340.00" y2="272.00"/><line x1="0" y1="272.00" x2="340.00" y2="272.00"/><line x1="0" y1="238.00" x2="340.00" y2="238.00"/><line x1="0" y1="204.00" x2="340.00" y2="204.00"/><line x1="0" y1="170.00" x2="340.00" y2="170.00"/><line x1="0" y1="136.00" x2="340.00" y2="136.00"/><line x1="0" y1="102.00" x2="340.00" y2="102.00"/><line x1="0" y1="68.00" x2="340.00" y2="68.00"/><line x1="0" y1="34.00" x2="340.00" y2="34.00"/><line x1="0" y1="0.00" x2="340.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="170.00" x2="340.00" y2="170.00"/><line x1="136.00" y1="0" x2="136.00" y2="272.00"/></g><g class="tick"><text x="0.00" y="183.00" text-anchor="middle">-4</text><text x="68.00" y="183.00" text-anchor="middle">-2</text><text x="204.00" y="183.00" text-anchor="middle">2</text><text x="272.00" y="183.00" text-anchor="middle">4</text><text x="340.00" y="183.00" text-anchor="middle">6</text><text x="132.00" y="242.00" text-anchor="end">-2</text><text x="132.00" y="106.00" text-anchor="end">2</text><text x="132.00" y="38.00" text-anchor="end">4</text></g><line class="lb" x1="68.00" y1="204.00" x2="272.00" y2="68.00"/><line class="lg" x1="68.00" y1="204.00" x2="272.00" y2="204.00" stroke-dasharray="4 3"/><line class="lg" x1="272.00" y1="204.00" x2="272.00" y2="68.00" stroke-dasharray="4 3"/><path class="ra" d="M 263.00 204.00 L 263.00 195.00 L 272.00 195.00"/><circle class="pt" cx="68.00" cy="204.00" r="3.4"/><text class="lbl" x="61.00" y="218.00" text-anchor="end">(−2, −1)</text><circle class="pt" cx="272.00" cy="68.00" r="3.4"/><text class="lbl" x="265.00" y="59.00" text-anchor="end">(4, 3)</text><text class="lbl" x="170.00" y="231.20" text-anchor="middle">a = 6</text><text class="lbl" x="263.50" y="141.10" text-anchor="end">b = 4</text><text class="lbl" x="142.80" y="107.10" text-anchor="end">c = D</text></svg><p class="figcap">It is the Pythagorean theorem. The two differences are the legs, the distance is the hypotenuse, and \(a^2+b^2=c^2\) is the formula.</p></div>
+
+<p><span class="cue">Method:</span> Squaring removes the signs, so subtraction order doesn’t matter here — unlike in the slope formula.</p>
+<p>Then <span class="mark">simplify the radical</span>: split the number into a perfect square times whatever is left over, and take the root of the square. \(\sqrt{50}=\sqrt{25\cdot2}=5\sqrt2\).</p>
+<p>Some won’t simplify at all. HW1 #2 finishes at \(\sqrt{6266}\), and since \(6266=2\cdot13\cdot241\) has no repeated factor, there is no square to pull out. It stays exactly as it is — that is a finished answer, not an unfinished one.</p>
+<p class="where">Worked example: HW1 #2.</p>
+
+<h3>Distance from a point to a line</h3>
+<p><span class="cue">Cue:</span> A point and a line, and the word distance.</p>
+<p>This is the four-step one. Distance means the <em>shortest</em> distance, which runs perpendicular to the line, so you have to find where that perpendicular lands before you can measure anything.</p>
+<ol class="check">
+  <li>Take the slope of the given line and flip it to the perpendicular slope.</li>
+  <li>Write the perpendicular line through the given point.</li>
+  <li>Set the two equations equal and solve. That x, with its y, is the foot of the perpendicular.</li>
+  <li>Distance formula from the original point to the foot.</li>
+</ol>
+<div class="figure"><svg class="plot" viewBox="-18 -18 376 308" role="img" aria-label="The perpendicular is shorter than every other route to the line"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="272.00"/><line x1="34.00" y1="0" x2="34.00" y2="272.00"/><line x1="68.00" y1="0" x2="68.00" y2="272.00"/><line x1="102.00" y1="0" x2="102.00" y2="272.00"/><line x1="136.00" y1="0" x2="136.00" y2="272.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/><line x1="204.00" y1="0" x2="204.00" y2="272.00"/><line x1="238.00" y1="0" x2="238.00" y2="272.00"/><line x1="272.00" y1="0" x2="272.00" y2="272.00"/><line x1="306.00" y1="0" x2="306.00" y2="272.00"/><line x1="340.00" y1="0" x2="340.00" y2="272.00"/><line x1="0" y1="272.00" x2="340.00" y2="272.00"/><line x1="0" y1="238.00" x2="340.00" y2="238.00"/><line x1="0" y1="204.00" x2="340.00" y2="204.00"/><line x1="0" y1="170.00" x2="340.00" y2="170.00"/><line x1="0" y1="136.00" x2="340.00" y2="136.00"/><line x1="0" y1="102.00" x2="340.00" y2="102.00"/><line x1="0" y1="68.00" x2="340.00" y2="68.00"/><line x1="0" y1="34.00" x2="340.00" y2="34.00"/><line x1="0" y1="0.00" x2="340.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="170.00" x2="340.00" y2="170.00"/><line x1="170.00" y1="0" x2="170.00" y2="272.00"/></g><g class="tick"><text x="34.00" y="183.00" text-anchor="middle">-4</text><text x="102.00" y="183.00" text-anchor="middle">-2</text><text x="238.00" y="183.00" text-anchor="middle">2</text><text x="306.00" y="183.00" text-anchor="middle">4</text><text x="166.00" y="242.00" text-anchor="end">-2</text><text x="166.00" y="106.00" text-anchor="end">2</text><text x="166.00" y="38.00" text-anchor="end">4</text></g><line class="la" x1="0.00" y1="51.00" x2="340.00" y2="221.00"/><line class="lg" x1="204.00" y1="34.00" x2="34.00" y2="68.00" stroke-dasharray="4 3"/><line class="lg" x1="204.00" y1="34.00" x2="102.00" y2="102.00" stroke-dasharray="4 3"/><line class="lg" x1="204.00" y1="34.00" x2="272.00" y2="187.00" stroke-dasharray="4 3"/><circle class="ptline" cx="34.00" cy="68.00" r="3.4"/><circle class="ptline" cx="102.00" cy="102.00" r="3.4"/><circle class="ptline" cx="272.00" cy="187.00" r="3.4"/><line class="lb" x1="204.00" y1="34.00" x2="156.40" y2="129.20"/><path class="ra" d="M 164.45 133.22 L 168.47 125.18 L 160.42 121.15"/><circle class="pt" cx="204.00" cy="34.00" r="3.4"/><text class="lbl" x="212.00" y="26.00" text-anchor="start">A</text><text class="lbl" x="234.60" y="78.20" text-anchor="start">shortest</text></svg><p class="figcap">Every other route from A to the line is the hypotenuse of a right triangle whose leg is the red segment, so it can only be longer. That is why the perpendicular has to be built before anything can be measured.</p></div>
+
+<p class="note">The foot is nearly always an ugly fraction. Keep it as a fraction — decimals will wreck the radical at the end.</p>
+<p><strong>Why the answers come out looking like \(\frac{23\sqrt{13}}{13}\).</strong> The foot’s two coordinates share a denominator — 13 in DPL #1, 41 in the other three — so both differences do too. Squaring turns that denominator into a perfect square, and the root of a perfect square is a whole number:</p>
+<div class="math">\[\sqrt{\frac{6877}{169}}=\frac{\sqrt{6877}}{13}=\frac{23\sqrt{13}}{13}\]</div>
+<p>So the bottom is left with no radical on it and the answer is already rationalized. Nothing further is needed.</p>
+<p class="where">Worked examples: all four of DPL.</p>
+
+</section>
+
+<section class="panel" id="panel-l-solved" role="tabpanel" aria-labelledby="tab-l-solved" tabindex="0" hidden>
+
+<h2>Solved problems</h2>
+<p>Try each one first, then open the solution.</p>
+<div class="toolbar">
+  <button type="button" class="openAll">Show all solutions</button>
+  <button type="button" class="closeAll">Hide all solutions</button>
+</div>
+
+<h3>Unit 0B · Homework 1</h3>
+
+<div class="problem">
+  <div class="head"><span class="num">HW1 #1</span><span class="tag">Partition + perpendicular</span></div>
+  <p>Point Q lies on \(\overline{AB}\) such that \(AQ:AB=7:12\). Find the equation of the line perpendicular to \(\overline{AB}\) through Q, in standard form. \(A(-80,-6)\) and \(B(4,30)\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A ratio along a segment, then the word perpendicular.</p><p><span class="cue">Method:</span> Partition to build Q, negative reciprocal for the slope, point-slope, then convert to standard.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 416 226" role="img" aria-label="Graph for HW1 #1"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="190.00"/><line x1="34.55" y1="0" x2="34.55" y2="190.00"/><line x1="69.09" y1="0" x2="69.09" y2="190.00"/><line x1="103.64" y1="0" x2="103.64" y2="190.00"/><line x1="138.18" y1="0" x2="138.18" y2="190.00"/><line x1="172.73" y1="0" x2="172.73" y2="190.00"/><line x1="207.27" y1="0" x2="207.27" y2="190.00"/><line x1="241.82" y1="0" x2="241.82" y2="190.00"/><line x1="276.36" y1="0" x2="276.36" y2="190.00"/><line x1="310.91" y1="0" x2="310.91" y2="190.00"/><line x1="345.45" y1="0" x2="345.45" y2="190.00"/><line x1="380.00" y1="0" x2="380.00" y2="190.00"/><line x1="0" y1="190.00" x2="380.00" y2="190.00"/><line x1="0" y1="155.45" x2="380.00" y2="155.45"/><line x1="0" y1="120.91" x2="380.00" y2="120.91"/><line x1="0" y1="86.36" x2="380.00" y2="86.36"/><line x1="0" y1="51.82" x2="380.00" y2="51.82"/><line x1="0" y1="17.27" x2="380.00" y2="17.27"/></g><g class="axis"><line x1="0" y1="138.18" x2="380.00" y2="138.18"/><line x1="310.91" y1="0" x2="310.91" y2="190.00"/></g><g class="tick"><text x="34.55" y="151.18" text-anchor="middle">-80</text><text x="103.64" y="151.18" text-anchor="middle">-60</text><text x="172.73" y="151.18" text-anchor="middle">-40</text><text x="241.82" y="151.18" text-anchor="middle">-20</text><text x="380.00" y="151.18" text-anchor="middle">20</text><text x="306.91" y="73.09" text-anchor="end">20</text><text x="306.91" y="4.00" text-anchor="end">40</text></g><line class="lc" x1="34.55" y1="158.91" x2="324.73" y2="34.55"/><line class="lg" x1="34.55" y1="158.91" x2="324.73" y2="158.91" stroke-dasharray="4 3"/><line class="lg" x1="324.73" y1="158.91" x2="324.73" y2="34.55" stroke-dasharray="4 3"/><line class="lb" x1="34.55" y1="158.91" x2="203.82" y2="158.91"/><line class="lb" x1="203.82" y1="158.91" x2="203.82" y2="86.36"/><line class="la" x1="248.23" y1="190.00" x2="166.81" y2="0.00"/><circle class="pt" cx="34.55" cy="158.91" r="3.4"/><text class="lbl" x="39.55" y="174.91" text-anchor="start">A(−80, −6)</text><circle class="pt" cx="324.73" cy="34.55" r="3.4"/><text class="lbl" x="319.73" y="26.55" text-anchor="end">B(4, 30)</text><circle class="ptb" cx="203.82" cy="86.36" r="3.4"/><text class="lbl" x="212.82" y="76.36" text-anchor="start">Q(−31, 15)</text><text class="lbl" x="179.64" y="176.18" text-anchor="middle">84</text><text class="lbl" x="345.45" y="96.73" text-anchor="middle">36</text><text class="lbl" x="117.45" y="176.18" text-anchor="middle">49</text><text class="lbl" x="193.45" y="124.36" text-anchor="end">21</text></svg><p class="figcap">AB in green with its 84-by-36 triangle; the red 49-and-21 step lands on Q, and the blue line is the answer.</p></div>
+    <p><strong>Run and rise of the whole segment.</strong></p>
+    <div class="math">\[\Delta x = 4-(-80)=84 \qquad \Delta y = 30-(-6)=36\]</div>
+    <p><strong>Scale by the ratio.</strong> \(AQ:AB=7:12\) is part-to-whole, so Q sits \(\frac{7}{12}\) of the way from A:</p>
+    <div class="math">\[\tfrac{7}{12}(84)=49 \qquad \tfrac{7}{12}(36)=21\]</div>
+    <p><strong>Add to A</strong>, since those are changes, not coordinates:</p>
+    <div class="math">\[Q=(-80+49,\ -6+21)=(-31,15)\]</div>
+    <p><strong>Slopes.</strong></p>
+    <div class="math">\[m_{AB}=\frac{36}{84}=\frac{3}{7} \quad\Longrightarrow\quad m_\perp=-\frac{7}{3}\]</div>
+    <p><strong>Point-slope, then standard.</strong> Multiply by 3 to clear the denominator:</p>
+    <div class="math">\[y-15=-\tfrac73(x+31) \;\Rightarrow\; 3y-45=-7x-217\]</div>
+    <div class="answer">\(7x+3y=-172\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">HW1 #2</span><span class="tag">Partition + distance</span></div>
+  <p>Point P lies on \(\overline{JK}\) such that \(JP:PK=5:4\), with \(J(-10,10)\) and \(P(35,-15)\). Find the distance from point K to the origin.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A ratio again, but here you’re given the middle point and asked for the far end.</p><p><span class="cue">Method:</span> Scale the known piece to get the unknown piece, add it to P, then use the distance formula.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 416 261" role="img" aria-label="Graph for HW1 #2"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="224.55"/><line x1="34.55" y1="0" x2="34.55" y2="224.55"/><line x1="69.09" y1="0" x2="69.09" y2="224.55"/><line x1="103.64" y1="0" x2="103.64" y2="224.55"/><line x1="138.18" y1="0" x2="138.18" y2="224.55"/><line x1="172.73" y1="0" x2="172.73" y2="224.55"/><line x1="207.27" y1="0" x2="207.27" y2="224.55"/><line x1="241.82" y1="0" x2="241.82" y2="224.55"/><line x1="276.36" y1="0" x2="276.36" y2="224.55"/><line x1="310.91" y1="0" x2="310.91" y2="224.55"/><line x1="345.45" y1="0" x2="345.45" y2="224.55"/><line x1="380.00" y1="0" x2="380.00" y2="224.55"/><line x1="0" y1="224.55" x2="380.00" y2="224.55"/><line x1="0" y1="190.00" x2="380.00" y2="190.00"/><line x1="0" y1="155.45" x2="380.00" y2="155.45"/><line x1="0" y1="120.91" x2="380.00" y2="120.91"/><line x1="0" y1="86.36" x2="380.00" y2="86.36"/><line x1="0" y1="51.82" x2="380.00" y2="51.82"/><line x1="0" y1="17.27" x2="380.00" y2="17.27"/></g><g class="axis"><line x1="0" y1="69.09" x2="380.00" y2="69.09"/><line x1="86.36" y1="0" x2="86.36" y2="224.55"/></g><g class="tick"><text x="17.27" y="82.09" text-anchor="middle">-20</text><text x="155.45" y="82.09" text-anchor="middle">20</text><text x="224.55" y="82.09" text-anchor="middle">40</text><text x="293.64" y="82.09" text-anchor="middle">60</text><text x="362.73" y="82.09" text-anchor="middle">80</text><text x="82.36" y="211.27" text-anchor="end">-40</text><text x="82.36" y="142.18" text-anchor="end">-20</text><text x="82.36" y="4.00" text-anchor="end">20</text></g><line class="lc" x1="51.82" y1="34.55" x2="207.27" y2="120.91"/><line class="lb" x1="207.27" y1="120.91" x2="331.64" y2="190.00"/><line class="la" x1="86.36" y1="69.09" x2="331.64" y2="190.00" stroke-dasharray="4 3"/><circle class="pt" cx="51.82" cy="34.55" r="3.4"/><text class="lbl" x="57.82" y="27.55" text-anchor="start">J(−10, 10)</text><circle class="pt" cx="207.27" cy="120.91" r="3.4"/><text class="lbl" x="213.27" y="113.91" text-anchor="start">P(35, −15)</text><circle class="ptb" cx="331.64" cy="190.00" r="3.4"/><text class="lbl" x="325.64" y="204.00" text-anchor="end">K(71, −35)</text><circle class="pt" cx="86.36" cy="69.09" r="3.4"/><text class="lbl" x="80.36" y="63.09" text-anchor="end">O</text></svg><p class="figcap">J to P in green, the scaled PK step in red, and the dashed distance from K back to the origin.</p></div>
+    <p><strong>Run and rise from J to P.</strong></p>
+    <div class="math">\[\Delta x = 35-(-10)=45 \qquad \Delta y = -15-10=-25\]</div>
+    <p><strong>Scale to get PK.</strong> This ratio is part-to-part: \(JP:PK=5:4\), so PK is \(\frac45\) of JP.</p>
+    <div class="math">\[\tfrac45(45)=36 \qquad \tfrac45(-25)=-20\]</div>
+    <p><strong>Continue past P</strong>, in the same direction:</p>
+    <div class="math">\[K=(35+36,\ -15-20)=(71,-35)\]</div>
+    <p><strong>Distance to the origin.</strong></p>
+    <div class="math">\[D=\sqrt{(71-0)^2+(-35-0)^2}=\sqrt{5041+1225}=\sqrt{6266}\]</div>
+    <p>\(6266=2\cdot13\cdot241\), with no perfect-square factor, so the radical doesn’t simplify.</p>
+    <div class="answer">\(D=\sqrt{6266}\approx79.2\)</div>
+    <p class="note">The key adds 5041 + 1225 and writes √6226, but that sum is 6266.</p>
+  </div></details>
+</div>
+
+<h3>Distance from a point to a line</h3>
+
+<div class="problem">
+  <div class="head"><span class="num">DPL #1</span><span class="tag">Point to line</span></div>
+  <p>Distance from \(A(-4,1)\) to \(y=\frac23x-4\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A point, a line, and the word distance.</p><p><span class="cue">Method:</span> Perpendicular slope, perpendicular line through the point, intersection, distance formula.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for DPL #1"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="30.00" y1="0" x2="30.00" y2="360.00"/><line x1="60.00" y1="0" x2="60.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="120.00" y1="0" x2="120.00" y2="360.00"/><line x1="150.00" y1="0" x2="150.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="210.00" y1="0" x2="210.00" y2="360.00"/><line x1="240.00" y1="0" x2="240.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="300.00" y1="0" x2="300.00" y2="360.00"/><line x1="330.00" y1="0" x2="330.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="330.00" x2="360.00" y2="330.00"/><line x1="0" y1="300.00" x2="360.00" y2="300.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="240.00" x2="360.00" y2="240.00"/><line x1="0" y1="210.00" x2="360.00" y2="210.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="150.00" x2="360.00" y2="150.00"/><line x1="0" y1="120.00" x2="360.00" y2="120.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="60.00" x2="360.00" y2="60.00"/><line x1="0" y1="30.00" x2="360.00" y2="30.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-6</text><text x="60.00" y="193.00" text-anchor="middle">-4</text><text x="120.00" y="193.00" text-anchor="middle">-2</text><text x="240.00" y="193.00" text-anchor="middle">2</text><text x="300.00" y="193.00" text-anchor="middle">4</text><text x="360.00" y="193.00" text-anchor="middle">6</text><text x="176.00" y="364.00" text-anchor="end">-6</text><text x="176.00" y="304.00" text-anchor="end">-4</text><text x="176.00" y="244.00" text-anchor="end">-2</text><text x="176.00" y="124.00" text-anchor="end">2</text><text x="176.00" y="64.00" text-anchor="end">4</text><text x="176.00" y="4.00" text-anchor="end">6</text></g><line class="la" x1="360.00" y1="180.00" x2="90.00" y2="360.00"/><line class="lb" x1="60.00" y1="150.00" x2="166.15" y2="309.23"/><path class="ra" d="M 173.64 304.24 L 178.63 311.73 L 171.15 316.72"/><circle class="pt" cx="60.00" cy="150.00" r="3.4"/><text class="lbl" x="67.00" y="142.00" text-anchor="start">A(−4, 1)</text><circle class="ptb" cx="166.15" cy="309.23" r="3.4"/></svg><p class="figcap">The given line in blue, the perpendicular dropped from the point in red. That red segment is the distance.</p></div>
+    <p><strong>1. Perpendicular slope.</strong> \(\frac23\to-\frac32\).</p>
+    <p><strong>2. Perpendicular line through A.</strong></p>
+    <div class="math">\[y-1=-\tfrac32(x+4) \;\Rightarrow\; y=-\tfrac32x-5\]</div>
+    <p><strong>3. Where they cross.</strong> Set the two right sides equal and multiply by 6:</p>
+    <div class="math">\[-\tfrac32x-5=\tfrac23x-4 \;\Rightarrow\; -9x-30=4x-24 \;\Rightarrow\; -13x=6\]</div>
+    <div class="math">\[x=-\tfrac{6}{13} \qquad y=\tfrac23\!\left(-\tfrac{6}{13}\right)-4=-\tfrac{4}{13}-\tfrac{52}{13}=-\tfrac{56}{13}\]</div>
+    <p>The foot is \(\left(-\frac{6}{13},-\frac{56}{13}\right)\).</p>
+    <p><strong>4. Distance from A to the foot.</strong> Put each difference over 13 first:</p>
+    <div class="math">\[D=\sqrt{\left(-\tfrac{52}{13}+\tfrac{6}{13}\right)^2+\left(\tfrac{13}{13}+\tfrac{56}{13}\right)^2}=\sqrt{\frac{2116+4761}{169}}=\sqrt{\frac{6877}{169}}\]</div>
+    <p><strong>Simplify.</strong> \(6877=13\cdot529=13\cdot23^2\), so \(\sqrt{6877}=23\sqrt{13}\), and \(\sqrt{169}=13\).</p>
+    <div class="answer">\(D=\dfrac{23\sqrt{13}}{13}\approx6.38\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">DPL #2</span><span class="tag">Point to line</span></div>
+  <p>Distance from \(B(5,0)\) to \(y+2=-\frac45(x+4)\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Same as #1, but the line arrives in point-slope form.</p><p><span class="cue">Method:</span> Rewrite it as \(y=mx+b\) first, then the same four steps.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for DPL #2"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="30.00" y1="0" x2="30.00" y2="360.00"/><line x1="60.00" y1="0" x2="60.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="120.00" y1="0" x2="120.00" y2="360.00"/><line x1="150.00" y1="0" x2="150.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="210.00" y1="0" x2="210.00" y2="360.00"/><line x1="240.00" y1="0" x2="240.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="300.00" y1="0" x2="300.00" y2="360.00"/><line x1="330.00" y1="0" x2="330.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="330.00" x2="360.00" y2="330.00"/><line x1="0" y1="300.00" x2="360.00" y2="300.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="240.00" x2="360.00" y2="240.00"/><line x1="0" y1="210.00" x2="360.00" y2="210.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="150.00" x2="360.00" y2="150.00"/><line x1="0" y1="120.00" x2="360.00" y2="120.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="60.00" x2="360.00" y2="60.00"/><line x1="0" y1="30.00" x2="360.00" y2="30.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-6</text><text x="60.00" y="193.00" text-anchor="middle">-4</text><text x="120.00" y="193.00" text-anchor="middle">-2</text><text x="240.00" y="193.00" text-anchor="middle">2</text><text x="300.00" y="193.00" text-anchor="middle">4</text><text x="360.00" y="193.00" text-anchor="middle">6</text><text x="176.00" y="364.00" text-anchor="end">-6</text><text x="176.00" y="304.00" text-anchor="end">-4</text><text x="176.00" y="244.00" text-anchor="end">-2</text><text x="176.00" y="124.00" text-anchor="end">2</text><text x="176.00" y="64.00" text-anchor="end">4</text><text x="176.00" y="4.00" text-anchor="end">6</text></g><line class="la" x1="0.00" y1="192.00" x2="210.00" y2="360.00"/><line class="lb" x1="330.00" y1="180.00" x2="195.37" y2="348.29"/><path class="ra" d="M 202.39 353.91 L 208.02 346.89 L 200.99 341.26"/><circle class="pt" cx="330.00" cy="180.00" r="3.4"/><text class="lbl" x="323.00" y="172.00" text-anchor="end">B(5, 0)</text><circle class="ptb" cx="195.37" cy="348.29" r="3.4"/></svg><p class="figcap">The given line in blue, the perpendicular dropped from the point in red. That red segment is the distance.</p></div>
+    <p><strong>0. Tidy the given line.</strong></p>
+    <div class="math">\[y=-\tfrac45x-\tfrac{16}{5}-2=-\tfrac45x-\tfrac{26}{5}\]</div>
+    <p><strong>1–2. Perpendicular slope \(\frac54\), through B.</strong></p>
+    <div class="math">\[y-0=\tfrac54(x-5) \;\Rightarrow\; y=\tfrac54x-\tfrac{25}{4}\]</div>
+    <p><strong>3. Intersection.</strong> Multiply by 20 to clear both denominators at once:</p>
+    <div class="math">\[25x-125=-16x-104 \;\Rightarrow\; 41x=21 \;\Rightarrow\; x=\tfrac{21}{41}\]</div>
+    <div class="math">\[y=\tfrac54\!\left(\tfrac{21}{41}\right)-\tfrac{25}{4}=\tfrac{105}{164}-\tfrac{1025}{164}=-\tfrac{920}{164}=-\tfrac{230}{41}\]</div>
+    <p><strong>4. Distance.</strong></p>
+    <div class="math">\[D=\sqrt{\left(\tfrac{205}{41}-\tfrac{21}{41}\right)^2+\left(\tfrac{230}{41}\right)^2}=\sqrt{\frac{33856+52900}{1681}}=\sqrt{\frac{86756}{1681}}\]</div>
+    <p>\(86756=4\cdot41\cdot23^2\), so \(\sqrt{86756}=2\cdot23\sqrt{41}=46\sqrt{41}\), and \(\sqrt{1681}=41\).</p>
+    <div class="answer">\(D=\dfrac{46\sqrt{41}}{41}\approx7.18\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">DPL #3</span><span class="tag">Point to line</span></div>
+  <p>Distance from \(A(-5,-2)\) to \(4x+5y=20\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Same again, with the line in standard form.</p><p><span class="cue">Method:</span> Solve for y (or read \(m=-\frac{A}{B}\)), then the same four steps.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for DPL #3"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="30.00" y1="0" x2="30.00" y2="360.00"/><line x1="60.00" y1="0" x2="60.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="120.00" y1="0" x2="120.00" y2="360.00"/><line x1="150.00" y1="0" x2="150.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="210.00" y1="0" x2="210.00" y2="360.00"/><line x1="240.00" y1="0" x2="240.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="300.00" y1="0" x2="300.00" y2="360.00"/><line x1="330.00" y1="0" x2="330.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="330.00" x2="360.00" y2="330.00"/><line x1="0" y1="300.00" x2="360.00" y2="300.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="240.00" x2="360.00" y2="240.00"/><line x1="0" y1="210.00" x2="360.00" y2="210.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="150.00" x2="360.00" y2="150.00"/><line x1="0" y1="120.00" x2="360.00" y2="120.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="60.00" x2="360.00" y2="60.00"/><line x1="0" y1="30.00" x2="360.00" y2="30.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-6</text><text x="60.00" y="193.00" text-anchor="middle">-4</text><text x="120.00" y="193.00" text-anchor="middle">-2</text><text x="240.00" y="193.00" text-anchor="middle">2</text><text x="300.00" y="193.00" text-anchor="middle">4</text><text x="360.00" y="193.00" text-anchor="middle">6</text><text x="176.00" y="364.00" text-anchor="end">-6</text><text x="176.00" y="304.00" text-anchor="end">-4</text><text x="176.00" y="244.00" text-anchor="end">-2</text><text x="176.00" y="124.00" text-anchor="end">2</text><text x="176.00" y="64.00" text-anchor="end">4</text><text x="176.00" y="4.00" text-anchor="end">6</text></g><line class="la" x1="360.00" y1="204.00" x2="105.00" y2="0.00"/><line class="lb" x1="30.00" y1="240.00" x2="176.34" y2="57.07"/><path class="ra" d="M 183.37 62.70 L 188.99 55.67 L 181.96 50.05"/><circle class="pt" cx="30.00" cy="240.00" r="3.4"/><text class="lbl" x="37.00" y="255.00" text-anchor="start">A(−5, −2)</text><circle class="ptb" cx="176.34" cy="57.07" r="3.4"/></svg><p class="figcap">The given line in blue, the perpendicular dropped from the point in red. That red segment is the distance.</p></div>
+    <p><strong>0. Solve for y.</strong> \(5y=-4x+20\), so \(y=-\frac45x+4\).</p>
+    <p><strong>1–2. Perpendicular slope \(\frac54\), through A.</strong></p>
+    <div class="math">\[y+2=\tfrac54(x+5) \;\Rightarrow\; y=\tfrac54x+\tfrac{25}{4}-2=\tfrac54x+\tfrac{17}{4}\]</div>
+    <p><strong>3. Intersection.</strong> Multiply by 20:</p>
+    <div class="math">\[25x+85=-16x+80 \;\Rightarrow\; 41x=-5 \;\Rightarrow\; x=-\tfrac{5}{41}\]</div>
+    <div class="math">\[y=-\tfrac45\!\left(-\tfrac{5}{41}\right)+4=\tfrac{4}{41}+\tfrac{164}{41}=\tfrac{168}{41}\]</div>
+    <p><strong>4. Distance.</strong></p>
+    <div class="math">\[D=\sqrt{\left(-\tfrac{205}{41}+\tfrac{5}{41}\right)^2+\left(-\tfrac{82}{41}-\tfrac{168}{41}\right)^2}=\sqrt{\frac{40000+62500}{1681}}=\sqrt{\frac{102500}{1681}}\]</div>
+    <p>\(102500=2500\cdot41\), so \(\sqrt{102500}=50\sqrt{41}\).</p>
+    <div class="answer">\(D=\dfrac{50\sqrt{41}}{41}\approx7.81\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">DPL #4</span><span class="tag">Point to line</span></div>
+  <p>Distance from \(B(4,4)\) to \(2x+6y=12\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Same four steps, but this one is built to come out clean.</p><p><span class="cue">Method:</span> Solve for y, perpendicular through B, intersect, distance.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for DPL #4"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="30.00" y1="0" x2="30.00" y2="360.00"/><line x1="60.00" y1="0" x2="60.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="120.00" y1="0" x2="120.00" y2="360.00"/><line x1="150.00" y1="0" x2="150.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="210.00" y1="0" x2="210.00" y2="360.00"/><line x1="240.00" y1="0" x2="240.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="300.00" y1="0" x2="300.00" y2="360.00"/><line x1="330.00" y1="0" x2="330.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="330.00" x2="360.00" y2="330.00"/><line x1="0" y1="300.00" x2="360.00" y2="300.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="240.00" x2="360.00" y2="240.00"/><line x1="0" y1="210.00" x2="360.00" y2="210.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="150.00" x2="360.00" y2="150.00"/><line x1="0" y1="120.00" x2="360.00" y2="120.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="60.00" x2="360.00" y2="60.00"/><line x1="0" y1="30.00" x2="360.00" y2="30.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-6</text><text x="60.00" y="193.00" text-anchor="middle">-4</text><text x="120.00" y="193.00" text-anchor="middle">-2</text><text x="240.00" y="193.00" text-anchor="middle">2</text><text x="300.00" y="193.00" text-anchor="middle">4</text><text x="360.00" y="193.00" text-anchor="middle">6</text><text x="176.00" y="364.00" text-anchor="end">-6</text><text x="176.00" y="304.00" text-anchor="end">-4</text><text x="176.00" y="244.00" text-anchor="end">-2</text><text x="176.00" y="124.00" text-anchor="end">2</text><text x="176.00" y="64.00" text-anchor="end">4</text><text x="176.00" y="4.00" text-anchor="end">6</text></g><line class="la" x1="0.00" y1="60.00" x2="360.00" y2="180.00"/><line class="lb" x1="300.00" y1="60.00" x2="270.00" y2="150.00"/><path class="ra" d="M 278.54 152.85 L 281.38 144.31 L 272.85 141.46"/><circle class="pt" cx="300.00" cy="60.00" r="3.4"/><text class="lbl" x="307.00" y="52.00" text-anchor="start">B(4, 4)</text><circle class="ptb" cx="270.00" cy="150.00" r="3.4"/></svg><p class="figcap">The given line in blue, the perpendicular dropped from the point in red. That red segment is the distance.</p></div>
+    <p><strong>0. Solve for y.</strong> \(6y=-2x+12\), so \(y=-\frac13x+2\).</p>
+    <p><strong>1–2. Perpendicular slope 3, through B.</strong></p>
+    <div class="math">\[y-4=3(x-4) \;\Rightarrow\; y=3x-8\]</div>
+    <p><strong>3. Intersection.</strong> Multiply by 3:</p>
+    <div class="math">\[9x-24=-x+6 \;\Rightarrow\; 10x=30 \;\Rightarrow\; x=3,\ y=1\]</div>
+    <p>The foot lands on a lattice point, which is the tell that this one stays tidy.</p>
+    <p><strong>4. Distance.</strong></p>
+    <div class="math">\[D=\sqrt{(4-3)^2+(4-1)^2}=\sqrt{1+9}\]</div>
+    <div class="answer">\(D=\sqrt{10}\approx3.16\)</div>
+  </div></details>
+</div>
+
+<h3>Graphing Lines Review 2</h3>
+<p>All seven want standard form, \(Ax+By=C\), with A positive and no fractions.</p>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #1</span><span class="tag">Slope + intercept</span></div>
+  <p>Slope \(-\frac56\), y-intercept \((0,-3)\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A slope and a y-intercept is exactly what \(y=mx+b\) takes.</p><p><span class="cue">Method:</span> Write slope-intercept, then clear the denominator and rearrange.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #1"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="la" x1="0.00" y1="84.00" x2="331.20" y2="360.00"/><circle class="ptb" cx="180.00" cy="234.00" r="3.4"/><text class="lbl" x="187.00" y="228.00" text-anchor="start">(0, −3)</text></svg><p class="figcap">The answer line on the worksheet grid.</p></div>
+    <div class="math">\[y=-\tfrac56x-3\]</div>
+    <p>Multiply every term by 6, then move the x term left:</p>
+    <div class="math">\[6y=-5x-18\]</div>
+    <div class="answer">\(5x+6y=-18\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #2</span><span class="tag">Two points</span></div>
+  <p>Passes through \(A\!\left(4,\frac{15}{4}\right)\) and the origin.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> No slope given, but “the origin” is a second point, \((0,0)\).</p><p><span class="cue">Method:</span> Slope formula, then clear denominators.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #2"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="la" x1="0.00" y1="348.75" x2="360.00" y2="11.25"/><circle class="ptb" cx="180.00" cy="180.00" r="3.4"/><circle class="ptb" cx="252.00" cy="112.50" r="3.4"/><text class="lbl" x="261.00" y="128.50" text-anchor="start">A(4, 15/4)</text></svg><p class="figcap">The answer line on the worksheet grid.</p></div>
+    <div class="math">\[m=\frac{\frac{15}{4}-0}{4-0}=\frac{15}{4}\cdot\frac14=\frac{15}{16}\]</div>
+    <p>Through the origin, b is 0, so \(y=\frac{15}{16}x\). Multiply by 16:</p>
+    <div class="math">\[16y=15x\]</div>
+    <div class="answer">\(15x-16y=0\)</div>
+    <p class="note">C = 0 is a fine answer. Write 15x − 16y, not −15x + 16y, so A stays positive.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #3</span><span class="tag">Slope + point</span></div>
+  <p>Slope \(-\frac23\), passes through \(C(-2,5)\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A slope and a point that isn’t the intercept.</p><p><span class="cue">Method:</span> Point-slope, multiply by 3, rearrange.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #3"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="la" x1="360.00" y1="234.00" x2="9.00" y2="0.00"/><circle class="ptb" cx="144.00" cy="90.00" r="3.4"/><text class="lbl" x="153.00" y="106.00" text-anchor="start">C(−2, 5)</text></svg><p class="figcap">The answer line on the worksheet grid.</p></div>
+    <div class="math">\[y-5=-\tfrac23(x+2) \;\Rightarrow\; 3y-15=-2x-4\]</div>
+    <div class="answer">\(2x+3y=11\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #4</span><span class="tag">Perpendicular</span></div>
+  <p>Passes through \(D(-8,7)\) and is perpendicular to \(5x+2y=32.9\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Perpendicular to a line given in standard form.</p><p><span class="cue">Method:</span> Read its slope as \(-\frac{A}{B}\), flip it, then point-slope.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #4"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="la" x1="0.00" y1="68.40" x2="171.00" y2="0.00"/><circle class="ptb" cx="36.00" cy="54.00" r="3.4"/><text class="lbl" x="43.00" y="46.00" text-anchor="start">D(−8, 7)</text></svg><p class="figcap">The answer line on the worksheet grid.</p></div>
+    <div class="math">\[m=-\frac{5}{2} \quad\Longrightarrow\quad m_\perp=\frac{2}{5}\]</div>
+    <p class="note">The 32.9 never gets used. Only the slope of that line matters.</p>
+    <div class="math">\[y-7=\tfrac25(x+8) \;\Rightarrow\; 5y-35=2x+16 \;\Rightarrow\; -2x+5y=51\]</div>
+    <p>A is negative, so multiply every term by −1:</p>
+    <div class="answer">\(2x-5y=-51\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #5</span><span class="tag">Perpendicular bisector</span></div>
+  <p>Perpendicular to \(\overline{AB}\), with \(A(-8,-3)\) and \(B(4,9)\), passing through \(\overline{AB}\)’s midpoint.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Perpendicular plus midpoint — two patterns stacked.</p><p><span class="cue">Method:</span> Slope of AB, flip it; midpoint of AB for the point; then point-slope.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #5"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="lc" x1="36.00" y1="234.00" x2="252.00" y2="18.00"/><line class="la" x1="360.00" y1="342.00" x2="18.00" y2="0.00"/><circle class="ptb" cx="36.00" cy="234.00" r="3.4"/><text class="lbl" x="29.00" y="230.00" text-anchor="end">A</text><circle class="ptb" cx="252.00" cy="18.00" r="3.4"/><text class="lbl" x="259.00" y="16.00" text-anchor="start">B</text><circle class="ptb" cx="144.00" cy="126.00" r="3.4"/><text class="lbl" x="154.00" y="144.00" text-anchor="start">M(−2, 3)</text><path class="ra" d="M 150.36 119.64 L 156.73 126.00 L 150.36 132.36"/></svg><p class="figcap">AB in green, the perpendicular bisector in blue, crossing at the midpoint.</p></div>
+    <div class="math">\[m_{AB}=\frac{9-(-3)}{4-(-8)}=\frac{12}{12}=1 \quad\Longrightarrow\quad m_\perp=-1\]</div>
+    <div class="math">\[M=\left(\frac{-8+4}{2},\ \frac{-3+9}{2}\right)=(-2,3)\]</div>
+    <div class="math">\[y-3=-(x+2) \;\Rightarrow\; y-3=-x-2\]</div>
+    <div class="answer">\(x+y=1\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #6</span><span class="tag">Horizontal</span></div>
+  <p>A horizontal line passing through \(Q(-3,8)\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The word horizontal. No slope formula needed.</p><p><span class="cue">Method:</span> A horizontal line has slope 0, so y never changes. Use the y-coordinate.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #6"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="la" x1="0.00" y1="36.00" x2="360.00" y2="36.00"/><circle class="ptb" cx="126.00" cy="36.00" r="3.4"/><text class="lbl" x="135.00" y="54.00" text-anchor="start">Q(−3, 8)</text></svg><p class="figcap">The answer line on the worksheet grid.</p></div>
+    <div class="answer">\(y=8\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">GL2 #7</span><span class="tag">Vertical</span></div>
+  <p>A vertical line passing through \(T(-3,4)\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The word vertical.</p><p><span class="cue">Method:</span> A vertical line has undefined slope, so x never changes. Use the x-coordinate.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 396 396" role="img" aria-label="Graph for GL2 #7"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="360.00"/><line x1="18.00" y1="0" x2="18.00" y2="360.00"/><line x1="36.00" y1="0" x2="36.00" y2="360.00"/><line x1="54.00" y1="0" x2="54.00" y2="360.00"/><line x1="72.00" y1="0" x2="72.00" y2="360.00"/><line x1="90.00" y1="0" x2="90.00" y2="360.00"/><line x1="108.00" y1="0" x2="108.00" y2="360.00"/><line x1="126.00" y1="0" x2="126.00" y2="360.00"/><line x1="144.00" y1="0" x2="144.00" y2="360.00"/><line x1="162.00" y1="0" x2="162.00" y2="360.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/><line x1="198.00" y1="0" x2="198.00" y2="360.00"/><line x1="216.00" y1="0" x2="216.00" y2="360.00"/><line x1="234.00" y1="0" x2="234.00" y2="360.00"/><line x1="252.00" y1="0" x2="252.00" y2="360.00"/><line x1="270.00" y1="0" x2="270.00" y2="360.00"/><line x1="288.00" y1="0" x2="288.00" y2="360.00"/><line x1="306.00" y1="0" x2="306.00" y2="360.00"/><line x1="324.00" y1="0" x2="324.00" y2="360.00"/><line x1="342.00" y1="0" x2="342.00" y2="360.00"/><line x1="360.00" y1="0" x2="360.00" y2="360.00"/><line x1="0" y1="360.00" x2="360.00" y2="360.00"/><line x1="0" y1="342.00" x2="360.00" y2="342.00"/><line x1="0" y1="324.00" x2="360.00" y2="324.00"/><line x1="0" y1="306.00" x2="360.00" y2="306.00"/><line x1="0" y1="288.00" x2="360.00" y2="288.00"/><line x1="0" y1="270.00" x2="360.00" y2="270.00"/><line x1="0" y1="252.00" x2="360.00" y2="252.00"/><line x1="0" y1="234.00" x2="360.00" y2="234.00"/><line x1="0" y1="216.00" x2="360.00" y2="216.00"/><line x1="0" y1="198.00" x2="360.00" y2="198.00"/><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="0" y1="162.00" x2="360.00" y2="162.00"/><line x1="0" y1="144.00" x2="360.00" y2="144.00"/><line x1="0" y1="126.00" x2="360.00" y2="126.00"/><line x1="0" y1="108.00" x2="360.00" y2="108.00"/><line x1="0" y1="90.00" x2="360.00" y2="90.00"/><line x1="0" y1="72.00" x2="360.00" y2="72.00"/><line x1="0" y1="54.00" x2="360.00" y2="54.00"/><line x1="0" y1="36.00" x2="360.00" y2="36.00"/><line x1="0" y1="18.00" x2="360.00" y2="18.00"/><line x1="0" y1="0.00" x2="360.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="180.00" x2="360.00" y2="180.00"/><line x1="180.00" y1="0" x2="180.00" y2="360.00"/></g><g class="tick"><text x="0.00" y="193.00" text-anchor="middle">-10</text><text x="36.00" y="193.00" text-anchor="middle">-8</text><text x="72.00" y="193.00" text-anchor="middle">-6</text><text x="108.00" y="193.00" text-anchor="middle">-4</text><text x="144.00" y="193.00" text-anchor="middle">-2</text><text x="216.00" y="193.00" text-anchor="middle">2</text><text x="252.00" y="193.00" text-anchor="middle">4</text><text x="288.00" y="193.00" text-anchor="middle">6</text><text x="324.00" y="193.00" text-anchor="middle">8</text><text x="360.00" y="193.00" text-anchor="middle">10</text><text x="176.00" y="364.00" text-anchor="end">-10</text><text x="176.00" y="328.00" text-anchor="end">-8</text><text x="176.00" y="292.00" text-anchor="end">-6</text><text x="176.00" y="256.00" text-anchor="end">-4</text><text x="176.00" y="220.00" text-anchor="end">-2</text><text x="176.00" y="148.00" text-anchor="end">2</text><text x="176.00" y="112.00" text-anchor="end">4</text><text x="176.00" y="76.00" text-anchor="end">6</text><text x="176.00" y="40.00" text-anchor="end">8</text><text x="176.00" y="4.00" text-anchor="end">10</text></g><line class="la" x1="126.00" y1="0" x2="126.00" y2="360.00"/><circle class="ptb" cx="126.00" cy="108.00" r="3.4"/><text class="lbl" x="133.00" y="102.00" text-anchor="start">T(−3, 4)</text></svg><p class="figcap">The answer line on the worksheet grid.</p></div>
+    <div class="answer">\(x=-3\)</div>
+    <p class="note">Both points here have x = −3. Pick the coordinate that matches the direction, not the one that looks familiar.</p>
+  </div></details>
+</div>
+
+<h2>Answer key</h2>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>#</th><th>0B Homework 1</th><th>Point to line</th><th>Graphing Lines Review 2</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>\(7x+3y=-172\)</td><td>\(\tfrac{23\sqrt{13}}{13}\)</td><td>\(5x+6y=-18\)</td></tr>
+    <tr><td>2</td><td>\(\sqrt{6266}\)</td><td>\(\tfrac{46\sqrt{41}}{41}\)</td><td>\(15x-16y=0\)</td></tr>
+    <tr><td>3</td><td></td><td>\(\tfrac{50\sqrt{41}}{41}\)</td><td>\(2x+3y=11\)</td></tr>
+    <tr><td>4</td><td></td><td>\(\sqrt{10}\)</td><td>\(2x-5y=-51\)</td></tr>
+    <tr><td>5</td><td></td><td></td><td>\(x+y=1\)</td></tr>
+    <tr><td>6</td><td></td><td></td><td>\(y=8\)</td></tr>
+    <tr><td>7</td><td></td><td></td><td>\(x=-3\)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="where">Every answer checked symbolically. The keys agree throughout, apart from the √6226 slip noted in HW1 #2.</p>
+
+</section>
+
+</div>
+
+<footer>Every solution was worked by hand, then checked symbolically. Where a teacher’s key disagrees, the difference is called out inside that problem.</footer>
+</main>
+<script>
+(function () {
+  function wire(tabs, onSelect) {
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) { tab.focus(); }
+      if (onSelect) { onSelect(); }
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(tab, false); });
+      tab.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); }
+        if (e.key === 'Home') { e.preventDefault(); select(tabs[0], true); }
+        if (e.key === 'End') { e.preventDefault(); select(tabs[tabs.length - 1], true); }
+      });
+    });
+  }
+  var top = function () { window.scrollTo({ top: 0 }); };
+  var list = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  wire(list('.topics [role="tab"]'), top);
+  list('.tabs').forEach(function (bar) { wire(list('[role="tab"]', bar), top); });
+
+  list('.toolbar').forEach(function (bar) {
+    var scope = bar.closest('.panel') || document;
+    var all = function () { return list('.problem details', scope); };
+    bar.querySelector('.openAll').addEventListener('click', function () {
+      all().forEach(function (d) { d.open = true; });
+    });
+    bar.querySelector('.closeAll').addEventListener('click', function () {
+      all().forEach(function (d) { d.open = false; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
