@@ -15,9 +15,10 @@ The page has two topics, switched at the top:
   Built from *Unit 0A 05* and *0A 06 Quiz Review 2*.
 - **Lines** — slope, the three forms of a line, perpendiculars, midpoint,
   partitioning a segment by a ratio, distance, and distance from a point to a
-  line, intersections, and solving for an unknown coordinate or coefficient.
-  Built from *0B Homework 1*, *Distance from a point to a line*,
-  *Graphing Lines Review 2*, and *The Basics of Unit 0B*.
+  line, intercepts, intersections, and solving for an unknown coordinate or
+  coefficient. Built from *0B Homework 1*, *Distance from a point to a line*,
+  *Graphing Lines Review 2*, *The Basics of Unit 0B*, and the
+  *Unit 0B 10-Problem Review*.
 
 Each topic has three tabs: a decision **Checklist**, the **Patterns** with their
 cues, and the **Solved problems** with collapsible solutions.
@@ -32,10 +33,15 @@ problem itself:
   which changes the answer from `−17/10` to `−17/2`.
 - **0B HW1 #2** — the key adds `5041 + 1225` and writes `√6226`; the sum is `6266`.
 
+The Lines solutions follow the teacher's own steps from the keys: a right
+triangle and a proportion for segment ratios, one slope set equal to the
+negative reciprocal of the other for perpendiculars, and expand-then-factor (or
+the quadratic formula) when a letter is being solved for.
+
 No key was supplied for *The Basics of Unit 0B*, so those six answers are
-verified but not compared. One of them is worth knowing about: in **#1** the
-slope method finds only `k = 4`, but `k = 2` also works — it makes one line
-vertical and the other horizontal.
+verified but not compared. In **#1** both `k = 4` and `k = 2` work; `k = 2`
+makes one line vertical and the other horizontal, so it has to be checked in
+the original equations rather than with slopes.
 
 One more is a judgment call rather than an error: **0A 05 #5** boxes both roots
 of the continued fraction, where the quiz-review key for the same pattern rejects
