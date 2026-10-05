@@ -23,6 +23,11 @@ The page has two topics, switched at the top:
 Each topic has three tabs: a decision **Checklist**, the **Patterns** with their
 cues, and the **Solved problems** with collapsible solutions.
 
+The Lines topic has a fourth tab, **Practice test**: ten new problems modelled
+on the 10-Problem Review, with different numbers and in a different order, each
+with a hidden worked solution. These were written for the guide and are not
+from the teacher.
+
 ## Notes on the answers
 
 Every solution was worked by hand and then verified symbolically with SymPy.
