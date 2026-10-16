@@ -656,6 +656,7 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
   <button type="button" role="tab" id="tab-l-patterns" aria-controls="panel-l-patterns" aria-selected="false" tabindex="-1">Patterns</button>
   <button type="button" role="tab" id="tab-l-solved" aria-controls="panel-l-solved" aria-selected="false" tabindex="-1">Solved problems</button>
   <button type="button" role="tab" id="tab-l-practice" aria-controls="panel-l-practice" aria-selected="false" tabindex="-1">Practice test</button>
+  <button type="button" role="tab" id="tab-l-retake" aria-controls="panel-l-retake" aria-selected="false" tabindex="-1">Re-take</button>
 </div>
 
 <section class="panel" id="panel-l-checklist" role="tabpanel" aria-labelledby="tab-l-checklist" tabindex="0">
@@ -1635,6 +1636,196 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
 </div>
 </details>
 <p class="where">Every answer checked symbolically. These problems are written for this guide; they are not from the teacher.</p>
+
+</section>
+
+<section class="panel" id="panel-l-retake" role="tabpanel" aria-labelledby="tab-l-retake" tabindex="0" hidden>
+
+<h2>Coordinate Geometry Re-Take</h2>
+<p>The seven problems to complete for the re-take, solved the way the keys solve them. Every type here has already appeared in the Solved problems tab; each solution says which one, so a miss tells you what to go back to.</p>
+<p class="note">Work each one on paper first. The answers are on the sheet, so the point is getting there, not the number at the end.</p>
+<div class="toolbar">
+  <button type="button" class="openAll">Show all solutions</button>
+  <button type="button" class="closeAll">Hide all solutions</button>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #1</span><span class="tag">Unknown + perpendicular</span></div>
+  <p>Solve for \(k\) such that \(3kx+2x-3y=1\) is perpendicular to \(kx-x+ky+2y=5\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A letter in the coefficients, and the word perpendicular.</p><p><span class="cue">Method:</span> Factor out x and y, read off both slopes, set one slope equal to the negative reciprocal of the other, cross-multiply, solve the quadratic.</p><p><span class="cue">Same type as:</span> Rev #6.</p></div>
+    <p><strong>Factor out x (and y) in each line.</strong></p>
+    <div class="math">\[L_1:\ (3k+2)x-3y=1 \qquad\qquad L_2:\ (k-1)x+(k+2)y=5\]</div>
+    <p><strong>Slopes</strong> from \(m=-\frac{A}{B}\). In \(L_1\), B is \(-3\), so the two minus signs cancel:</p>
+    <div class="math">\[m_1=\frac{-(3k+2)}{-3}=\frac{3k+2}{3} \qquad\qquad m_2=\frac{-(k-1)}{k+2} \;\perp\; \frac{k+2}{k-1}\]</div>
+    <p><strong>Set the first slope equal to that negative reciprocal.</strong></p>
+    <div class="math">\[\frac{3k+2}{3}=\frac{k+2}{k-1}\]</div>
+    <p><strong>Cross-multiply and expand.</strong></p>
+    <div class="math">\[(3k+2)(k-1)=3(k+2) \;\Rightarrow\; 3k^2-3k+2k-2=3k+6 \;\Rightarrow\; 3k^2-4k-8=0\]</div>
+    <p><strong>Quadratic formula.</strong> \(a=3\), \(b=-4\), \(c=-8\), and \(b^2-4ac=16+96=112\). Not a perfect square, so it won’t factor.</p>
+    <p><strong>Simplify the radical.</strong> \(112=16\cdot7\), so \(\sqrt{112}=4\sqrt7\):</p>
+    <div class="math">\[k=\frac{4\pm4\sqrt7}{6}\]</div>
+    <p>Every term on top and the 6 below share a factor of 2. Divide them all by 2:</p>
+    <div class="math">\[k=\frac{2\pm2\sqrt7}{3}\]</div>
+    <p><strong>Check.</strong> \(\sqrt7\approx2.646\), so \(k\approx2.43\) or \(k\approx-1.10\). For \(k\approx2.43\): \(m_1\approx3.10\) and \(m_2\approx-0.323\), product \(\approx-1\). ✓ Neither value is 1 or −2, so no denominator was zero.</p>
+
+    <div class="answer">\(k=\dfrac{2+2\sqrt7}{3}\) or \(k=\dfrac{2-2\sqrt7}{3}\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #2</span><span class="tag">Partition + perpendicular + intercept</span></div>
+  <p>Point P lies on \(\overline{AB}\) such that \(AP:PB=4:5\), with \(A(-16,40)\) and \(B(20,13)\). Determine: the coordinates of P; the equation of line \(L_1\) through P perpendicular to \(\overline{AB}\), in \(Ax+By=C\) form; the x-intercept of \(L_1\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A ratio along a segment, the word perpendicular, then an intercept: three small jobs chained.</p><p><span class="cue">Method:</span> Draw the right triangle on AB, use a proportion for each leg to build P, take the negative reciprocal slope, point-slope, convert to standard, then set \(y=0\).</p><p><span class="cue">Same type as:</span> Rev #3 and Rev #4.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 416 362" role="img" aria-label="Graph for Re-take #2"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="325.71"/><line x1="27.14" y1="0" x2="27.14" y2="325.71"/><line x1="54.29" y1="0" x2="54.29" y2="325.71"/><line x1="81.43" y1="0" x2="81.43" y2="325.71"/><line x1="108.57" y1="0" x2="108.57" y2="325.71"/><line x1="135.71" y1="0" x2="135.71" y2="325.71"/><line x1="162.86" y1="0" x2="162.86" y2="325.71"/><line x1="190.00" y1="0" x2="190.00" y2="325.71"/><line x1="217.14" y1="0" x2="217.14" y2="325.71"/><line x1="244.29" y1="0" x2="244.29" y2="325.71"/><line x1="271.43" y1="0" x2="271.43" y2="325.71"/><line x1="298.57" y1="0" x2="298.57" y2="325.71"/><line x1="325.71" y1="0" x2="325.71" y2="325.71"/><line x1="352.86" y1="0" x2="352.86" y2="325.71"/><line x1="380.00" y1="0" x2="380.00" y2="325.71"/><line x1="0" y1="325.71" x2="380.00" y2="325.71"/><line x1="0" y1="298.57" x2="380.00" y2="298.57"/><line x1="0" y1="271.43" x2="380.00" y2="271.43"/><line x1="0" y1="244.29" x2="380.00" y2="244.29"/><line x1="0" y1="217.14" x2="380.00" y2="217.14"/><line x1="0" y1="190.00" x2="380.00" y2="190.00"/><line x1="0" y1="162.86" x2="380.00" y2="162.86"/><line x1="0" y1="135.71" x2="380.00" y2="135.71"/><line x1="0" y1="108.57" x2="380.00" y2="108.57"/><line x1="0" y1="81.43" x2="380.00" y2="81.43"/><line x1="0" y1="54.29" x2="380.00" y2="54.29"/><line x1="0" y1="27.14" x2="380.00" y2="27.14"/><line x1="0" y1="0.00" x2="380.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="298.57" x2="380.00" y2="298.57"/><line x1="217.14" y1="0" x2="217.14" y2="325.71"/></g><g class="tick"><text x="54.29" y="311.57" text-anchor="middle">-24</text><text x="108.57" y="311.57" text-anchor="middle">-16</text><text x="162.86" y="311.57" text-anchor="middle">-8</text><text x="271.43" y="311.57" text-anchor="middle">8</text><text x="325.71" y="311.57" text-anchor="middle">16</text><text x="380.00" y="311.57" text-anchor="middle">24</text><text x="213.14" y="248.29" text-anchor="end">8</text><text x="213.14" y="194.00" text-anchor="end">16</text><text x="213.14" y="139.71" text-anchor="end">24</text><text x="213.14" y="85.43" text-anchor="end">32</text><text x="213.14" y="31.14" text-anchor="end">40</text></g><line class="lg" x1="108.57" y1="27.14" x2="108.57" y2="210.36" stroke-dasharray="4 3"/><line class="lg" x1="108.57" y1="210.36" x2="352.86" y2="210.36" stroke-dasharray="4 3"/><line class="lc" x1="108.57" y1="27.14" x2="217.14" y2="108.57"/><line class="lb" x1="217.14" y1="108.57" x2="352.86" y2="210.36"/><line class="la" x1="54.29" y1="325.71" x2="298.57" y2="0.00"/><path class="ra" d="M 225.83 115.09 L 232.34 106.40 L 223.66 99.89"/><circle class="pt" cx="108.57" cy="27.14" r="3.4"/><text class="lbl" x="116.57" y="21.14" text-anchor="start">A(−16, 40)</text><circle class="pt" cx="352.86" cy="210.36" r="3.4"/><text class="lbl" x="348.86" y="228.36" text-anchor="end">B(20, 13)</text><circle class="ptb" cx="217.14" cy="108.57" r="3.4"/><text class="lbl" x="207.14" y="117.57" text-anchor="end">P(0, 28)</text><circle class="ptb" cx="74.64" cy="298.57" r="3.4"/><text class="lbl" x="66.64" y="290.57" text-anchor="end">(−21, 0)</text><text class="lbl" x="264.64" y="226.36" text-anchor="middle">run 36</text><text class="lbl" x="102.57" y="122.75" text-anchor="end">drop 27</text><text class="lbl" x="166.86" y="59.86" text-anchor="start">4 parts</text><text class="lbl" x="291.00" y="153.46" text-anchor="start">5</text></svg><p class="figcap">AP in green is 4 of the 9 parts, PB in red is the other 5. The blue line through P is \(L_1\), crossing the x-axis at −21.</p></div>
+    <p><strong>Draw the right triangle on AB.</strong> It drops \(40-13=27\) and runs \(20-(-16)=36\).</p>
+    <p><strong>Count the parts.</strong> AP is 4 and PB is 5, so the whole of AB is \(4+5=9\).</p>
+    <p><strong>Set up a proportion for each leg.</strong> The small triangle on AP is 4 parts of the big one’s 9. Call its legs \(m\) (down) and \(n\) (across):</p>
+    <div class="math">\[\frac{m}{27}=\frac49 \;\Rightarrow\; m=12 \qquad\qquad \frac{n}{36}=\frac49 \;\Rightarrow\; n=16\]</div>
+    <p><strong>Move from A</strong>, across 16 and down 12:</p>
+    <div class="math">\[-16+16=0 \qquad 40-12=28 \qquad P=(0,28)\]</div>
+    <p><strong>Slope of AB, then its perpendicular.</strong></p>
+    <div class="math">\[\frac{13-40}{20+16}=\frac{-27}{36}=-\frac34 \;\perp\; \frac43\]</div>
+    <p><strong>Point-slope.</strong> P is on the y-axis, so this is already slope-intercept:</p>
+    <div class="math">\[y-28=\tfrac43(x-0) \;\Rightarrow\; y=\tfrac43x+28\]</div>
+    <p>Multiply both sides by 3, then move the x term left:</p>
+    <div class="math">\[3y=4x+84 \;\Rightarrow\; -4x+3y=84\]</div>
+    <p>Multiply every term by −1 so A is positive: \(4x-3y=-84\).</p>
+    <p><strong>x-intercept.</strong> Set \(y=0\):</p>
+    <div class="math">\[4x-3(0)=-84 \;\Rightarrow\; x=-21\]</div>
+
+    <div class="answer">\(P(0,28)\); &nbsp; \(4x-3y=-84\); &nbsp; x-intercept \(-21\)</div>
+    <p class="note">The key gets P right but writes 3x − y = −28. That line has slope 3, and 3 · (−3/4) = −9/4, not −1, so it isn’t perpendicular to AB. Its x-intercept of −28/3 follows from the wrong line.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #3</span><span class="tag">Point to line</span></div>
+  <p>Determine the distance from the point \(P(-6,2)\) to the line \(y=\frac23x-6\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A point, a line, and the word distance.</p><p><span class="cue">Method:</span> Perpendicular slope, perpendicular line through the point, intersection, distance formula.</p><p><span class="cue">Same type as:</span> Rev #1 and Rev #2.</p></div>
+    <div class="figure"><svg class="plot" viewBox="-18 -18 416 416" role="img" aria-label="Graph for Re-take #3"><g class="grid"><line x1="0.00" y1="0" x2="0.00" y2="380.00"/><line x1="25.33" y1="0" x2="25.33" y2="380.00"/><line x1="50.67" y1="0" x2="50.67" y2="380.00"/><line x1="76.00" y1="0" x2="76.00" y2="380.00"/><line x1="101.33" y1="0" x2="101.33" y2="380.00"/><line x1="126.67" y1="0" x2="126.67" y2="380.00"/><line x1="152.00" y1="0" x2="152.00" y2="380.00"/><line x1="177.33" y1="0" x2="177.33" y2="380.00"/><line x1="202.67" y1="0" x2="202.67" y2="380.00"/><line x1="228.00" y1="0" x2="228.00" y2="380.00"/><line x1="253.33" y1="0" x2="253.33" y2="380.00"/><line x1="278.67" y1="0" x2="278.67" y2="380.00"/><line x1="304.00" y1="0" x2="304.00" y2="380.00"/><line x1="329.33" y1="0" x2="329.33" y2="380.00"/><line x1="354.67" y1="0" x2="354.67" y2="380.00"/><line x1="380.00" y1="0" x2="380.00" y2="380.00"/><line x1="0" y1="380.00" x2="380.00" y2="380.00"/><line x1="0" y1="354.67" x2="380.00" y2="354.67"/><line x1="0" y1="329.33" x2="380.00" y2="329.33"/><line x1="0" y1="304.00" x2="380.00" y2="304.00"/><line x1="0" y1="278.67" x2="380.00" y2="278.67"/><line x1="0" y1="253.33" x2="380.00" y2="253.33"/><line x1="0" y1="228.00" x2="380.00" y2="228.00"/><line x1="0" y1="202.67" x2="380.00" y2="202.67"/><line x1="0" y1="177.33" x2="380.00" y2="177.33"/><line x1="0" y1="152.00" x2="380.00" y2="152.00"/><line x1="0" y1="126.67" x2="380.00" y2="126.67"/><line x1="0" y1="101.33" x2="380.00" y2="101.33"/><line x1="0" y1="76.00" x2="380.00" y2="76.00"/><line x1="0" y1="50.67" x2="380.00" y2="50.67"/><line x1="0" y1="25.33" x2="380.00" y2="25.33"/><line x1="0" y1="0.00" x2="380.00" y2="0.00"/></g><g class="axis"><line x1="0" y1="152.00" x2="380.00" y2="152.00"/><line x1="228.00" y1="0" x2="228.00" y2="380.00"/></g><g class="tick"><text x="76.00" y="165.00" text-anchor="middle">-6</text><text x="152.00" y="165.00" text-anchor="middle">-3</text><text x="304.00" y="165.00" text-anchor="middle">3</text><text x="380.00" y="165.00" text-anchor="middle">6</text><text x="224.00" y="384.00" text-anchor="end">-9</text><text x="224.00" y="308.00" text-anchor="end">-6</text><text x="224.00" y="232.00" text-anchor="end">-3</text><text x="224.00" y="80.00" text-anchor="end">3</text></g><line class="la" x1="114.00" y1="380.00" x2="380.00" y2="202.67"/><line class="lb" x1="76.00" y1="101.33" x2="216.31" y2="311.79"/><path class="ra" d="M 209.28 301.26 L 219.82 294.23 L 226.85 304.77"/><circle class="pt" cx="76.00" cy="101.33" r="3.4"/><text class="lbl" x="84.00" y="93.33" text-anchor="start">P(−6, 2)</text><circle class="ptb" cx="216.31" cy="311.79" r="3.4"/><text class="lbl" x="224.31" y="331.79" text-anchor="start">(−6⁄13, −82⁄13)</text></svg><p class="figcap">The given line in blue, the perpendicular dropped from P in red. That red segment is the distance.</p></div>
+    <p><strong>1. Perpendicular slope.</strong> \(\frac23\to-\frac32\).</p>
+    <p><strong>2. Perpendicular line through P.</strong></p>
+    <div class="math">\[y-2=-\tfrac32(x+6) \;\Rightarrow\; y-2=-\tfrac32x-9 \;\Rightarrow\; y=-\tfrac32x-7\]</div>
+    <p><strong>3. Where they cross.</strong> Set the two right sides equal and multiply by 6:</p>
+    <div class="math">\[\tfrac23x-6=-\tfrac32x-7 \;\Rightarrow\; 4x-36=-9x-42 \;\Rightarrow\; 13x=-6 \;\Rightarrow\; x=-\tfrac{6}{13}\]</div>
+    <p>Put that into the given line, writing 6 as \(\frac{78}{13}\):</p>
+    <div class="math">\[y=\tfrac23\!\left(-\tfrac{6}{13}\right)-6=-\tfrac{4}{13}-\tfrac{78}{13}=-\tfrac{82}{13}\]</div>
+    <p>The foot is \(\left(-\frac{6}{13},-\frac{82}{13}\right)\).</p>
+    <p><strong>4. Distance from P to the foot.</strong> Write \(-6\) as \(-\frac{78}{13}\) and \(2\) as \(\frac{26}{13}\):</p>
+    <div class="math">\[D=\sqrt{\left(-\tfrac{6}{13}+\tfrac{78}{13}\right)^2+\left(-\tfrac{82}{13}-\tfrac{26}{13}\right)^2}=\sqrt{\left(\tfrac{72}{13}\right)^2+\left(-\tfrac{108}{13}\right)^2}=\frac{\sqrt{5184+11664}}{13}=\frac{\sqrt{16848}}{13}\]</div>
+    <p><strong>Simplify.</strong> 72 and 108 are both multiples of 36 (\(72=36\cdot2\), \(108=36\cdot3\)), so \(16848=36^2(4+9)=1296\cdot13\) and \(\sqrt{16848}=36\sqrt{13}\).</p>
+
+    <div class="answer">\(D=\dfrac{36\sqrt{13}}{13}\approx9.98\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #4</span><span class="tag">Unknown + perpendicular</span></div>
+  <p>The line \(4x+ky=12\) is perpendicular to the line through \(A(4,-2)\) and \(B(k,6)\). Determine the value(s) of \(k\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Perpendicular, with the same letter in an equation and in a point.</p><p><span class="cue">Method:</span> One slope from \(-\frac{A}{B}\), the other from two points. Set one equal to the negative reciprocal of the other, cross-multiply, factor.</p><p><span class="cue">Same type as:</span> Rev #6 and Rev #9.</p></div>
+    <p><strong>Slope of the given line.</strong></p>
+    <div class="math">\[m_1=-\frac{4}{k}\]</div>
+    <p><strong>Slope of AB, then its negative reciprocal.</strong></p>
+    <div class="math">\[m_{AB}=\frac{6-(-2)}{k-4}=\frac{8}{k-4} \;\perp\; -\frac{k-4}{8}\]</div>
+    <p><strong>Set the first slope equal to that negative reciprocal.</strong> Both sides are negative, so drop the minus signs:</p>
+    <div class="math">\[\frac{4}{k}=\frac{k-4}{8}\]</div>
+    <p><strong>Cross-multiply.</strong></p>
+    <div class="math">\[32=k(k-4) \;\Rightarrow\; 32=k^2-4k \;\Rightarrow\; 0=k^2-4k-32\]</div>
+    <p><strong>Factor.</strong> Two numbers that multiply to −32 and add to −4: −8 and 4.</p>
+    <div class="math">\[0=(k-8)(k+4) \;\Rightarrow\; k=8 \ \text{or}\ k=-4\]</div>
+    <p><strong>Check.</strong> \(k=8\): slopes \(-\frac12\) and \(\frac84=2\). \(k=-4\): slopes \(1\) and \(\frac{8}{-8}=-1\). Negative reciprocals both times. ✓</p>
+
+    <div class="answer">\(k=8\) or \(k=-4\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #5</span><span class="tag">Partition + unknowns</span></div>
+  <p>Given points \(A(w,-20)\) and \(B(35,t)\). Point \(Q(10,4)\) lies on \(\overline{AB}\) such that \(AQ:AB=12:17\). Determine the values of \(w\) and \(t\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A ratio along a segment, with a letter in two of the coordinates.</p><p><span class="cue">Method:</span> Draw the right triangle on AB. In each direction one piece is fully known; a proportion turns that piece into the whole leg.</p><p><span class="cue">Same type as:</span> Basics #2.</p></div>
+    <p><strong>Read the ratio.</strong> AB is the whole, so AQ is 12 parts out of 17, and the other piece, QB, is the remaining 5 out of 17.</p>
+    <p><strong>Across: the known piece is QB.</strong> Both x-coordinates of Q and B are given, so QB runs \(35-10=25\). That is 5 parts of the whole run’s 17:</p>
+    <div class="math">\[\frac{25}{\text{run}}=\frac{5}{17} \;\Rightarrow\; 5\cdot\text{run}=425 \;\Rightarrow\; \text{run}=85\]</div>
+    <p>The whole run ends at B, so go back from B to reach A:</p>
+    <div class="math">\[w=35-85=-50\]</div>
+    <p><strong>Up: the known piece is AQ.</strong> Both y-coordinates of A and Q are given, so AQ rises \(4-(-20)=24\). That is 12 parts of the whole rise’s 17:</p>
+    <div class="math">\[\frac{24}{\text{rise}}=\frac{12}{17} \;\Rightarrow\; 12\cdot\text{rise}=408 \;\Rightarrow\; \text{rise}=34\]</div>
+    <p>The whole rise starts at A:</p>
+    <div class="math">\[t=-20+34=14\]</div>
+    <p><strong>Check.</strong> AQ runs \(10-(-50)=60\), and \(\frac{60}{85}=\frac{12}{17}\). ✓</p>
+
+    <div class="answer">\(w=-50,\quad t=14\)</div>
+    <p class="note">AQ:AB is piece to whole, not piece to piece. The two pieces are 12 and 5, not 12 and 17.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #6</span><span class="tag">Unknown + perpendicular</span></div>
+  <p>\(\overline{RP}\) is perpendicular to \(\overline{QP}\) at point P, with \(P(t,6)\), \(Q\!\left(\frac74,\frac92\right)\) and \(R\!\left(-6,\frac32\right)\). Determine the two values of \(t\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Perpendicular with a letter in a coordinate, and the given points have fractions.</p><p><span class="cue">Method:</span> Write each slope and simplify the fraction-over-fraction by multiplying by the reciprocal. Then set one slope equal to the negative reciprocal of the other and cross-multiply.</p><p><span class="cue">Same type as:</span> Rev #9.</p></div>
+    <p><strong>Slope of PQ.</strong> Get common denominators top and bottom (\(6=\frac{12}{2}\), \(t=\frac{4t}{4}\)), then divide by multiplying by the reciprocal:</p>
+    <div class="math">\[\frac{6-\frac92}{t-\frac74}=\frac{\frac32}{\frac{4t-7}{4}}=\frac32\cdot\frac{4}{4t-7}=\frac{6}{4t-7}\]</div>
+    <p><strong>Slope of PR.</strong> Same idea:</p>
+    <div class="math">\[\frac{6-\frac32}{t+6}=\frac{\frac92}{t+6}=\frac92\cdot\frac{1}{t+6}=\frac{9}{2t+12} \;\perp\; -\frac{2t+12}{9}\]</div>
+    <p><strong>Set the first slope equal to that negative reciprocal.</strong></p>
+    <div class="math">\[\frac{6}{4t-7}=-\frac{2t+12}{9}\]</div>
+    <p><strong>Cross-multiply and expand.</strong></p>
+    <div class="math">\[54=-(2t+12)(4t-7) \;\Rightarrow\; 54=-(8t^2-14t+48t-84) \;\Rightarrow\; 54=-8t^2-34t+84\]</div>
+    <p>Move everything to the left so the \(t^2\) term is positive:</p>
+    <div class="math">\[8t^2+34t-30=0\]</div>
+    <p>Divide every term by 2:</p>
+    <div class="math">\[4t^2+17t-15=0\]</div>
+    <p><strong>Quadratic formula.</strong> \(a=4\), \(b=17\), \(c=-15\), and \(b^2-4ac=289+240=529=23^2\):</p>
+    <div class="math">\[t=\frac{-17\pm23}{8} \;\Rightarrow\; t=\frac68=\frac34 \ \text{or}\ t=\frac{-40}{8}=-5\]</div>
+    <p>It also factors: \((4t-3)(t+5)=0\).</p>
+    <p><strong>Check.</strong> \(t=\frac34\): slopes \(\frac{6}{-4}=-\frac32\) and \(\frac{9}{13.5}=\frac23\). \(t=-5\): slopes \(\frac{6}{-27}=-\frac29\) and \(\frac92\). Negative reciprocals both times. ✓</p>
+
+    <div class="answer">\(t=\dfrac34\) or \(t=-5\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Re-take #7</span><span class="tag">Point on a line</span></div>
+  <p>Compute the value(s) of \(A\) so that point \(P(-1,A)\) lies on the line \(L_4:\ 5x-13y=-6A^2\).</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A point said to lie on a line, with the letter as the y-coordinate and squared in the equation.</p><p><span class="cue">Method:</span> Substitute the point. The \(A^2\) means a quadratic comes out.</p><p><span class="cue">Same type as:</span> Rev #8.</p></div>
+    <p>Put \(x=-1\), \(y=A\) into \(5x-13y=-6A^2\):</p>
+    <div class="math">\[5(-1)-13A=-6A^2 \;\Rightarrow\; -5-13A=-6A^2\]</div>
+    <p>Move everything to the left so the \(A^2\) term is positive:</p>
+    <div class="math">\[6A^2-13A-5=0\]</div>
+    <p><strong>Solve.</strong> \(a=6\), \(b=-13\), \(c=-5\). The discriminant is \(169-4(6)(-5)=169+120=289=17^2\), a perfect square:</p>
+    <div class="math">\[A=\frac{13\pm17}{12} \;\Rightarrow\; A=\frac{30}{12}=\frac52 \ \text{or}\ A=\frac{-4}{12}=-\frac13\]</div>
+    <p>It also factors: \((2A-5)(3A+1)=0\).</p>
+    <p><strong>Check.</strong> \(A=\frac52\): \(-5-\frac{65}{2}=-\frac{75}{2}\) and \(-6\cdot\frac{25}{4}=-\frac{75}{2}\). \(A=-\frac13\): \(-5+\frac{13}{3}=-\frac23\) and \(-6\cdot\frac19=-\frac23\). ✓</p>
+
+    <div class="answer">\(A=\dfrac52\) or \(A=-\dfrac13\)</div>
+  </div></details>
+</div>
+
+<h2>Answers only</h2>
+<details class="answers"><summary>Show the answers</summary>
+<div class="tablewrap">
+<table>
+  <thead><tr><th>#</th><th>Answer</th><th>Key</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>\(k=\tfrac{2\pm2\sqrt7}{3}\)</td><td>Agrees</td></tr>
+    <tr><td>2</td><td>\(P(0,28)\); \(4x-3y=-84\); \(-21\)</td><td>P agrees; key’s line and intercept are wrong</td></tr>
+    <tr><td>3</td><td>\(\tfrac{36\sqrt{13}}{13}\)</td><td>Agrees</td></tr>
+    <tr><td>4</td><td>\(k=8\) or \(-4\)</td><td>Agrees</td></tr>
+    <tr><td>5</td><td>\(w=-50,\ t=14\)</td><td>Agrees</td></tr>
+    <tr><td>6</td><td>\(t=\tfrac34\) or \(-5\)</td><td>Agrees</td></tr>
+    <tr><td>7</td><td>\(A=\tfrac52\) or \(-\tfrac13\)</td><td>Agrees</td></tr>
+  </tbody>
+</table>
+</div>
+</details>
+<p class="where">Every answer checked symbolically. The key agrees on six of seven; #2 is explained inside that problem.</p>
 
 </section>
 

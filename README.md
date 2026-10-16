@@ -17,8 +17,8 @@ The page has two topics, switched at the top:
   partitioning a segment by a ratio, distance, and distance from a point to a
   line, intercepts, intersections, and solving for an unknown coordinate or
   coefficient. Built from *0B Homework 1*, *Distance from a point to a line*,
-  *Graphing Lines Review 2*, *The Basics of Unit 0B*, and the
-  *Unit 0B 10-Problem Review*.
+  *Graphing Lines Review 2*, *The Basics of Unit 0B*, the
+  *Unit 0B 10-Problem Review*, and the *Coordinate Geometry Re-Take* problems.
 
 Each topic has three tabs: a decision **Checklist**, the **Patterns** with their
 cues, and the **Solved problems** with collapsible solutions.
@@ -29,15 +29,22 @@ an eleventh on a part-to-whole segment ratio (`AQ:AB`). Each has a hidden worked
 solution. These were written for the guide and are not
 from the teacher.
 
+A fifth tab, **Re-take**, works the seven *Coordinate Geometry Re-Take*
+problems in the teacher's style, each linked to the solved problem of the same
+type.
+
 ## Notes on the answers
 
 Every solution was worked by hand and then verified symbolically with SymPy.
-Two answers disagree with the teacher's keys, and both are flagged inline on the
+Three answers disagree with the teacher's keys, and each is flagged inline on the
 problem itself:
 
 - **0A 05 #2** — the key combines `4x + 4x − 10x` into `−10x`; that sum is `−2x`,
   which changes the answer from `−17/10` to `−17/2`.
 - **0B HW1 #2** — the key adds `5041 + 1225` and writes `√6226`; the sum is `6266`.
+- **Re-take #2** — the key gets `P(0, 28)` right but gives `3x − y = −28`, which
+  has slope 3 and is not perpendicular to AB (slope `−3/4`). The perpendicular
+  is `4x − 3y = −84`, with x-intercept `−21`, not `−28/3`.
 
 The Lines solutions follow the teacher's own steps from the keys: a right
 triangle and a proportion for segment ratios, one slope set equal to the
