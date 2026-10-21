@@ -236,6 +236,14 @@ th { color: var(--ink); }
 }
 .panel[hidden] { display: none; }
 .panel > h2:first-child { margin-top: 2rem; }
+.plot .sqa { fill: var(--grid); stroke: var(--ink); stroke-width: 1.5; }
+.plot .rab { fill: var(--highlight); stroke: var(--ink); stroke-width: 1.5; }
+.plot .sqb { fill: var(--answer-bg); stroke: var(--ink); stroke-width: 1.5; }
+.plot .xring { fill: none; stroke: var(--redpen); stroke-width: 1.8; }
+.plot.fdiag .dhead { font-size: 16px; }
+ol.check ul { padding-left: 1.2rem; margin: 0.3rem 0; }
+ol.check ul li { margin: 0.2rem 0; }
+table.akey td { white-space: nowrap; }
 footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 @media print {
@@ -255,6 +263,7 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
 <nav class="topics" role="tablist" aria-label="Topic">
   <button type="button" role="tab" id="topictab-eq" aria-controls="topic-eq" aria-selected="true">Equations</button>
   <button type="button" role="tab" id="topictab-lines" aria-controls="topic-lines" aria-selected="false" tabindex="-1">Lines</button>
+  <button type="button" role="tab" id="topictab-fact" aria-controls="topic-fact" aria-selected="false" tabindex="-1">Factoring</button>
 </nav>
 
 <div class="topic" id="topic-eq" role="tabpanel" aria-labelledby="topictab-eq">
@@ -1826,6 +1835,1075 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
 </div>
 </details>
 <p class="where">Every answer checked symbolically. The key agrees on six of seven; #2 is explained inside that problem.</p>
+
+</section>
+
+</div>
+
+<div class="topic" id="topic-fact" role="tabpanel" aria-labelledby="topictab-fact" hidden>
+
+<p class="lede">Factoring is a sorting job. Pull out what every term shares, count what’s left, and the count tells you which pattern to try.</p>
+
+<div class="tabs" role="tablist" aria-label="Factoring sections">
+  <button type="button" role="tab" id="tab-f-checklist" aria-controls="panel-f-checklist" aria-selected="true">Checklist</button>
+  <button type="button" role="tab" id="tab-f-patterns" aria-controls="panel-f-patterns" aria-selected="false" tabindex="-1">Patterns</button>
+  <button type="button" role="tab" id="tab-f-solved" aria-controls="panel-f-solved" aria-selected="false" tabindex="-1">Solved problems</button>
+</div>
+
+<section class="panel" id="panel-f-checklist" role="tabpanel" aria-labelledby="tab-f-checklist" tabindex="0">
+
+<h2>The checklist</h2>
+<p>Every problem on these sheets follows the same order. Run through it each time.</p>
+<ol class="check">
+  <li><strong>Tidy up.</strong> If the problem is written in pieces that don’t share a factor, distribute and combine first. Then put the terms in descending powers.</li>
+  <li><strong>GCF first, always.</strong> Pull out the biggest number and the smallest power of each letter. If the leading term is negative, pull out the negative too, which flips every sign inside.</li>
+  <li><strong>Count the terms.</strong>
+    <ul>
+      <li><em>Two terms:</em> a difference of squares, or a sum or difference of cubes. A sum of two squares doesn’t factor.</li>
+      <li><em>Three terms:</em> a perfect square? A leading 1 (product and sum)? Otherwise the AC method. If the exponents are like \(x^4\) and \(x^2\), treat \(x^2\) as the variable.</li>
+      <li><em>Four terms:</em> group in pairs. If the pairs don’t share a binomial, re-order so a difference of squares or cubes sits in one pair.</li>
+    </ul></li>
+  <li><strong>Almost a perfect square, but the middle is wrong?</strong> Force-factor: add and subtract what’s missing, then it becomes a difference of squares.</li>
+  <li><strong>Look at every factor again.</strong> \(x^4-1\) gives \(x^2-1\), which factors again. Stop only when nothing left will factor.</li>
+  <li><strong>Check by multiplying back.</strong> You should get the original problem.</li>
+</ol>
+<p class="note">After pulling out a GCF, the leftover terms almost always factor nicely. If they don’t, recheck the GCF.</p>
+
+</section>
+
+<section class="panel" id="panel-f-patterns" role="tabpanel" aria-labelledby="tab-f-patterns" tabindex="0" hidden>
+
+<h2>The ten patterns</h2>
+
+<h3>Tidy up and pull out the GCF</h3>
+<p><span class="cue">Cue:</span> Every term shares a number or a letter; terms are out of order; a negative leading term; or the problem is written as pieces that don’t share a factor.</p>
+<p><span class="cue">Method:</span> Re-order into descending powers, then <span class="mark">pull out the GCF</span>: the biggest number dividing every coefficient, times the smallest power of each letter that appears in every term.</p>
+<div class="math">\[25x^5y^4-5x^3y^4+25x^3y^3=5x^3y^3(5x^2y-y+5)\]</div>
+<p>When the leading term is negative, pull out a negative. Every sign inside flips: \(-x^3+3x^2+4x=-x(x^2-3x-4)\).</p>
+<p>If the pieces don’t share a factor, as in \(x(x+4)-4(1+x)\), multiply out and combine before trying anything else. That one collapses to \(x^2-4\).</p>
+<p class="where">Worked examples: F02 #12, #13, #20, #23; F03 #18, #19, #21; RD #1, #11.</p>
+
+<h3>Trinomials with a leading 1</h3>
+<p><span class="cue">Cue:</span> \(x^2+bx+c\).</p>
+<p><span class="cue">Method:</span> <span class="mark">Two numbers that multiply to \(c\) and add to \(b\).</span> They go straight into the parentheses with their signs.</p>
+<div class="math">\[x^2-7x-18:\quad -9\cdot2=-18,\ \ -9+2=-7 \quad\Rightarrow\quad (x-9)(x+2)\]</div>
+<p>Signs tell you where to look. If \(c\) is positive, both numbers have the sign of \(b\). If \(c\) is negative, one is positive and one negative, and the bigger one has the sign of \(b\).</p>
+<p>A second letter just rides along: \(x^2+12xy-45y^2=(x+15y)(x-3y)\).</p>
+<p class="where">Worked examples: F02 #16–19; F03 #11, #12, #23.</p>
+
+<h3>The AC method</h3>
+<p><span class="cue">Cue:</span> A leading coefficient that isn’t 1, after any GCF is out.</p>
+<p><span class="cue">Method:</span> Multiply \(a\cdot c\). Find two numbers that <span class="mark">multiply to \(a\cdot c\) and add to \(b\)</span>. Use them to split the middle term into two, then group the four terms in pairs.</p>
+<div class="figure"><svg class="plot diagram fdiag" viewBox="0 0 300 220" role="img" aria-label="The teacher's X for 3x squared plus 4x minus 175: b equals 4 on the left, a times c equals negative 525 on the right, 25 on top and negative 21 on the bottom"><line class="la" x1="80" y1="40" x2="220" y2="180"/><line class="la" x1="220" y1="40" x2="80" y2="180"/><circle class="xring" cx="150" cy="44" r="22"/><circle class="xring" cx="150" cy="176" r="22"/><text class="dhead" x="150" y="49" text-anchor="middle">25</text><text class="dhead" x="150" y="181" text-anchor="middle">−21</text><text class="dhead" x="102" y="115" text-anchor="end">4</text><text class="dhead" x="198" y="115" text-anchor="start">−525</text><text class="dlab" x="60" y="140" text-anchor="middle">b (add)</text><text class="dlab" x="248" y="140" text-anchor="middle">a·c (multiply)</text></svg><p class="figcap">The X as the keys draw it, for RD #4, 3x² + 4x − 175. The circled numbers multiply to the right side and add to the left side: 25 · (−21) = −525 and 25 + (−21) = 4.</p></div>
+<div class="math">\[3x^2+25x-21x-175=x(3x+25)-7(3x+25)=(3x+25)(x-7)\]</div>
+<p class="note">Both pairs must show the same binomial. If they don’t, a sign is off. Usually the second pair’s GCF needs to be negative.</p>
+<p class="where">Worked examples: RD #1 and #4.</p>
+
+<h3>Perfect square trinomials</h3>
+<p><span class="cue">Cue:</span> First and last terms are perfect squares, and the middle is twice the product of their roots.</p>
+<div class="math">\[a^2+2ab+b^2=(a+b)^2 \qquad a^2-2ab+b^2=(a-b)^2\]</div>
+<div class="figure"><svg class="plot diagram fdiag" viewBox="0 0 320 300" role="img" aria-label="Area model: a square of side 3x plus 2 splits into 9x squared, two pieces of 6x, and 4"><text class="dlab strong" x="125" y="20" text-anchor="middle">3x</text><text class="dlab strong" x="255" y="20" text-anchor="middle">2</text><text class="dlab strong" x="24" y="120" text-anchor="middle">3x</text><text class="dlab strong" x="24" y="250" text-anchor="middle">2</text><rect class="sqa" x="40" y="30" width="170" height="170"/><rect class="rab" x="210" y="30" width="90" height="170"/><rect class="rab" x="40" y="200" width="170" height="90"/><rect class="sqb" x="210" y="200" width="90" height="90"/><text class="dhead" x="125" y="120" text-anchor="middle">9x²</text><text class="dhead" x="255" y="120" text-anchor="middle">6x</text><text class="dhead" x="125" y="250" text-anchor="middle">6x</text><text class="dhead" x="255" y="250" text-anchor="middle">4</text></svg><p class="figcap">(3x + 2)² drawn as a square. The two corner squares are the first and last terms. The two matching rectangles are why the middle term is <em>2</em> times the product: 6x + 6x = 12x.</p></div>
+<p><span class="cue">Method:</span> Write the square root under the first and last terms. If 2 times their product matches the middle, it is a perfect square, and the factor is the two roots joined by the middle term’s sign.</p>
+<p><strong>Filling a blank.</strong> Which rule depends on where the blank is.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>The blank is</th><th>Do this</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>the middle</td><td>2 times the two roots</td><td>\(9x^2+\underline{\quad}+4\): \(2\cdot3x\cdot2=12x\)</td></tr>
+<tr><td>the last, with \(x^2\) first</td><td>half the middle coefficient, squared</td><td>\(x^2-12x+\underline{\quad}\): \((-6)^2=36\)</td></tr>
+<tr><td>the first or last, in general</td><td>half the middle, squared, equals first times last coefficient</td><td>\(\underline{\quad}+12x+4\): \(6^2=36=9\cdot4\), so \(9x^2\)</td></tr>
+</tbody></table></div>
+<p>The last row is the one rule that covers every case. It works because \((b/2)^2\) and \(a\cdot c\) are both the square of the roots’ product.</p>
+<p>Fractions work the same way: take the root of the top and the bottom. \(\tfrac{9}{16}x^2=\left(\tfrac34x\right)^2\).</p>
+<p class="where">Worked examples: F02 #1–10, #14, #22, #24; F03 #1–10, #14, #16, #17, #27; RD #3.</p>
+
+<h3>Difference of squares</h3>
+<p><span class="cue">Cue:</span> Two perfect squares with a minus between them.</p>
+<div class="math">\[a^2-b^2=(a+b)(a-b)\]</div>
+<p><span class="cue">Method:</span> Find what is being squared on each side. Powers count: \(x^4=(x^2)^2\), \(64y^4=(8y^2)^2\).</p>
+<p>Then <span class="mark">check the minus factor again</span>. \(x^4-81=(x^2+9)(x^2-9)\), and \(x^2-9\) is itself a difference of squares, so the answer is \((x^2+9)(x+3)(x-3)\).</p>
+<p class="note">A sum of two squares, like x² + 9, doesn’t factor. Leave it.</p>
+<p class="where">Worked examples: F02 #25, #29; F03 #15, #25, #29.</p>
+
+<h3>Sum and difference of cubes</h3>
+<p><span class="cue">Cue:</span> Two perfect cubes. Know these: 1, 8, 27, 64, 125. Exponents that are multiples of 3 count too: \(z^9=(z^3)^3\).</p>
+<div class="math">\[a^3-b^3=(a-b)(a^2+ab+b^2) \qquad a^3+b^3=(a+b)(a^2-ab+b^2)\]</div>
+<p><span class="cue">Method:</span> Write each term as something cubed, then fill in the pattern. The first factor copies the original sign. The middle term of the second factor takes the opposite sign, and its last term is always plus.</p>
+<p class="note">The second factor never factors further. Don’t try to split x² + 2x + 4.</p>
+<p class="where">Worked examples: F02 #30; F03 #20, #30; RD #6, #12.</p>
+
+<h3>Quadratics in disguise</h3>
+<p><span class="cue">Cue:</span> Three terms where the first exponent is double the middle one: \(x^4\) and \(x^2\), or \(x^8\) and \(x^4\).</p>
+<p><span class="cue">Method:</span> Factor as if the middle power were \(x\). Then <span class="mark">every factor that’s a difference of squares gets factored again</span>.</p>
+<div class="math">\[x^4-10x^2+9=(x^2-1)(x^2-9)=(x+1)(x-1)(x+3)(x-3)\]</div>
+<p class="where">Worked examples: F02 #11, #15; F03 #8; RD #3.</p>
+
+<h3>Grouping</h3>
+<p><span class="cue">Cue:</span> Four terms.</p>
+<p><span class="cue">Method:</span> Split into two pairs and take the GCF of each pair. If both pairs leave the same binomial, pull that binomial out.</p>
+<div class="math">\[2x-2xm+a-am=2x(1-m)+a(1-m)=(1-m)(2x+a)\]</div>
+<p>Sometimes a binomial is already visible, as in \(x^2(a-1)+x(a-1)-42a+42\). Make the leftover terms show it too: \(-42a+42=-42(a-1)\).</p>
+<p class="where">Worked examples: F02 #26, #31; F03 #26, #31; RD #8, #10.</p>
+
+<h3>Grouping with a special pair</h3>
+<p><span class="cue">Cue:</span> Four terms where simple pairing fails, but two of the terms are squares or cubes. The sheet’s hint is “do a bit of re-ordering.”</p>
+<p><span class="cue">Method:</span> Put the two squares (or cubes) together and factor that pair with its pattern. Take the GCF of the other pair. <span class="mark">The binomial from the pattern shows up in both.</span></p>
+<div class="math">\[x^3+3x^2-6x-8=\underbrace{x^3-8}_{\text{cubes}}+\underbrace{3x^2-6x}_{\text{GCF}}=(x-2)(x^2+2x+4)+3x(x-2)\]</div>
+<p>Three terms can make the special group too. In \(x^2-y^2+10x+25\), the terms \(x^2+10x+25\) are a perfect square, which leaves \((x+5)^2-y^2\), a difference of squares.</p>
+<p class="where">Worked examples: F03 #22; RD #2, #5, #6, #12.</p>
+
+<h3>Force-factoring</h3>
+<p><span class="cue">Cue:</span> First and last terms are perfect squares, but the middle isn’t 2 times their product. Or a sum like \(x^4+4\) that seems stuck.</p>
+<p><span class="cue">Method:</span> Work out the middle term a perfect square <em>would</em> have. <span class="mark">Add and subtract the difference</span>, so the value doesn’t change. The perfect square factors, and what’s left is a difference of squares.</p>
+<div class="math">\[x^4+4x^2+16=x^4+8x^2+16-4x^2=(x^2+4)^2-(2x)^2\]</div>
+<div class="math">\[=(x^2+4+2x)(x^2+4-2x)\]</div>
+<p class="note">This only works when the amount you subtract is itself a perfect square, like 4x² = (2x)².</p>
+<p class="where">Worked examples: RD #7, #9, #10.</p>
+
+</section>
+
+<section class="panel" id="panel-f-solved" role="tabpanel" aria-labelledby="tab-f-solved" tabindex="0" hidden>
+
+<h2>Solved problems</h2>
+<p>Try each one first, then open the solution. The steps follow the teacher’s keys.</p>
+<div class="toolbar">
+  <button type="button" class="openAll">Show all solutions</button>
+  <button type="button" class="closeAll">Hide all solutions</button>
+</div>
+
+<h3>30 Problem Factoring 02</h3>
+<p class="where">Part I asks for the missing term and the factored form. The key only fills in the term, so the factored forms here were added and checked.</p>
+<div class="problem">
+  <div class="head"><span class="num">F02 #1</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(9x^2+\underline{\qquad}+4\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{9x^2}=3x \qquad \sqrt{4}=2\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 6x=12x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[9x^2+12x+4=(3x+2)^2\]</div>
+    <div class="answer">\(12x\); \(\;(3x+2)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #2</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(36x^2-\underline{\qquad}+25\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{36x^2}=6x \qquad \sqrt{25}=5\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 30x=60x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[36x^2-60x+25=(6x-5)^2\]</div>
+    <div class="answer">\(60x\); \(\;(6x-5)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #3</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(4x^2-\underline{\qquad}+1\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{4x^2}=2x \qquad \sqrt{1}=1\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 2x=4x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[4x^2-4x+1=(2x-1)^2\]</div>
+    <div class="answer">\(4x\); \(\;(2x-1)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #4</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(100x^2+\underline{\qquad}+81y^2\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{100x^2}=10x \qquad \sqrt{81y^2}=9y\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 90xy=180xy\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[100x^2+180xy+81y^2=(10x+9y)^2\]</div>
+    <p>A second letter changes nothing. The last term’s root is \(9y\), so the middle term carries \(xy\).</p>
+    <div class="answer">\(180xy\); \(\;(10x+9y)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #5</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(\tfrac{9}{16}x^2+\underline{\qquad}+4\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{\tfrac{9}{16}x^2}=\tfrac34x \qquad \sqrt{4}=2\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot \tfrac32x=3x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[\tfrac{9}{16}x^2+3x+4=\left(\tfrac34x+2\right)^2\]</div>
+    <p>Take the root of the top and the bottom separately: \(\sqrt9=3\), \(\sqrt{16}=4\).</p>
+    <div class="answer">\(3x\); \(\;\left(\tfrac34x+2\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #6</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(49x^2-\underline{\qquad}+\tfrac19\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{49x^2}=7x \qquad \sqrt{\tfrac19}=\tfrac13\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot \tfrac73x=\tfrac{14}{3}x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[49x^2-\tfrac{14}{3}x+\tfrac19=\left(7x-\tfrac13\right)^2\]</div>
+    <div class="answer">\(\tfrac{14}{3}x\); \(\;\left(7x-\tfrac13\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #7</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(\tfrac19x^2+\underline{\qquad}+\tfrac{1}{25}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{\tfrac19x^2}=\tfrac13x \qquad \sqrt{\tfrac{1}{25}}=\tfrac15\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot \tfrac{1}{15}x=\tfrac{2}{15}x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[\tfrac19x^2+\tfrac{2}{15}x+\tfrac{1}{25}=\left(\tfrac13x+\tfrac15\right)^2\]</div>
+    <div class="answer">\(\tfrac{2}{15}x\); \(\;\left(\tfrac13x+\tfrac15\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #8</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(225x^2-\underline{\qquad}+16\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{225x^2}=15x \qquad \sqrt{16}=4\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 60x=120x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[225x^2-120x+16=(15x-4)^2\]</div>
+    <div class="answer">\(120x\); \(\;(15x-4)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #9</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(81x^2-\underline{\qquad}+16\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{81x^2}=9x \qquad \sqrt{16}=4\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 36x=72x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[81x^2-72x+16=(9x-4)^2\]</div>
+    <div class="answer">\(72x\); \(\;(9x-4)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #10</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(9x^2+\underline{\qquad}+4\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <p><strong>Square roots of the ends.</strong></p>
+    <div class="math">\[\sqrt{9x^2}=3x \qquad \sqrt{4}=2\]</div>
+    <p><strong>Middle term is 2 times their product.</strong></p>
+    <div class="math">\[2\cdot 6x=12x\]</div>
+    <p><strong>Factor.</strong> The sign in the middle goes inside the parentheses.</p>
+    <div class="math">\[9x^2+12x+4=(3x+2)^2\]</div>
+    <div class="answer">\(12x\); \(\;(3x+2)^2\)</div>
+    <p class="note">This is the same problem as #1 on the sheet.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #11</span><span class="tag">Quadratic in disguise</span></div>
+  <p>Factor completely: \(x^8+9x^4-10\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Exponents like \(x^8\) and \(x^4\): the first exponent is double the middle one.</p><p><span class="cue">Method:</span> Factor it like an ordinary trinomial with \(x^4\) (or \(x^2\)) in place of \(x\), then keep factoring any difference of squares that comes out.</p></div>
+    <p><strong>Two numbers that multiply to −10 and add to 9:</strong> 10 and −1.</p>
+    <div class="math">\[(x^4+10)(x^4-1)\]</div>
+    <p><strong>\(x^4-1\) is a difference of squares.</strong></p>
+    <div class="math">\[(x^4+10)(x^2+1)(x^2-1)\]</div>
+    <p><strong>So is \(x^2-1\).</strong></p>
+    <div class="math">\[(x^4+10)(x^2+1)(x+1)(x-1)\]</div>
+    <p>\(x^4+10\) and \(x^2+1\) are sums, so they stop here.</p>
+    <div class="answer">\((x^4+10)(x^2+1)(x+1)(x-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #12</span><span class="tag">GCF, then trinomial</span></div>
+  <p>Factor completely: \(4x^3+12x^2+8x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Every term shares a number, a variable, or both.</p><p><span class="cue">Method:</span> Pull out the GCF first, then factor what’s left.</p></div>
+    <p><strong>GCF is \(4x\).</strong></p>
+    <div class="math">\[4x(x^2+3x+2)\]</div>
+    <p><strong>Multiply to 2, add to 3:</strong> 1 and 2.</p>
+    <div class="math">\[4x(x+1)(x+2)\]</div>
+    <div class="answer">\(4x(x+1)(x+2)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #13</span><span class="tag">Negative GCF</span></div>
+  <p>Factor completely: \(-x^3+3x^2+4x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The leading term is negative.</p><p><span class="cue">Method:</span> Pull out a negative GCF so the leading term inside is positive. Every sign inside flips.</p></div>
+    <p><strong>GCF is \(-x\).</strong></p>
+    <div class="math">\[-x(x^2-3x-4)\]</div>
+    <p><strong>Multiply to −4, add to −3:</strong> −4 and 1.</p>
+    <div class="math">\[-x(x-4)(x+1)\]</div>
+    <div class="answer">\(-x(x-4)(x+1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #14</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(x^2-10x+25\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> First and last terms are squares and the middle is twice their product: \(2\cdot x\cdot5=10x\).</p><p><span class="cue">Method:</span> Write it straight down as a square.</p></div>
+    <div class="math">\[x^2-10x+25=(x-5)^2=(x-5)(x-5)\]</div>
+    <div class="answer">\((x-5)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #15</span><span class="tag">Quadratic in disguise</span></div>
+  <p>Factor completely: \(x^4-10x^2+9\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Exponents like \(x^8\) and \(x^4\): the first exponent is double the middle one.</p><p><span class="cue">Method:</span> Factor it like an ordinary trinomial with \(x^4\) (or \(x^2\)) in place of \(x\), then keep factoring any difference of squares that comes out.</p></div>
+    <p><strong>Multiply to 9, add to −10:</strong> −1 and −9.</p>
+    <div class="math">\[(x^2-1)(x^2-9)\]</div>
+    <p><strong>Both are differences of squares.</strong></p>
+    <div class="math">\[(x+1)(x-1)(x+3)(x-3)\]</div>
+    <div class="answer">\((x+1)(x-1)(x+3)(x-3)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #16</span><span class="tag">Trinomial</span></div>
+  <p>Factor completely: \(x^2+10x-11\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+bx+c\) with a leading 1.</p><p><span class="cue">Method:</span> Find two numbers that multiply to \(c\) and add to \(b\).</p></div>
+    <p><strong>Multiply to −11, add to 10:</strong> 11 and −1.</p>
+    <div class="math">\[(x+11)(x-1)\]</div>
+    <div class="answer">\((x+11)(x-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #17</span><span class="tag">Trinomial</span></div>
+  <p>Factor completely: \(x^2+3x-18\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+bx+c\) with a leading 1.</p><p><span class="cue">Method:</span> Find two numbers that multiply to \(c\) and add to \(b\).</p></div>
+    <p><strong>Multiply to −18, add to 3:</strong> 6 and −3.</p>
+    <div class="math">\[(x+6)(x-3)\]</div>
+    <div class="answer">\((x+6)(x-3)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #18</span><span class="tag">Trinomial</span></div>
+  <p>Factor completely: \(x^2-7x-18\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+bx+c\) with a leading 1.</p><p><span class="cue">Method:</span> Find two numbers that multiply to \(c\) and add to \(b\).</p></div>
+    <p><strong>Multiply to −18, add to −7:</strong> −9 and 2.</p>
+    <div class="math">\[(x-9)(x+2)\]</div>
+    <div class="answer">\((x-9)(x+2)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #19</span><span class="tag">Trinomial</span></div>
+  <p>Factor completely: \(x^2+17x-18\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+bx+c\) with a leading 1.</p><p><span class="cue">Method:</span> Find two numbers that multiply to \(c\) and add to \(b\).</p></div>
+    <p><strong>Multiply to −18, add to 17:</strong> 18 and −1.</p>
+    <div class="math">\[(x+18)(x-1)\]</div>
+    <div class="answer">\((x+18)(x-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #20</span><span class="tag">Re-order, negative GCF</span></div>
+  <p>Factor completely: \(16x-2x^2+40\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The terms are out of order and the squared term is negative.</p><p><span class="cue">Method:</span> Re-order into descending powers, pull out \(-2\), then factor the trinomial.</p></div>
+    <p><strong>Re-order.</strong></p>
+    <div class="math">\[-2x^2+16x+40\]</div>
+    <p><strong>Pull out −2.</strong> Every sign inside flips.</p>
+    <div class="math">\[-2(x^2-8x-20)\]</div>
+    <p><strong>Multiply to −20, add to −8:</strong> −10 and 2.</p>
+    <div class="math">\[-2(x-10)(x+2)\]</div>
+    <div class="answer">\(-2(x-10)(x+2)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #21</span><span class="tag">Negative GCF</span></div>
+  <p>Factor completely: \(-x^2+15x-50\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The leading term is negative.</p><p><span class="cue">Method:</span> Pull out \(-1\), then factor the trinomial.</p></div>
+    <div class="math">\[-(x^2-15x+50)\]</div>
+    <p><strong>Multiply to 50, add to −15:</strong> −10 and −5.</p>
+    <div class="math">\[-(x-10)(x-5)\]</div>
+    <div class="answer">\(-(x-10)(x-5)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #22</span><span class="tag">GCF, then perfect square</span></div>
+  <p>Factor completely: \(2x^3+28x^2+98x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Every term shares a number, a variable, or both.</p><p><span class="cue">Method:</span> GCF first. What’s left is a perfect square trinomial.</p></div>
+    <div class="math">\[2x(x^2+14x+49)\]</div>
+    <p>\(49=7^2\) and \(2\cdot x\cdot7=14x\), so it’s a perfect square.</p>
+    <div class="math">\[2x(x+7)^2\]</div>
+    <div class="answer">\(2x(x+7)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #23</span><span class="tag">Re-order, GCF</span></div>
+  <p>Factor completely: \(100x+96+4x^2\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Terms out of order, and every coefficient is a multiple of 4.</p><p><span class="cue">Method:</span> Re-order, pull out 4, then factor the trinomial.</p></div>
+    <div class="math">\[4x^2+100x+96\]</div>
+    <div class="math">\[4(x^2+25x+24)\]</div>
+    <p><strong>Multiply to 24, add to 25:</strong> 24 and 1.</p>
+    <div class="math">\[4(x+24)(x+1)\]</div>
+    <div class="answer">\(4(x+24)(x+1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #24</span><span class="tag">Negative GCF, perfect square</span></div>
+  <p>Factor completely: \(-2x^2+4x-2\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Negative leading term; after the GCF it is a perfect square.</p><p><span class="cue">Method:</span> Pull out \(-2\), then write the square.</p></div>
+    <div class="math">\[-2(x^2-2x+1)\]</div>
+    <div class="math">\[-2(x-1)^2\]</div>
+    <div class="answer">\(-2(x-1)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #25</span><span class="tag">Difference of squares ×2</span></div>
+  <p>Factor completely: \(x^4-81\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms, both perfect squares, with a minus between them.</p><p><span class="cue">Method:</span> \(a^2-b^2=(a+b)(a-b)\). If a factor is still a difference of squares, do it again. A sum of squares doesn’t factor.</p></div>
+    <p>\(x^4=(x^2)^2\) and \(81=9^2\).</p>
+    <div class="math">\[(x^2+9)(x^2-9)\]</div>
+    <p><strong>\(x^2-9\) is another difference of squares.</strong></p>
+    <div class="math">\[(x^2+9)(x+3)(x-3)\]</div>
+    <div class="answer">\((x^2+9)(x+3)(x-3)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #26</span><span class="tag">Grouping</span></div>
+  <p>Factor completely: \(x^2(a-1)+x(a-1)-42a+42\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms, and \((a-1)\) already shows up twice.</p><p><span class="cue">Method:</span> Make the last two terms show \((a-1)\) too, then pull it out as a GCF.</p></div>
+    <p><strong>Factor −42 out of the last two terms.</strong> \(-42a+42=-42(a-1)\).</p>
+    <div class="math">\[x^2(a-1)+x(a-1)-42(a-1)\]</div>
+    <p><strong>\((a-1)\) is the GCF of all three.</strong></p>
+    <div class="math">\[(a-1)(x^2+x-42)\]</div>
+    <p><strong>Multiply to −42, add to 1:</strong> 7 and −6.</p>
+    <div class="math">\[(a-1)(x+7)(x-6)\]</div>
+    <div class="answer">\((a-1)(x+7)(x-6)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #27</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(x^2-6x+9\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(9=3^2\) and \(2\cdot x\cdot3=6x\).</p><p><span class="cue">Method:</span> Write the square.</p></div>
+    <div class="math">\[(x-3)^2\]</div>
+    <div class="answer">\((x-3)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #28</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(x^2+6x+9\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(9=3^2\) and \(2\cdot x\cdot3=6x\).</p><p><span class="cue">Method:</span> Write the square.</p></div>
+    <div class="math">\[(x+3)^2\]</div>
+    <div class="answer">\((x+3)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #29</span><span class="tag">Difference of squares ×2</span></div>
+  <p>Factor completely: \(x^4-16\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms, both perfect squares, with a minus between them.</p><p><span class="cue">Method:</span> \(a^2-b^2=(a+b)(a-b)\). If a factor is still a difference of squares, do it again. A sum of squares doesn’t factor.</p></div>
+    <div class="math">\[(x^2+4)(x^2-4)\]</div>
+    <div class="math">\[(x^2+4)(x+2)(x-2)\]</div>
+    <div class="answer">\((x^2+4)(x+2)(x-2)\)</div>
+    <p class="note">The scan’s watermark covers most of the key’s last line here. The answer above is what is legible, and it checks out.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #30</span><span class="tag">Difference of cubes</span></div>
+  <p>Factor completely: \(27x^3-125z^9\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms that are perfect cubes: \(27=3^3\), \(125=5^3\), \(64=4^3\), \(1=1^3\), and exponents that are multiples of 3.</p><p><span class="cue">Method:</span> Write each term as something cubed, then use \(a^3-b^3=(a-b)(a^2+ab+b^2)\) or \(a^3+b^3=(a+b)(a^2-ab+b^2)\).</p></div>
+    <p><strong>Write each as a cube.</strong> \(z^9=(z^3)^3\).</p>
+    <div class="math">\[(3x)^3-(5z^3)^3\]</div>
+    <p><strong>Use the pattern</strong> with \(a=3x\), \(b=5z^3\):</p>
+    <div class="math">\[(3x-5z^3)\left((3x)^2+(3x)(5z^3)+(5z^3)^2\right)\]</div>
+    <div class="math">\[(3x-5z^3)(9x^2+15xz^3+25z^6)\]</div>
+    <div class="answer">\((3x-5z^3)(9x^2+15xz^3+25z^6)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F02 #31</span><span class="tag">Grouping</span></div>
+  <p>Factor completely: \(2x-2xm+a-am\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms.</p><p><span class="cue">Method:</span> Pair the terms, take the GCF of each pair, then pull out the shared binomial.</p></div>
+    <p><strong>GCF of each pair.</strong></p>
+    <div class="math">\[2x(1-m)+a(1-m)\]</div>
+    <p><strong>\((1-m)\) is shared.</strong></p>
+    <div class="math">\[(1-m)(2x+a)\]</div>
+    <div class="answer">\((1-m)(2x+a)\)</div>
+  </div></details>
+</div>
+<h3>30 Problem Factoring 03</h3>
+<div class="problem">
+  <div class="head"><span class="num">F03 #1</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(x^2+\underline{\qquad}+25\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <div class="math">\[\text{roots: }x\ \text{and}\ 5\]</div>
+    <div class="math">\[2\cdot 5x=10x\]</div>
+    <div class="math">\[(x+5)^2\]</div>
+    <div class="answer">\(10x\); \(\;(x+5)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #2</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(x^2-\underline{\qquad}+144\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <div class="math">\[\text{roots: }x\ \text{and}\ 12\]</div>
+    <div class="math">\[2\cdot 12x=24x\]</div>
+    <div class="math">\[(x-12)^2\]</div>
+    <div class="answer">\(24x\); \(\;(x-12)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #3</span><span class="tag">Perfect square · missing last</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(x^2-12x+\underline{\qquad}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The blank is the last term.</p><p><span class="cue">Method:</span> Halve the middle coefficient and square it. That half, with its sign, goes in the parentheses.</p></div>
+    <p><strong>Half the middle coefficient, squared.</strong></p>
+    <div class="math">\[-6\;\to\;(-6)^2=36\]</div>
+    <div class="math">\[(x-6)^2\]</div>
+    <div class="answer">\(36\); \(\;(x-6)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #4</span><span class="tag">Perfect square · missing last</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(x^2+28x+\underline{\qquad}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The blank is the last term.</p><p><span class="cue">Method:</span> Halve the middle coefficient and square it. That half, with its sign, goes in the parentheses.</p></div>
+    <p><strong>Half the middle coefficient, squared.</strong></p>
+    <div class="math">\[14\;\to\;14^2=196\]</div>
+    <div class="math">\[(x+14)^2\]</div>
+    <div class="answer">\(196\); \(\;(x+14)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #5</span><span class="tag">Perfect square · missing last</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(4x^2+20x+\underline{\qquad}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The blank is the last term, and the first coefficient isn’t 1.</p><p><span class="cue">Method:</span> Root of the first term, then work out what the middle term says the other root must be.</p></div>
+    <p><strong>Root of the first term:</strong> \(2x\).</p>
+    <p><strong>The middle is 2 times the two roots.</strong> \(2\cdot2x\cdot r=20x\), so the product \(2x\cdot r\) is \(10x\) and \(r=5\).</p>
+    <div class="math">\[5^2=25\]</div>
+    <div class="math">\[(2x+5)^2\]</div>
+    <div class="answer">\(25\); \(\;(2x+5)^2\)</div>
+    <p class="note">Halving 20 and squaring gives 100, which is not the blank here. It is what the first and last coefficients multiply to (the rule from #10): 4 times the blank is 100, so the blank is 25.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #6</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(16x^2-\underline{\qquad}+\tfrac14\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <div class="math">\[\text{roots: }4x\ \text{and}\ \tfrac12\]</div>
+    <div class="math">\[2\cdot\left(4x\cdot\tfrac12\right)=2(2x)=4x\]</div>
+    <div class="math">\[\left(4x-\tfrac12\right)^2\]</div>
+    <div class="answer">\(4x\); \(\;\left(4x-\tfrac12\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #7</span><span class="tag">Perfect square · missing middle</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(\tfrac{4}{25}x^2+\underline{\qquad}+y^2\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A blank in a trinomial whose first and last terms are perfect squares.</p><p><span class="cue">Method:</span> Write the square root under the first and last terms. The middle term is 2 times their product. The two roots, with the middle term’s sign, make the factor.</p></div>
+    <div class="math">\[\text{roots: }\tfrac25x\ \text{and}\ y\]</div>
+    <div class="math">\[2\cdot \left(\tfrac25xy\right)=\tfrac45xy\]</div>
+    <div class="math">\[\left(\tfrac25x+y\right)^2\]</div>
+    <div class="answer">\(\tfrac45xy\); \(\;\left(\tfrac25x+y\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #8</span><span class="tag">Perfect square · missing last</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(x^4-8x^2+\underline{\qquad}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The blank is the last term.</p><p><span class="cue">Method:</span> Halve the middle coefficient and square it. That half, with its sign, goes in the parentheses.</p></div>
+    <p><strong>Half the middle coefficient, squared.</strong></p>
+    <div class="math">\[-4\;\to\;(-4)^2=16\]</div>
+    <div class="math">\[(x^2-4)^2\]</div>
+    <p><strong>Keep going.</strong> \(x^2-4\) is a difference of squares: \((x+2)(x-2)\).</p>
+    <div class="math">\[(x^2-4)^2=\left[(x+2)(x-2)\right]^2=(x+2)^2(x-2)^2\]</div>
+    <div class="answer">\(16\); \(\;\left[(x+2)(x-2)\right]^2\)</div>
+    <p class="note">The key writes [(x+4)(x−4)]², but x² − 4 factors as (x+2)(x−2). Multiplying (x+4)(x−4) gives x² − 16.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #9</span><span class="tag">Perfect square · missing last</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(x^2-6xy+\underline{\qquad}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The blank is the last term.</p><p><span class="cue">Method:</span> Halve the middle coefficient and square it. That half, with its sign, goes in the parentheses.</p></div>
+    <p><strong>Half the middle coefficient, squared.</strong></p>
+    <div class="math">\[-3y\;\to\;(-3y)^2=9y^2\]</div>
+    <div class="math">\[(x-3y)^2\]</div>
+    <p>The half carries the \(y\) with it, so the blank is \(9y^2\), not 9.</p>
+    <div class="answer">\(9y^2\); \(\;(x-3y)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #10</span><span class="tag">Perfect square · missing first</span></div>
+  <p>Fill the blank to make a perfect square trinomial, then factor it: \(\underline{\qquad}+12x+4\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> The blank is the first term.</p><p><span class="cue">Method:</span> Halve the middle coefficient and square it. That number is what the first and last coefficients must multiply to.</p></div>
+    <p><strong>Half of 12, squared.</strong></p>
+    <div class="math">\[6^2=36\]</div>
+    <p><strong>First coefficient times 4 must make 36</strong>, so the first coefficient is 9.</p>
+    <div class="math">\[9x^2+12x+4\]</div>
+    <p>Check with roots: \(\sqrt{9x^2}=3x\), \(\sqrt4=2\), and \(2\cdot3x\cdot2=12x\). ✓</p>
+    <div class="math">\[(3x+2)^2\]</div>
+    <div class="answer">\(9x^2\); \(\;(3x+2)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #11</span><span class="tag">Trinomial</span></div>
+  <p>Factor completely: \(x^2-3x-70\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+bx+c\) with a leading 1.</p><p><span class="cue">Method:</span> Find two numbers that multiply to \(c\) and add to \(b\).</p></div>
+    <p><strong>Multiply to −70, add to −3:</strong> −10 and 7.</p>
+    <div class="math">\[(x-10)(x+7)\]</div>
+    <div class="answer">\((x-10)(x+7)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #12</span><span class="tag">Trinomial</span></div>
+  <p>Factor completely: \(x^2+12x+35\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+bx+c\) with a leading 1.</p><p><span class="cue">Method:</span> Find two numbers that multiply to \(c\) and add to \(b\).</p></div>
+    <p><strong>Multiply to 35, add to 12:</strong> 7 and 5.</p>
+    <div class="math">\[(x+7)(x+5)\]</div>
+    <div class="answer">\((x+7)(x+5)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #13</span><span class="tag">GCF, then trinomial</span></div>
+  <p>Factor completely: \(5x^2+60x+160\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Every term shares a number, a variable, or both.</p><p><span class="cue">Method:</span> GCF first, then factor what’s left.</p></div>
+    <div class="math">\[5(x^2+12x+32)\]</div>
+    <p><strong>Multiply to 32, add to 12:</strong> 8 and 4.</p>
+    <div class="math">\[5(x+8)(x+4)\]</div>
+    <div class="answer">\(5(x+8)(x+4)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #14</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(x^2-x+\tfrac14\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(\tfrac14=\left(\tfrac12\right)^2\) and \(2\cdot x\cdot\tfrac12=x\).</p><p><span class="cue">Method:</span> Check the middle, then write the square.</p></div>
+    <div class="math">\[2\left(\tfrac12x\right)=x\ ✓\]</div>
+    <div class="math">\[\left(x-\tfrac12\right)^2\]</div>
+    <div class="answer">\(\left(x-\tfrac12\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #15</span><span class="tag">Difference of squares</span></div>
+  <p>Factor completely: \(x^2-25\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms, both perfect squares, with a minus between them.</p><p><span class="cue">Method:</span> \(a^2-b^2=(a+b)(a-b)\). If a factor is still a difference of squares, do it again. A sum of squares doesn’t factor.</p></div>
+    <div class="math">\[(x+5)(x-5)\]</div>
+    <div class="answer">\((x+5)(x-5)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #16</span><span class="tag">GCF, then perfect square</span></div>
+  <p>Factor completely: \(10x^2-20x+10\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Every term shares a number, a variable, or both.</p><p><span class="cue">Method:</span> GCF first. What’s left is a perfect square.</p></div>
+    <div class="math">\[10(x^2-2x+1)\]</div>
+    <div class="math">\[10(x-1)^2\]</div>
+    <div class="answer">\(10(x-1)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #17</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(x^2+\tfrac45x+\tfrac{4}{25}\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(\tfrac{4}{25}=\left(\tfrac25\right)^2\).</p><p><span class="cue">Method:</span> Check the middle, then write the square.</p></div>
+    <div class="math">\[2\left(\tfrac25x\right)=\tfrac45x\ ✓\]</div>
+    <div class="math">\[\left(x+\tfrac25\right)^2\]</div>
+    <div class="answer">\(\left(x+\tfrac25\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #18</span><span class="tag">GCF</span></div>
+  <p>Factor completely: \(25x^5y^4-5x^3y^4+25x^3y^3\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Every term shares a number, a variable, or both.</p><p><span class="cue">Method:</span> Take the biggest number and the smallest power of each letter.</p></div>
+    <p><strong>GCF:</strong> 5 for the numbers, \(x^3\) and \(y^3\) for the letters.</p>
+    <div class="math">\[5x^3y^3(5x^2y-y+5)\]</div>
+    <div class="answer">\(5x^3y^3(5x^2y-y+5)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #19</span><span class="tag">GCF</span></div>
+  <p>Factor completely: \(15x^2-30x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Every term shares a number, a variable, or both.</p><p><span class="cue">Method:</span> Pull out the GCF.</p></div>
+    <div class="math">\[15x(x-2)\]</div>
+    <div class="answer">\(15x(x-2)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #20</span><span class="tag">Difference of cubes</span></div>
+  <p>Factor completely: \(125x^3-1\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms that are perfect cubes: \(27=3^3\), \(125=5^3\), \(64=4^3\), \(1=1^3\), and exponents that are multiples of 3.</p><p><span class="cue">Method:</span> Write each term as something cubed, then use \(a^3-b^3=(a-b)(a^2+ab+b^2)\) or \(a^3+b^3=(a+b)(a^2-ab+b^2)\).</p></div>
+    <div class="math">\[(5x)^3-1^3\]</div>
+    <div class="math">\[(5x-1)(25x^2+5x+1)\]</div>
+    <div class="answer">\((5x-1)(25x^2+5x+1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #21</span><span class="tag">Negative GCF</span></div>
+  <p>Factor completely: \(-8x^2+4x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Negative leading term.</p><p><span class="cue">Method:</span> Pull out a negative GCF.</p></div>
+    <div class="math">\[-4x(2x-1)\]</div>
+    <div class="answer">\(-4x(2x-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #22</span><span class="tag">Group a perfect square</span></div>
+  <p>Factor completely: \(x^2-y^2+10x+25\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms, and three of them (\(x^2\), \(10x\), \(25\)) form a perfect square.</p><p><span class="cue">Method:</span> Gather the perfect square, write it as a square, and what’s left is a difference of squares.</p></div>
+    <p><strong>Re-order.</strong></p>
+    <div class="math">\[x^2+10x+25-y^2\]</div>
+    <p><strong>Perfect square trinomial.</strong></p>
+    <div class="math">\[(x+5)^2-y^2\]</div>
+    <p><strong>Difference of squares</strong> with \(a=x+5\), \(b=y\).</p>
+    <div class="math">\[(x+5+y)(x+5-y)\]</div>
+    <div class="answer">\((x+5+y)(x+5-y)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #23</span><span class="tag">Trinomial, two letters</span></div>
+  <p>Factor completely: \(x^2+12xy-45y^2\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Like \(x^2+bx+c\), with a \(y\) riding along.</p><p><span class="cue">Method:</span> Find two numbers that multiply to −45 and add to 12. Each one gets a \(y\).</p></div>
+    <p><strong>The key draws the X:</strong> 12 on the left, −45 on the right, 15 and −3 in the circles.</p>
+    <div class="math">\[(x+15y)(x-3y)\]</div>
+    <div class="answer">\((x+15y)(x-3y)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #24</span><span class="tag">Negative GCF, perfect square</span></div>
+  <p>Factor completely: \(-x^3+8x^2-16x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Negative leading term, and every term has an \(x\).</p><p><span class="cue">Method:</span> Pull out \(-x\); what’s left is a perfect square.</p></div>
+    <div class="math">\[-x(x^2-8x+16)\]</div>
+    <div class="math">\[-x(x-4)^2\]</div>
+    <div class="answer">\(-x(x-4)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #25</span><span class="tag">Difference of squares</span></div>
+  <p>Factor completely: \(x^2-64y^4\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms, both perfect squares, with a minus between them.</p><p><span class="cue">Method:</span> \(a^2-b^2=(a+b)(a-b)\). If a factor is still a difference of squares, do it again. A sum of squares doesn’t factor.</p></div>
+    <p>\(64y^4=(8y^2)^2\).</p>
+    <div class="math">\[(x+8y^2)(x-8y^2)\]</div>
+    <div class="answer">\((x+8y^2)(x-8y^2)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #26</span><span class="tag">Grouping</span></div>
+  <p>Factor completely: \(x^2(m+2)+3x(m+2)-4m-8\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms, and \((m+2)\) already shows up twice.</p><p><span class="cue">Method:</span> Make the last two terms show \((m+2)\), then pull it out.</p></div>
+    <div class="math">\[x^2(m+2)+3x(m+2)-4(m+2)\]</div>
+    <div class="math">\[(m+2)(x^2+3x-4)\]</div>
+    <p><strong>Multiply to −4, add to 3:</strong> 4 and −1.</p>
+    <div class="math">\[(m+2)(x+4)(x-1)\]</div>
+    <div class="answer">\((m+2)(x+4)(x-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #27</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(9x^2-2x+\tfrac19\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(9x^2=(3x)^2\) and \(\tfrac19=\left(\tfrac13\right)^2\).</p><p><span class="cue">Method:</span> Check the middle, then write the square.</p></div>
+    <div class="math">\[2\left(3x\cdot\tfrac13\right)=2x\ ✓\]</div>
+    <div class="math">\[\left(3x-\tfrac13\right)^2\]</div>
+    <div class="answer">\(\left(3x-\tfrac13\right)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #28</span><span class="tag">Perfect square</span></div>
+  <p>Factor completely: \(9x^2+6x+1\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(9x^2=(3x)^2\), \(1=1^2\), and \(2\cdot3x\cdot1=6x\).</p><p><span class="cue">Method:</span> Write the square.</p></div>
+    <div class="math">\[(3x+1)^2\]</div>
+    <div class="answer">\((3x+1)^2\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #29</span><span class="tag">Difference of squares ×2</span></div>
+  <p>Factor completely: \(x^4-1\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms, both perfect squares, with a minus between them.</p><p><span class="cue">Method:</span> \(a^2-b^2=(a+b)(a-b)\). If a factor is still a difference of squares, do it again. A sum of squares doesn’t factor.</p></div>
+    <div class="math">\[(x^2+1)(x^2-1)\]</div>
+    <div class="math">\[(x^2+1)(x+1)(x-1)\]</div>
+    <div class="answer">\((x^2+1)(x+1)(x-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #30</span><span class="tag">Sum of cubes</span></div>
+  <p>Factor completely: \(x^3+64\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two terms that are perfect cubes: \(27=3^3\), \(125=5^3\), \(64=4^3\), \(1=1^3\), and exponents that are multiples of 3.</p><p><span class="cue">Method:</span> Write each term as something cubed, then use \(a^3-b^3=(a-b)(a^2+ab+b^2)\) or \(a^3+b^3=(a+b)(a^2-ab+b^2)\).</p></div>
+    <div class="math">\[x^3+4^3\]</div>
+    <div class="math">\[(x+4)(x^2-4x+16)\]</div>
+    <div class="answer">\((x+4)(x^2-4x+16)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">F03 #31</span><span class="tag">Grouping</span></div>
+  <p>Factor completely: \(4x+4xy+y+y^2\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms.</p><p><span class="cue">Method:</span> Pair the terms, take the GCF of each pair, then pull out the shared binomial.</p></div>
+    <div class="math">\[4x(1+y)+y(1+y)\]</div>
+    <div class="math">\[(1+y)(4x+y)\]</div>
+    <div class="answer">\((1+y)(4x+y)\)</div>
+    <p class="note">The printed sheet had a sign typo here, which the key corrects by hand to + y. Its crossed-out first attempt, 4x(1 + y) − y(1 − y), doesn’t share a binomial; that is the signal something was off.</p>
+  </div></details>
+</div>
+<h3>Factoring Techniques: The Real Deal 01</h3>
+<p class="where">These are harder. Each one comes with the sheet’s own hint.</p>
+<div class="problem">
+  <div class="head"><span class="num">RD #1</span><span class="tag">GCF, then AC method</span></div>
+  <p>Factor completely: \(12x^2-42-165x\)</p>
+  <p class="where">Sheet’s hint: Definitely factor out a Greatest Common Factor as your first step!</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Out of order, every coefficient divisible by 3, and a leading coefficient that isn’t 1.</p><p><span class="cue">Method:</span> Re-order, pull out 3, then use the AC method on what’s left.</p></div>
+    <p><strong>Re-order and pull out 3.</strong></p>
+    <div class="math">\[12x^2-165x-42=3(4x^2-55x-14)\]</div>
+    <p><strong>AC method.</strong> \(a\cdot c=4(-14)=-56\). Two numbers that multiply to −56 and add to −55: −56 and 1.</p>
+    <p><strong>Split the middle term</strong> into \(-56x+x\).</p>
+    <div class="math">\[3(4x^2-56x+x-14)\]</div>
+    <p><strong>GCF of each pair.</strong></p>
+    <div class="math">\[3\left[4x(x-14)+1(x-14)\right]\]</div>
+    <div class="math">\[3(x-14)(4x+1)\]</div>
+    <div class="answer">\(3(x-14)(4x+1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #2</span><span class="tag">Group a special pair</span></div>
+  <p>Factor completely: \(25x^2+105y-49y^2-75x\)</p>
+  <p class="where">Sheet’s hint: Do a bit of re-ordering.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms with two squares among them: \(25x^2\) and \(49y^2\).</p><p><span class="cue">Method:</span> Put the squares together and the other two together. One pair is a difference of squares, the other has a GCF, and they share a binomial.</p></div>
+    <div class="math">\[25x^2-49y^2-75x+105y\]</div>
+    <p><strong>Difference of squares on the first pair, GCF of −15 on the second.</strong></p>
+    <div class="math">\[(5x+7y)(5x-7y)-15(5x-7y)\]</div>
+    <p><strong>\((5x-7y)\) is shared.</strong></p>
+    <div class="math">\[(5x-7y)(5x+7y-15)\]</div>
+    <div class="answer">\((5x-7y)(5x+7y-15)\)</div>
+    <p class="note">Taking out −15, not 15, is what makes the second pair come out as (5x − 7y) to match the first.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #3</span><span class="tag">Perfect square, then difference of squares</span></div>
+  <p>Factor completely: \(16x^{16}-8x^8+1\)</p>
+  <p class="where">Sheet’s hint: This will probably take two steps – both pretty easy.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(16x^{16}=(4x^8)^2\), \(1=1^2\), and \(2\cdot4x^8\cdot1=8x^8\).</p><p><span class="cue">Method:</span> Write the perfect square, then factor the base.</p></div>
+    <p><strong>Perfect square trinomial.</strong></p>
+    <div class="math">\[(4x^8-1)^2\]</div>
+    <p><strong>\(4x^8-1\) is a difference of squares:</strong> \((2x^4)^2-1^2\).</p>
+    <div class="math">\[\left[(2x^4+1)(2x^4-1)\right]^2\]</div>
+    <div class="answer">\(\left[(2x^4+1)(2x^4-1)\right]^2\)</div>
+    <p class="note">Same thing written another way: (2x⁴ + 1)²(2x⁴ − 1)². 2x⁴ − 1 stops here, because 2 isn’t a perfect square.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #4</span><span class="tag">AC method</span></div>
+  <p>Factor completely: \(3x^2+4x-175\)</p>
+  <p class="where">Sheet’s hint: I’d do the AC Method.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A leading coefficient that isn’t 1, and no GCF.</p><p><span class="cue">Method:</span> Multiply \(a\cdot c\), find two numbers that multiply to it and add to \(b\), split the middle, group.</p></div>
+    <p><strong>\(a\cdot c=3(-175)=-525\).</strong> Multiply to −525, add to 4: 25 and −21.</p>
+    <div class="math">\[3x^2+25x-21x-175\]</div>
+    <div class="math">\[x(3x+25)-7(3x+25)\]</div>
+    <div class="math">\[(3x+25)(x-7)\]</div>
+    <div class="answer">\((3x+25)(x-7)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #5</span><span class="tag">Group a special pair</span></div>
+  <p>Factor completely: \(16A^2-B-4A-B^2\)</p>
+  <p class="where">Sheet’s hint: Do a bit of re-ordering.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms, two of them squares: \(16A^2\) and \(B^2\).</p><p><span class="cue">Method:</span> Squares together, the rest together. Difference of squares on one pair, factor out −1 on the other.</p></div>
+    <div class="math">\[16A^2-B^2-4A-B\]</div>
+    <p><strong>Difference of squares, and −1 out of the last two.</strong></p>
+    <div class="math">\[(4A+B)(4A-B)-1(4A+B)\]</div>
+    <div class="math">\[(4A+B)(4A-B-1)\]</div>
+    <div class="answer">\((4A+B)(4A-B-1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #6</span><span class="tag">Difference of cubes + GCF pair</span></div>
+  <p>Factor completely: \(x^3+3x^2-6x-8\)</p>
+  <p class="where">Sheet’s hint: Try re-ordering and using the difference of cubes.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms: \(x^3\) and \(8\) are cubes.</p><p><span class="cue">Method:</span> Pair the cubes, pair the rest, pull out the shared binomial, then factor the trinomial.</p></div>
+    <div class="math">\[x^3-8+3x^2-6x\]</div>
+    <div class="math">\[(x-2)(x^2+2x+4)+3x(x-2)\]</div>
+    <p><strong>\((x-2)\) is shared.</strong></p>
+    <div class="math">\[(x-2)(x^2+2x+4+3x)\]</div>
+    <div class="math">\[(x-2)(x^2+5x+4)\]</div>
+    <div class="math">\[(x-2)(x+4)(x+1)\]</div>
+    <div class="answer">\((x-2)(x+4)(x+1)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #7</span><span class="tag">Force-factor</span></div>
+  <p>Factor completely: \(x^4+4x^2+16\)</p>
+  <p class="where">Sheet’s hint: You’ll need to force-factor this… a bit of addition and subtraction.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Looks like a perfect square, but the middle is wrong: \(2\cdot x^2\cdot4=8x^2\), not \(4x^2\).</p><p><span class="cue">Method:</span> Add what’s missing to make a perfect square, subtract it back off, then it’s a difference of squares.</p></div>
+    <p><strong>Add and subtract \(4x^2\).</strong></p>
+    <div class="math">\[x^4+8x^2+16-4x^2\]</div>
+    <div class="math">\[(x^2+4)^2-4x^2\]</div>
+    <p><strong>Difference of squares</strong> with \(a=x^2+4\), \(b=2x\).</p>
+    <div class="math">\[(x^2+4+2x)(x^2+4-2x)\]</div>
+    <div class="answer">\((x^2+2x+4)(x^2-2x+4)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #8</span><span class="tag">Grouping</span></div>
+  <p>Factor completely: \(9y^3-3xy^2+3x^3-9x^2y\)</p>
+  <p class="where">Sheet’s hint: These are already paired up quite nicely.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms.</p><p><span class="cue">Method:</span> GCF of each pair, pull out the shared binomial, then keep going.</p></div>
+    <div class="math">\[3y^2(3y-x)-3x^2(3y-x)\]</div>
+    <p><strong>Pull out \(3(3y-x)\).</strong></p>
+    <div class="math">\[3(3y-x)(y^2-x^2)\]</div>
+    <p><strong>Difference of squares.</strong></p>
+    <div class="math">\[3(3y-x)(y+x)(y-x)\]</div>
+    <div class="answer">\(3(3y-x)(y+x)(y-x)\)</div>
+    <p class="note">Factoring −3x² from the second pair gives (3y − x), matching the first. With +3x² you would get (x − 3y) and miss it.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #9</span><span class="tag">GCF, then force-factor</span></div>
+  <p>Factor completely: \(-2A^4+14A^2-18\)</p>
+  <p class="where">Sheet’s hint: A quick GCF and then a force-factor.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Negative leading term. Inside, \(A^4\) and \(9\) are squares but the middle isn’t \(\pm6A^2\).</p><p><span class="cue">Method:</span> Pull out −2, split the middle so a perfect square appears, then difference of squares.</p></div>
+    <div class="math">\[-2(A^4-7A^2+9)\]</div>
+    <p><strong>Write \(-7A^2\) as \(-6A^2-A^2\).</strong></p>
+    <div class="math">\[-2(A^4-6A^2+9-A^2)\]</div>
+    <div class="math">\[-2\left[(A^2-3)^2-A^2\right]\]</div>
+    <div class="math">\[-2(A^2-3+A)(A^2-3-A)\]</div>
+    <div class="answer">\(-2(A^2+A-3)(A^2-A-3)\)</div>
+    <p class="note">The key leaves the last factors as (A² − 3 + A)(A² − 3 − A). That is the same answer in a different order.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #10</span><span class="tag">Grouping, then force-factor</span></div>
+  <p>Factor completely: \(4x^2+x^6-x^4-4\)</p>
+  <p class="where">Sheet’s hint: Just when you think you’re done, you need to force-factor the last bit.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms out of order.</p><p><span class="cue">Method:</span> Re-order and group, then factor every piece until nothing is left.</p></div>
+    <div class="math">\[x^6-x^4+4x^2-4\]</div>
+    <div class="math">\[x^4(x^2-1)+4(x^2-1)\]</div>
+    <div class="math">\[(x^2-1)(x^4+4)\]</div>
+    <div class="math">\[(x+1)(x-1)(x^4+4)\]</div>
+    <p><strong>Force-factor \(x^4+4\).</strong> A perfect square needs \(4x^2\) in the middle, so add and subtract it.</p>
+    <div class="math">\[(x+1)(x-1)(x^4+4x^2+4-4x^2)\]</div>
+    <div class="math">\[(x+1)(x-1)\left[(x^2+2)^2-4x^2\right]\]</div>
+    <div class="math">\[(x+1)(x-1)(x^2+2+2x)(x^2+2-2x)\]</div>
+    <div class="answer">\((x+1)(x-1)(x^2+2x+2)(x^2-2x+2)\)</div>
+    <p class="note">\(x^4+4\) looks like a sum of squares, which normally stops. Force-factoring is the exception.</p>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #11</span><span class="tag">Simplify first</span></div>
+  <p>Factor completely: \(x(x+4)-4(1+x)\)</p>
+  <p class="where">Sheet’s hint: Try doing a bit of Pre-Algebra work before you try to factor.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> It is written as pieces, but the pieces don’t share a factor: \((x+4)\) and \((1+x)\) are different.</p><p><span class="cue">Method:</span> Distribute, combine like terms, then factor what’s left.</p></div>
+    <div class="math">\[x^2+4x-4-4x\]</div>
+    <div class="math">\[x^2-4\]</div>
+    <div class="math">\[(x+2)(x-2)\]</div>
+    <div class="answer">\((x+2)(x-2)\)</div>
+  </div></details>
+</div>
+<div class="problem">
+  <div class="head"><span class="num">RD #12</span><span class="tag">Sum of cubes + GCF pair</span></div>
+  <p>Factor completely: \(x^3-7x^2-21x+27\)</p>
+  <p class="where">Sheet’s hint: This problem is incredibly similar to one of the above problems.</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms: \(x^3\) and \(27\) are cubes. Same shape as #6.</p><p><span class="cue">Method:</span> Pair the cubes, pair the rest, pull out the shared binomial.</p></div>
+    <div class="math">\[x^3+27-7x^2-21x\]</div>
+    <div class="math">\[(x+3)(x^2-3x+9)-7x(x+3)\]</div>
+    <div class="math">\[(x+3)(x^2-3x+9-7x)\]</div>
+    <div class="math">\[(x+3)(x^2-10x+9)\]</div>
+    <div class="math">\[(x+3)(x-9)(x-1)\]</div>
+    <div class="answer">\((x+3)(x-9)(x-1)\)</div>
+  </div></details>
+</div>
+<h2>Answer key</h2>
+<div class="tablewrap">
+<table class="akey">
+  <thead><tr><th>#</th><th>Factoring 02</th><th>Factoring 03</th><th>The Real Deal 01</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>\(12x\); \(\;(3x+2)^2\)</td><td>\(10x\); \(\;(x+5)^2\)</td><td>\(3(x-14)(4x+1)\)</td></tr>
+    <tr><td>2</td><td>\(60x\); \(\;(6x-5)^2\)</td><td>\(24x\); \(\;(x-12)^2\)</td><td>\((5x-7y)(5x+7y-15)\)</td></tr>
+    <tr><td>3</td><td>\(4x\); \(\;(2x-1)^2\)</td><td>\(36\); \(\;(x-6)^2\)</td><td>\(\left[(2x^4+1)(2x^4-1)\right]^2\)</td></tr>
+    <tr><td>4</td><td>\(180xy\); \(\;(10x+9y)^2\)</td><td>\(196\); \(\;(x+14)^2\)</td><td>\((3x+25)(x-7)\)</td></tr>
+    <tr><td>5</td><td>\(3x\); \(\;\left(\tfrac34x+2\right)^2\)</td><td>\(25\); \(\;(2x+5)^2\)</td><td>\((4A+B)(4A-B-1)\)</td></tr>
+    <tr><td>6</td><td>\(\tfrac{14}{3}x\); \(\;\left(7x-\tfrac13\right)^2\)</td><td>\(4x\); \(\;\left(4x-\tfrac12\right)^2\)</td><td>\((x-2)(x+4)(x+1)\)</td></tr>
+    <tr><td>7</td><td>\(\tfrac{2}{15}x\); \(\;\left(\tfrac13x+\tfrac15\right)^2\)</td><td>\(\tfrac45xy\); \(\;\left(\tfrac25x+y\right)^2\)</td><td>\((x^2+2x+4)(x^2-2x+4)\)</td></tr>
+    <tr><td>8</td><td>\(120x\); \(\;(15x-4)^2\)</td><td>\(16\); \(\;\left[(x+2)(x-2)\right]^2\)</td><td>\(3(3y-x)(y+x)(y-x)\)</td></tr>
+    <tr><td>9</td><td>\(72x\); \(\;(9x-4)^2\)</td><td>\(9y^2\); \(\;(x-3y)^2\)</td><td>\(-2(A^2+A-3)(A^2-A-3)\)</td></tr>
+    <tr><td>10</td><td>\(12x\); \(\;(3x+2)^2\)</td><td>\(9x^2\); \(\;(3x+2)^2\)</td><td>\((x+1)(x-1)(x^2+2x+2)(x^2-2x+2)\)</td></tr>
+    <tr><td>11</td><td>\((x^4+10)(x^2+1)(x+1)(x-1)\)</td><td>\((x-10)(x+7)\)</td><td>\((x+2)(x-2)\)</td></tr>
+    <tr><td>12</td><td>\(4x(x+1)(x+2)\)</td><td>\((x+7)(x+5)\)</td><td>\((x+3)(x-9)(x-1)\)</td></tr>
+    <tr><td>13</td><td>\(-x(x-4)(x+1)\)</td><td>\(5(x+8)(x+4)\)</td><td></td></tr>
+    <tr><td>14</td><td>\((x-5)^2\)</td><td>\(\left(x-\tfrac12\right)^2\)</td><td></td></tr>
+    <tr><td>15</td><td>\((x+1)(x-1)(x+3)(x-3)\)</td><td>\((x+5)(x-5)\)</td><td></td></tr>
+    <tr><td>16</td><td>\((x+11)(x-1)\)</td><td>\(10(x-1)^2\)</td><td></td></tr>
+    <tr><td>17</td><td>\((x+6)(x-3)\)</td><td>\(\left(x+\tfrac25\right)^2\)</td><td></td></tr>
+    <tr><td>18</td><td>\((x-9)(x+2)\)</td><td>\(5x^3y^3(5x^2y-y+5)\)</td><td></td></tr>
+    <tr><td>19</td><td>\((x+18)(x-1)\)</td><td>\(15x(x-2)\)</td><td></td></tr>
+    <tr><td>20</td><td>\(-2(x-10)(x+2)\)</td><td>\((5x-1)(25x^2+5x+1)\)</td><td></td></tr>
+    <tr><td>21</td><td>\(-(x-10)(x-5)\)</td><td>\(-4x(2x-1)\)</td><td></td></tr>
+    <tr><td>22</td><td>\(2x(x+7)^2\)</td><td>\((x+5+y)(x+5-y)\)</td><td></td></tr>
+    <tr><td>23</td><td>\(4(x+24)(x+1)\)</td><td>\((x+15y)(x-3y)\)</td><td></td></tr>
+    <tr><td>24</td><td>\(-2(x-1)^2\)</td><td>\(-x(x-4)^2\)</td><td></td></tr>
+    <tr><td>25</td><td>\((x^2+9)(x+3)(x-3)\)</td><td>\((x+8y^2)(x-8y^2)\)</td><td></td></tr>
+    <tr><td>26</td><td>\((a-1)(x+7)(x-6)\)</td><td>\((m+2)(x+4)(x-1)\)</td><td></td></tr>
+    <tr><td>27</td><td>\((x-3)^2\)</td><td>\(\left(3x-\tfrac13\right)^2\)</td><td></td></tr>
+    <tr><td>28</td><td>\((x+3)^2\)</td><td>\((3x+1)^2\)</td><td></td></tr>
+    <tr><td>29</td><td>\((x^2+4)(x+2)(x-2)\)</td><td>\((x^2+1)(x+1)(x-1)\)</td><td></td></tr>
+    <tr><td>30</td><td>\((3x-5z^3)(9x^2+15xz^3+25z^6)\)</td><td>\((x+4)(x^2-4x+16)\)</td><td></td></tr>
+    <tr><td>31</td><td>\((1-m)(2x+a)\)</td><td>\((1+y)(4x+y)\)</td><td></td></tr>
+  </tbody>
+</table>
+</div>
+<p class="where">Every answer was expanded back and compared with the original, and each factor was checked to be fully factored. The keys agree throughout except Factoring 03 #8, where the key factors x² − 4 as (x+4)(x−4); it is (x+2)(x−2).</p>
 
 </section>
 

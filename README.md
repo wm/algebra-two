@@ -8,7 +8,7 @@ method applies — alongside every problem solved step by step.
 
 ## Contents
 
-The page has two topics, switched at the top:
+The page has three topics, switched at the top:
 
 - **Equations** — clearing denominators, distributing awkward coefficients,
   rational equations, substitution, infinite continued fractions, quadratics.
@@ -19,6 +19,12 @@ The page has two topics, switched at the top:
   coefficient. Built from *0B Homework 1*, *Distance from a point to a line*,
   *Graphing Lines Review 2*, *The Basics of Unit 0B*, the
   *Unit 0B 10-Problem Review*, and the *Coordinate Geometry Re-Take* problems.
+- **Factoring** — GCF (including a negative GCF), trinomials, the AC method,
+  perfect square trinomials (and filling in a missing term), difference of
+  squares, sum and difference of cubes, quadratics in disguise, grouping,
+  grouping with a special pair, and force-factoring. Built from
+  *30 Problem Factoring 02*, *30 Problem Factoring 03*, and
+  *Factoring Techniques: The Real Deal 01*.
 
 Each topic has three tabs: a decision **Checklist**, the **Patterns** with their
 cues, and the **Solved problems** with collapsible solutions.
@@ -36,7 +42,7 @@ type.
 ## Notes on the answers
 
 Every solution was worked by hand and then verified symbolically with SymPy.
-Three answers disagree with the teacher's keys, and each is flagged inline on the
+Four answers disagree with the teacher's keys, and each is flagged inline on the
 problem itself:
 
 - **0A 05 #2** — the key combines `4x + 4x − 10x` into `−10x`; that sum is `−2x`,
@@ -45,11 +51,17 @@ problem itself:
 - **Re-take #2** — the key gets `P(0, 28)` right but gives `3x − y = −28`, which
   has slope 3 and is not perpendicular to AB (slope `−3/4`). The perpendicular
   is `4x − 3y = −84`, with x-intercept `−21`, not `−28/3`.
+- **Factoring 03 #8** — the key factors `(x² − 4)²` as `[(x+4)(x−4)]²`; `x² − 4`
+  is `(x+2)(x−2)`.
 
 The Lines solutions follow the teacher's own steps from the keys: a right
 triangle and a proportion for segment ratios, one slope set equal to the
 negative reciprocal of the other for perpendiculars, and expand-then-factor (or
 the quadratic formula) when a letter is being solved for.
+
+For Factoring, every answer was also checked to be fully factored. Part I of
+*Factoring 02* asks for the factored form, but its key only fills in the missing
+term, so those factored forms were added here.
 
 No key was supplied for *The Basics of Unit 0B*, so those six answers are
 verified but not compared. In **#1** both `k = 4` and `k = 2` work; `k = 2`
