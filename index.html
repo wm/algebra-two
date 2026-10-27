@@ -1964,12 +1964,13 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
   <button type="button" role="tab" id="tab-f-checklist" aria-controls="panel-f-checklist" aria-selected="true">Checklist</button>
   <button type="button" role="tab" id="tab-f-patterns" aria-controls="panel-f-patterns" aria-selected="false" tabindex="-1">Patterns</button>
   <button type="button" role="tab" id="tab-f-solved" aria-controls="panel-f-solved" aria-selected="false" tabindex="-1">Solved problems</button>
+  <button type="button" role="tab" id="tab-f-practice" aria-controls="panel-f-practice" aria-selected="false" tabindex="-1">Practice test</button>
 </div>
 
 <section class="panel" id="panel-f-checklist" role="tabpanel" aria-labelledby="tab-f-checklist" tabindex="0">
 
 <h2>The checklist</h2>
-<p>Every problem on these sheets follows the same order. Run through it each time.</p>
+<p>Every problem on these sheets follows the same order. Run through it each time, and run it again on every factor you produce. The Patterns tab ends with the chains these steps usually form.</p>
 <ol class="check">
   <li><strong>Tidy up.</strong> If the problem is written in pieces that don’t share a factor, distribute and combine first. Then put the terms in descending powers.</li>
   <li><strong>GCF first, always.</strong> Pull out the biggest number and the smallest power of each letter. If the leading term is negative, pull out the negative too, which flips every sign inside.</li>
@@ -2082,6 +2083,48 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
 <p class="note">This only works when the amount you subtract is itself a perfect square, like 4x² = (2x)².</p>
 <p>Pick the sign of the target middle so the leftover gets <em>subtracted</em>. For \(x^4-9x^2+64\), aim for \(+16x^2\) (add \(25x^2\), subtract it back), not \(-16x^2\), which would leave a sum.</p>
 <p class="where">Worked examples: RD01 #7, #9, #10; RD04 #1. FT05 #8 shows when it can’t work.</p>
+
+<h2>How the patterns stack</h2>
+<p>The harder problems are two or three patterns in a row, and the cue for the next step only shows up once the step before is done. So after every step, look at each factor as if it were a new problem and run the checklist on it again.</p>
+<p>These are the chains that come up on the sheets. Learning them as chains means the second step is something you expect, not something you have to spot.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Start with</th><th>Then</th><th>Then</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>GCF (often negative)</td><td>AC method or a leading-1 trinomial</td><td></td><td>RD01 #1, RD02 #1, RD04 #2</td></tr>
+<tr><td>GCF</td><td>force-factor</td><td>difference of squares</td><td>RD01 #9</td></tr>
+<tr><td>Perfect square trinomial</td><td>difference of squares on the base</td><td></td><td>RD01 #3</td></tr>
+<tr><td>Group three terms into a perfect square</td><td>difference of squares</td><td></td><td>F03 #22, RD02 #4, RD04 #7</td></tr>
+<tr><td>Pair the squares (or cubes), GCF the other pair</td><td>pull out the shared binomial</td><td>factor what’s left</td><td>RD01 #2, #5, #6, #12; RD02 #2, #9; RD04 #6, #9</td></tr>
+<tr><td>Grouping in pairs</td><td>difference of squares or cubes</td><td>sometimes both</td><td>RD01 #8, RD04 #5, FT05 #5</td></tr>
+<tr><td>Grouping in pairs</td><td>force-factor the quartic</td><td>difference of squares</td><td>RD01 #10, RD04 #1</td></tr>
+<tr><td>Quadratic in disguise</td><td>difference of squares on each factor</td><td></td><td>F02 #11, #15; RD02 #5</td></tr>
+<tr><td>Distribute and combine</td><td>perfect square</td><td>difference of squares</td><td>RD01 #11, RD04 #3, FT05 #10</td></tr>
+</tbody></table></div>
+<p class="note">A first step that leaves a four-term or quartic factor is never the end. If the last thing you wrote has an x⁴ in it, look again.</p>
+
+<h3>Which terms to pair</h3>
+<p>When four or more terms don’t pair up as written, try these in order:</p>
+<ol class="check">
+  <li><strong>Squares together, or cubes together.</strong> \(25x^2\) with \(49y^2\); \(x^3\) with \(8\).</li>
+  <li><strong>Three terms that make a perfect square.</strong> \(x^2+26x+169\) goes together, and the leftover \(-4y^2\) stands alone.</li>
+  <li><strong>Terms that share a letter.</strong> In \(3m^2+2nx+mx+6mn\), pair the two terms with \(m\) and no \(n\), then the two with \(n\).</li>
+</ol>
+<p>Test the pairing straight away: take the GCF of each group. If they leave the same binomial, keep going. If not, swap partners before doing anything else.</p>
+
+<h3>Which sign to pull out</h3>
+<p>The second group’s GCF must leave the <em>same</em> binomial as the first. If you get \((3y-x)\) from one pair and \((x-3y)\) from the other, you pulled out the wrong sign. Take the negative instead and they match.</p>
+<div class="math">\[9y^3-3xy^2+3x^3-9x^2y=3y^2(3y-x)\,\underline{-3x^2}(3y-x)\]</div>
+<p>The same idea fixes binomials that come out as opposites from different patterns: \(w-1=-(1-w)\).</p>
+<p class="where">Examples: RD01 #2, #8; RD02 #2; RD04 #6; FT05 #6, #9.</p>
+
+<h3>When to stop</h3>
+<ul>
+  <li><strong>A sum of two squares stops</strong> (\(x^2+9\), \(4a^2+b^2\)), with one exception: force-factoring. \(x^4+c^2\) splits only if the middle you’d need, \(2cx^2\), is a perfect square. \(x^4+4\) needs \(4x^2\) ✓, \(x^4+64\) needs \(16x^2\) ✓, but \(x^4+16\) needs \(8x^2\), and 8 isn’t a square, so it stops.</li>
+  <li><strong>A difference stops if either side isn’t a perfect square:</strong> \(x^2-2\), \(x^4-3\), \(2x^4-1\). Cubes are the same: \(3x^3-1\) stops because 3 isn’t a cube.</li>
+  <li><strong>The second factor from a sum or difference of cubes never factors.</strong></li>
+  <li><strong>A trinomial stops when no two numbers work.</strong> For \(x^2+6x+6\), nothing multiplies to 6 and adds to 6.</li>
+</ul>
+<p><strong>Check the degree.</strong> Add up the highest power in each factor (count \(x^3\) as 3, a squared factor twice). It must equal the highest power in the original. That one check catches the key’s slip in RD04 #5.</p>
 
 </section>
 
@@ -3387,6 +3430,267 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
 </table>
 </div>
 <p class="where">Checked the same way. Two answers disagree with the keys, and each is explained inside its problem: Real Deal 04 #5, where the key writes x − 2 for x² − 2, and Factoring Techniques 05 #8, where the boxed answer doesn’t multiply back to x¹⁶ − 81.</p>
+
+</section>
+
+<section class="panel" id="panel-f-practice" role="tabpanel" aria-labelledby="tab-f-practice" tabindex="0" hidden>
+
+<h2>Practice test</h2>
+<p>Seventeen new problems in the style of the Real Deal sheets. There are no hints and no labels: deciding which pattern to start with, and what comes next, is the skill being tested. Factor each one completely.</p>
+<p class="note">Do them all on paper first, then check. Each solution names the solved problem it matches, so a miss tells you exactly what to go back to.</p>
+<div class="toolbar">
+  <button type="button" class="openAll">Show all solutions</button>
+  <button type="button" class="closeAll">Hide all solutions</button>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #1</span></div>
+  <p>\(2ab+6-3a-4b\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms; as written, the first pair shares nothing.</p><p><span class="cue">Method:</span> Re-order so each pair shares a letter, then GCF of each pair.</p><p><span class="cue">Same type as:</span> RD02 #8, RD04 #8.</p></div>
+    <p><strong>Re-order.</strong> Pair the two terms with an \(a\), then the rest.</p>
+    <div class="math">\[2ab-3a-4b+6\]</div>
+    <div class="math">\[a(2b-3)-2(2b-3)\]</div>
+    <p>Taking out −2, not 2, makes the second pair match.</p>
+    <div class="math">\[(2b-3)(a-2)\]</div>
+    <div class="answer">\((2b-3)(a-2)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #2</span></div>
+  <p>\(12x^2-72-30x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Out of order, and every coefficient is a multiple of 6.</p><p><span class="cue">Method:</span> Re-order, pull out 6, then the AC method.</p><p><span class="cue">Same type as:</span> RD01 #1.</p></div>
+    <div class="math">\[12x^2-30x-72=6(2x^2-5x-12)\]</div>
+    <p><strong>AC method.</strong> \(2(-12)=-24\). Multiply to −24, add to −5: −8 and 3.</p>
+    <div class="math">\[6(2x^2-8x+3x-12)\]</div>
+    <div class="math">\[6\left[2x(x-4)+3(x-4)\right]\]</div>
+    <div class="answer">\(6(x-4)(2x+3)\)</div>
+    <p class="note">If you only pulled out 2 or 3, the trinomial left still has a common factor. Take the greatest one.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #3</span></div>
+  <p>\(x^8-256\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two perfect squares with a minus.</p><p><span class="cue">Method:</span> Difference of squares, again and again, until a factor stops.</p><p><span class="cue">Same type as:</span> FT05 #8, F02 #25.</p></div>
+    <div class="math">\[(x^4+16)(x^4-16)\]</div>
+    <div class="math">\[(x^4+16)(x^2+4)(x^2-4)\]</div>
+    <div class="math">\[(x^4+16)(x^2+4)(x+2)(x-2)\]</div>
+    <p><strong>Does \(x^4+16\) force-factor?</strong> \((x^2+4)^2-8x^2\). 8 isn’t a perfect square, so no.</p>
+    <div class="answer">\((x^4+16)(x^2+4)(x+2)(x-2)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #4</span></div>
+  <p>\(4x^2+30y-25y^2-12x\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms, two of them squares: \(4x^2\) and \(25y^2\).</p><p><span class="cue">Method:</span> Squares together, the rest together. Difference of squares on one pair, a negative GCF on the other.</p><p><span class="cue">Same type as:</span> RD01 #2, RD02 #2.</p></div>
+    <div class="math">\[4x^2-25y^2-12x+30y\]</div>
+    <div class="math">\[(2x+5y)(2x-5y)-6(2x-5y)\]</div>
+    <div class="answer">\((2x-5y)(2x+5y-6)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #5</span></div>
+  <p>\(x^3-3x^2-6x+8\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms, and \(x^3\) and \(8\) are both cubes.</p><p><span class="cue">Method:</span> Pair the cubes, pair the rest, pull out the shared binomial, factor the trinomial.</p><p><span class="cue">Same type as:</span> RD01 #6, #12; RD02 #9.</p></div>
+    <p>This time the 8 is <em>plus</em>, so it is a sum of cubes.</p>
+    <div class="math">\[x^3+8-3x^2-6x\]</div>
+    <div class="math">\[(x+2)(x^2-2x+4)-3x(x+2)\]</div>
+    <div class="math">\[(x+2)(x^2-2x+4-3x)=(x+2)(x^2-5x+4)\]</div>
+    <p><strong>Multiply to 4, add to −5:</strong> −4 and −1.</p>
+    <div class="answer">\((x+2)(x-4)(x-1)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #6</span></div>
+  <p>\(9x^4-10x^2+1\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^4\) and \(x^2\), with a leading coefficient that isn’t 1.</p><p><span class="cue">Method:</span> AC method with \(x^2\) as the variable, then difference of squares on both factors.</p><p><span class="cue">Same type as:</span> RD02 #5.</p></div>
+    <p><strong>\(9\cdot1=9\).</strong> Multiply to 9, add to −10: −9 and −1.</p>
+    <div class="math">\[9x^4-9x^2-x^2+1=9x^2(x^2-1)-1(x^2-1)\]</div>
+    <div class="math">\[(x^2-1)(9x^2-1)\]</div>
+    <div class="answer">\((x+1)(x-1)(3x+1)(3x-1)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #7</span></div>
+  <p>\(x^4+6x^2+25\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^4\) and \(25\) are squares, but the middle isn’t \(10x^2\).</p><p><span class="cue">Method:</span> Force-factor: add and subtract \(4x^2\), then difference of squares.</p><p><span class="cue">Same type as:</span> RD01 #7.</p></div>
+    <div class="math">\[x^4+10x^2+25-4x^2\]</div>
+    <div class="math">\[(x^2+5)^2-(2x)^2\]</div>
+    <div class="math">\[(x^2+5+2x)(x^2+5-2x)\]</div>
+    <div class="answer">\((x^2+2x+5)(x^2-2x+5)\)</div>
+    <p class="note">The AC method fails here (nothing multiplies to 25 and adds to 6). That failure is the signal to force-factor.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #8</span></div>
+  <p>\(x^2-9y^2+14x+49\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(49=7^2\) and \(2\cdot x\cdot7=14x\): three terms make a perfect square.</p><p><span class="cue">Method:</span> Group the perfect square, then difference of squares.</p><p><span class="cue">Same type as:</span> RD02 #4, RD04 #7.</p></div>
+    <div class="math">\[x^2+14x+49-9y^2\]</div>
+    <div class="math">\[(x+7)^2-(3y)^2\]</div>
+    <div class="answer">\((x+7+3y)(x+7-3y)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #9</span></div>
+  <p>\(8a^3-4a^2b+2ab^2-b^3\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms that pair up as written.</p><p><span class="cue">Method:</span> GCF of each pair, pull out the shared binomial, then check whether what’s left factors.</p><p><span class="cue">Same type as:</span> RD01 #8.</p></div>
+    <div class="math">\[4a^2(2a-b)+b^2(2a-b)\]</div>
+    <div class="math">\[(2a-b)(4a^2+b^2)\]</div>
+    <p><strong>Stop.</strong> \(4a^2+b^2\) is a sum of two squares, so it doesn’t factor.</p>
+    <div class="answer">\((2a-b)(4a^2+b^2)\)</div>
+    <p class="note">It looks like RD01 #8, where the leftover was a difference of squares. Here it’s a sum, so the problem ends one step sooner.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #10</span></div>
+  <p>\(81x^{12}-18x^6+1\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(81x^{12}=(9x^6)^2\), \(1=1^2\), and \(2\cdot9x^6\cdot1=18x^6\).</p><p><span class="cue">Method:</span> Perfect square, then factor the base.</p><p><span class="cue">Same type as:</span> RD01 #3.</p></div>
+    <div class="math">\[(9x^6-1)^2\]</div>
+    <p><strong>\(9x^6-1\) is a difference of squares:</strong> \((3x^3)^2-1^2\).</p>
+    <div class="math">\[\left[(3x^3+1)(3x^3-1)\right]^2\]</div>
+    <p><strong>Stop.</strong> \(3x^3\pm1\) look like cubes, but 3 isn’t a perfect cube.</p>
+    <div class="answer">\(\left[(3x^3+1)(3x^3-1)\right]^2\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #11</span></div>
+  <p>\(3(1-t^2)-(t^3-1)\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> A difference of squares and a difference of cubes, giving \((1-t)\) and \((t-1)\).</p><p><span class="cue">Method:</span> Factor both pieces, pull out −1 so the binomials match, then simplify the bracket.</p><p><span class="cue">Same type as:</span> FT05 #6.</p></div>
+    <div class="math">\[3(1+t)(1-t)-(t-1)(t^2+t+1)\]</div>
+    <p><strong>Flip \((t-1)\) to \(-(1-t)\).</strong> The two minus signs make a plus.</p>
+    <div class="math">\[3(1+t)(1-t)+(1-t)(t^2+t+1)\]</div>
+    <div class="math">\[(1-t)\left[3+3t+t^2+t+1\right]=(1-t)(t^2+4t+4)\]</div>
+    <p>\(t^2+4t+4\) is a perfect square.</p>
+    <div class="answer">\((1-t)(t+2)^2\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #12</span></div>
+  <p>\(x^2+xy+3x+4y-4\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Five terms. Three of them (\(x^2\), \(3x\), \(-4\)) make a trinomial; the other two have a \(y\).</p><p><span class="cue">Method:</span> Factor the trinomial, take \(y\) out of the pair, pull out the shared binomial.</p><p><span class="cue">Same type as:</span> RD02 #6.</p></div>
+    <div class="math">\[x^2+3x-4+xy+4y\]</div>
+    <p><strong>Multiply to −4, add to 3:</strong> 4 and −1.</p>
+    <div class="math">\[(x+4)(x-1)+y(x+4)\]</div>
+    <div class="answer">\((x+4)(x-1+y)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #13</span></div>
+  <p>\(-3x^4+33x^2-75\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Negative leading term. Inside, \(x^4\) and \(25\) are squares but the middle isn’t \(\pm10x^2\).</p><p><span class="cue">Method:</span> Pull out −3, split the middle so a perfect square appears, then difference of squares.</p><p><span class="cue">Same type as:</span> RD01 #9.</p></div>
+    <div class="math">\[-3(x^4-11x^2+25)\]</div>
+    <p><strong>Write \(-11x^2\) as \(-10x^2-x^2\).</strong></p>
+    <div class="math">\[-3\left[(x^2-5)^2-x^2\right]\]</div>
+    <div class="math">\[-3(x^2-5+x)(x^2-5-x)\]</div>
+    <div class="answer">\(-3(x^2+x-5)(x^2-x-5)\)</div>
+    <p class="note">Aim for −10x², not +10x²: from +10x² you would have to subtract 21x², and 21 isn’t a square.</p>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #14</span></div>
+  <p>\((x+2)^3+(x-2)^3\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Two cubed binomials, added.</p><p><span class="cue">Method:</span> Sum of cubes with \(a=x+2\), \(b=x-2\). Keep the middle product in parentheses until the minus is distributed.</p><p><span class="cue">Same type as:</span> RD04 #4.</p></div>
+    <div class="math">\[\left[(x+2)+(x-2)\right]\left[(x+2)^2-(x+2)(x-2)+(x-2)^2\right]\]</div>
+    <div class="math">\[\left[2x\right]\left[x^2+4x+4-(x^2-4)+x^2-4x+4\right]\]</div>
+    <div class="math">\[2x(x^2+12)\]</div>
+    <div class="answer">\(2x(x^2+12)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #15</span></div>
+  <p>\(x^2+y^2-3x-3y+2xy-10\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> \(x^2+2xy+y^2\) is in there, and \(-3x-3y=-3(x+y)\). The chunk \(x+y\) appears twice.</p><p><span class="cue">Method:</span> Re-order, then let \(u=x+y\).</p><p><span class="cue">Same type as:</span> FT05 #7.</p></div>
+    <div class="math">\[x^2+2xy+y^2-3x-3y-10\]</div>
+    <div class="math">\[(x+y)^2-3(x+y)-10\]</div>
+    <p><strong>Let \(u=x+y\).</strong> \(u^2-3u-10=(u-5)(u+2)\).</p>
+    <div class="answer">\((x+y-5)(x+y+2)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #16</span></div>
+  <p>\(2mx^2-6x^2+5mx-15x-3m+9\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Six terms that fall into three pairs, each with an \(m\) term and a plain term.</p><p><span class="cue">Method:</span> GCF of each pair, pull out the shared binomial, then the AC method.</p><p><span class="cue">Same type as:</span> FT05 #9.</p></div>
+    <div class="math">\[2x^2(m-3)+5x(m-3)-3(m-3)\]</div>
+    <div class="math">\[(m-3)(2x^2+5x-3)\]</div>
+    <p><strong>AC method.</strong> \(2(-3)=-6\). Multiply to −6, add to 5: 6 and −1.</p>
+    <div class="math">\[(m-3)\left[2x(x+3)-1(x+3)\right]\]</div>
+    <div class="answer">\((m-3)(2x-1)(x+3)\)</div>
+  </div></details>
+</div>
+
+<div class="problem">
+  <div class="head"><span class="num">Practice #17</span></div>
+  <p>\(64x^2+x^6-x^4-64\)</p>
+  <details><summary>Solution</summary><div class="steps">
+    <div class="pattern"><p><span class="cue">Cue:</span> Four terms out of order. After grouping, a leftover \(x^4+64\) that looks stuck.</p><p><span class="cue">Method:</span> Re-order and group, factor the difference of squares, then force-factor the sum.</p><p><span class="cue">Same type as:</span> RD01 #10.</p></div>
+    <div class="math">\[x^6-x^4+64x^2-64\]</div>
+    <div class="math">\[x^4(x^2-1)+64(x^2-1)=(x^2-1)(x^4+64)\]</div>
+    <div class="math">\[(x+1)(x-1)(x^4+64)\]</div>
+    <p><strong>Force-factor \(x^4+64\).</strong> A perfect square needs \(2\cdot x^2\cdot8=16x^2\), and \(16x^2=(4x)^2\) is a square, so it works.</p>
+    <div class="math">\[(x+1)(x-1)\left[(x^2+8)^2-16x^2\right]\]</div>
+    <div class="answer">\((x+1)(x-1)(x^2+4x+8)(x^2-4x+8)\)</div>
+    <p class="note">Compare Practice #3: x⁴ + 16 needed 8x², which isn’t a square, so that one stopped.</p>
+  </div></details>
+</div>
+
+<h2>Answers only</h2>
+<details class="answers"><summary>Show the answers</summary>
+<div class="tablewrap">
+<table class="akey">
+  <thead><tr><th>#</th><th>Answer</th><th>Same type as</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>\((2b-3)(a-2)\)</td><td>RD02 #8</td></tr>
+    <tr><td>2</td><td>\(6(x-4)(2x+3)\)</td><td>RD01 #1</td></tr>
+    <tr><td>3</td><td>\((x^4+16)(x^2+4)(x+2)(x-2)\)</td><td>FT05 #8</td></tr>
+    <tr><td>4</td><td>\((2x-5y)(2x+5y-6)\)</td><td>RD02 #2</td></tr>
+    <tr><td>5</td><td>\((x+2)(x-4)(x-1)\)</td><td>RD01 #6</td></tr>
+    <tr><td>6</td><td>\((x+1)(x-1)(3x+1)(3x-1)\)</td><td>RD02 #5</td></tr>
+    <tr><td>7</td><td>\((x^2+2x+5)(x^2-2x+5)\)</td><td>RD01 #7</td></tr>
+    <tr><td>8</td><td>\((x+7+3y)(x+7-3y)\)</td><td>RD04 #7</td></tr>
+    <tr><td>9</td><td>\((2a-b)(4a^2+b^2)\)</td><td>RD01 #8</td></tr>
+    <tr><td>10</td><td>\(\left[(3x^3+1)(3x^3-1)\right]^2\)</td><td>RD01 #3</td></tr>
+    <tr><td>11</td><td>\((1-t)(t+2)^2\)</td><td>FT05 #6</td></tr>
+    <tr><td>12</td><td>\((x+4)(x-1+y)\)</td><td>RD02 #6</td></tr>
+    <tr><td>13</td><td>\(-3(x^2+x-5)(x^2-x-5)\)</td><td>RD01 #9</td></tr>
+    <tr><td>14</td><td>\(2x(x^2+12)\)</td><td>RD04 #4</td></tr>
+    <tr><td>15</td><td>\((x+y-5)(x+y+2)\)</td><td>FT05 #7</td></tr>
+    <tr><td>16</td><td>\((m-3)(2x-1)(x+3)\)</td><td>FT05 #9</td></tr>
+    <tr><td>17</td><td>\((x+1)(x-1)(x^2+4x+8)(x^2-4x+8)\)</td><td>RD01 #10</td></tr>
+  </tbody>
+</table>
+</div>
+</details>
+<p class="where">Every answer checked symbolically and confirmed fully factored. These problems are written for this guide; they are not from the teacher.</p>
 
 </section>
 

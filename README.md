@@ -32,6 +32,13 @@ The page has three topics, switched at the top:
 Each topic has three tabs: a decision **Checklist**, the **Patterns** with their
 cues, and the **Solved problems** with collapsible solutions.
 
+The Factoring patterns end with **How the patterns stack**: the multi-step
+chains the harder sheets use, plus how to choose which terms to pair, which sign
+to pull out, and when a factor is finished. Factoring also has a **Practice
+test** tab: seventeen new problems modelled on the Real Deal sheets, with no
+hints or labels, each solution naming the solved problem it matches. These were
+written for the guide and are not from the teacher.
+
 The Lines topic has a fourth tab, **Practice test**: ten new problems modelled
 on the 10-Problem Review, with different numbers and in a different order, plus
 an eleventh on a part-to-whole segment ratio (`AQ:AB`). Each has a hidden worked
