@@ -681,7 +681,8 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
   <li><strong>Write point-slope:</strong> \(y-y_1=m(x-x_1)\). Always start here once you have a slope and a point.</li>
   <li><strong>Was standard form asked for?</strong> Multiply through by the denominator of the slope, move the x term left, and make A positive.</li>
   <li><strong>Was a distance asked for?</strong> Two points go straight into the distance formula. A point and a line need the perpendicular built first.</li>
-  <li><strong>Is there a letter where a number should be?</strong> Carry it through the same steps, write the condition (perpendicular, parallel, a distance, a ratio, on the line) as an equation, and solve for the letter.</li>
+  <li><strong>Was an intercept or an area asked for?</strong> For an intercept, set the other letter to 0. A triangle with two corners on the x-axis has its base along the axis and its height equal to the third corner’s y-coordinate.</li>
+  <li><strong>Is there a letter where a number should be?</strong> Carry it through the same steps, write the condition (perpendicular, parallel, a distance, a ratio, on the line, the intercepts) as an equation, and solve for the letter. If the letters are in the coefficients and a point is given, substitute the point into each line and solve for the letters.</li>
 </ol>
 <p class="note">A ratio like 7:12 or 5:4 is the signal to build a point, not to divide anything yet.</p>
 
@@ -1976,14 +1977,14 @@ footer { margin-top: 4rem; color: var(--muted); font-size: 0.95rem; }
   <li><strong>GCF first, always.</strong> Pull out the biggest number and the smallest power of each letter. If the leading term is negative, pull out the negative too, which flips every sign inside.</li>
   <li><strong>Count the terms.</strong>
     <ul>
-      <li><em>Two terms:</em> a difference of squares, or a sum or difference of cubes. A sum of two squares doesn’t factor.</li>
-      <li><em>Three terms:</em> a perfect square? A leading 1 (product and sum)? Otherwise the AC method. If the exponents are like \(x^4\) and \(x^2\), treat \(x^2\) as the variable.</li>
-      <li><em>Four or more terms:</em> group in pairs. If the pairs don’t share a binomial, re-order so a difference of squares or cubes sits in one pair. Groups don’t have to be pairs: a trinomial plus a pair, or three pairs, work the same way.</li>
+      <li><em>Two terms:</em> a difference of squares, or a sum or difference of cubes. What’s squared or cubed can be a whole binomial, as in \((2x+1)^3+(2x-1)^3\). A sum of two squares doesn’t factor, except a quartic like \(x^4+4\) that force-factors (step 5).</li>
+      <li><em>Three terms:</em> a perfect square? A leading 1 (product and sum)? Otherwise the AC method. If the exponents are like \(x^4\) and \(x^2\), treat \(x^2\) as the variable. If a chunk like \(a+b\) repeats, call it \(u\).</li>
+      <li><em>Four or more terms:</em> group. If the terms as written don’t pair up, re-order: put squares (or cubes) together, then look for three terms that make a perfect square, then pair terms that share a letter. Groups don’t have to be pairs: a trinomial plus a pair, or three pairs, work the same way. Take each group’s GCF straight away; if they don’t leave the same binomial, try a negative GCF, then different partners.</li>
     </ul></li>
   <li><strong>Two binomials that are almost the same?</strong> \(1-w\) and \(w-1\) are opposites; pull out −1 to flip one. \(j+3m\) and \(3m+j\) are already equal.</li>
   <li><strong>Almost a perfect square, but the middle is wrong?</strong> Force-factor: add and subtract what’s missing, then it becomes a difference of squares.</li>
-  <li><strong>Look at every factor again.</strong> \(x^4-1\) gives \(x^2-1\), which factors again. Stop only when nothing left will factor.</li>
-  <li><strong>Check by multiplying back.</strong> You should get the original problem.</li>
+  <li><strong>Look at every factor again,</strong> and run this checklist on it as a new problem. \(x^4-1\) gives \(x^2-1\), which factors again. Stop when what’s left is a sum of squares that won’t force-factor, a difference with a non-square like \(x^2-2\), the second factor from cubes, or a trinomial where no two numbers work.</li>
+  <li><strong>Check.</strong> Multiply back and you should get the original. A quick first check: the powers of the factors add up to the original’s highest power.</li>
 </ol>
 <p class="note">After pulling out a GCF, the leftover terms almost always factor nicely. If they don’t, recheck the GCF.</p>
 
