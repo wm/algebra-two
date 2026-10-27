@@ -18,13 +18,16 @@ The page has three topics, switched at the top:
   line, intercepts, intersections, and solving for an unknown coordinate or
   coefficient. Built from *0B Homework 1*, *Distance from a point to a line*,
   *Graphing Lines Review 2*, *The Basics of Unit 0B*, the
-  *Unit 0B 10-Problem Review*, and the *Coordinate Geometry Re-Take* problems.
+  *Unit 0B 10-Problem Review*, the *Coordinate Geometry Re-Take* problems,
+  problems 1–4 of *Factoring Techniques 05*, and the coordinate geometry
+  problem from *The Real Deal 04*.
 - **Factoring** — GCF (including a negative GCF), trinomials, the AC method,
   perfect square trinomials (and filling in a missing term), difference of
   squares, sum and difference of cubes, quadratics in disguise, grouping,
   grouping with a special pair, and force-factoring. Built from
-  *30 Problem Factoring 02*, *30 Problem Factoring 03*, and
-  *Factoring Techniques: The Real Deal 01*.
+  *30 Problem Factoring 02*, *30 Problem Factoring 03*,
+  *Factoring Techniques: The Real Deal 01*, *02* and *04*, and problems 5–10
+  of *Factoring Techniques 05*.
 
 Each topic has three tabs: a decision **Checklist**, the **Patterns** with their
 cues, and the **Solved problems** with collapsible solutions.
@@ -42,7 +45,7 @@ type.
 ## Notes on the answers
 
 Every solution was worked by hand and then verified symbolically with SymPy.
-Four answers disagree with the teacher's keys, and each is flagged inline on the
+Six answers disagree with the teacher's keys, and each is flagged inline on the
 problem itself:
 
 - **0A 05 #2** — the key combines `4x + 4x − 10x` into `−10x`; that sum is `−2x`,
@@ -53,13 +56,20 @@ problem itself:
   is `4x − 3y = −84`, with x-intercept `−21`, not `−28/3`.
 - **Factoring 03 #8** — the key factors `(x² − 4)²` as `[(x+4)(x−4)]²`; `x² − 4`
   is `(x+2)(x−2)`.
+- **Real Deal 04 #5** — the key writes the shared binomial as `x − 2` instead of
+  `x² − 2`, so its answer `(x−2)(x−3)(x²+3x+9)` is degree 4, not 5. The correct
+  factoring is `(x²−2)(x−3)(x²+3x+9)`.
+- **Factoring Techniques 05 #8** — the key's working line is right,
+  `(x⁸+9)(x⁴+3)(x⁴−3)`, but the boxed answer `(x⁸+9)(x⁴+9)(x²+3)(x²−3)`
+  multiplies out to `x¹⁶ − 72x⁸ − 729`.
 
 The Lines solutions follow the teacher's own steps from the keys: a right
 triangle and a proportion for segment ratios, one slope set equal to the
 negative reciprocal of the other for perpendiculars, and expand-then-factor (or
 the quadratic formula) when a letter is being solved for.
 
-For Factoring, every answer was also checked to be fully factored. Part I of
+For Factoring, every answer was also checked to be fully factored. Problem
+labels are by sheet: `F02`, `F03`, `RD01`, `RD02`, `RD04`, `FT05`. Part I of
 *Factoring 02* asks for the factored form, but its key only fills in the missing
 term, so those factored forms were added here.
 
